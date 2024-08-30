@@ -17,6 +17,18 @@ public class UsersDTO {
 
     private String dni;
 
+    private boolean activo;
+
+    private String ruc;
+
+    private boolean eliminado;
+
+    private String direccion;
+
+    private String representanteLegal;
+
+    private RoleDTO role;
+
     public int getIdUsuario() {
         return idUsuario;
     }
@@ -79,5 +91,53 @@ public class UsersDTO {
 
     public void setDni(String dni) {
         this.dni = dni;
+    }
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
+
+    public String getRuc() {
+        return ruc;
+    }
+
+    public void setRuc(String ruc) {
+        this.ruc = ruc;
+    }
+
+    public boolean isEliminado() {
+        return eliminado;
+    }
+
+    public void setEliminado(boolean eliminado) {
+        this.eliminado = eliminado;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getRepresentanteLegal() {
+        return representanteLegal;
+    }
+
+    public void setRepresentanteLegal(String representanteLegal) {
+        this.representanteLegal = representanteLegal;
+    }
+
+    public RoleDTO getRole() {
+        return role;
+    }
+
+    public void setRole(RoleDTO role) {
+        this.role = role;
     }
 }
