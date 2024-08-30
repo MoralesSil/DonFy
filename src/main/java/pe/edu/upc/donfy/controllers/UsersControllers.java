@@ -40,7 +40,7 @@ public class UsersControllers {
     public void modificar(@RequestBody UsersDTO dto) {
         ModelMapper m=new ModelMapper();
         Users urs=m.map(dto, Users.class);
-        uS.update(urs);
+        uS.insert(urs);
     }
     @DeleteMapping("/{idUsuario}")
     public void eliminar(@PathVariable("idUsuario") Integer idUsuario){

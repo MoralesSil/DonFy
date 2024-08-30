@@ -2,9 +2,11 @@ package pe.edu.upc.donfy.entities;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
+
 @Entity
 @Table(name = "Users")
-public class Users {
+public class Users implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idUsuario;
@@ -24,11 +26,25 @@ public class Users {
     private String telefono;
     @Column(name = "dni",nullable = false, length = 8)
     private String dni;
+    @Column(name = "activo")
+    private boolean activo;
+    @Column(name = "ruc",nullable = false, length = 11)
+    private String ruc;
+    @Column(name = "eliminado")
+    private boolean eliminado;
+    @Column (name = "direccion",nullable = false, length = 150)
+    private String direccion;
+    @Column(name = "representanteLegal",nullable = false, length = 100)
+    private String representanteLegal;
+
+    @ManyToOne
+    @JoinTable(name = "role_id")
+    private Role role;
 
     public Users() {
     }
 
-    public Users(int idUsuario, String username, String password, String correo, String nombre, String apellidos, String telefono, String dni) {
+    public Users(int idUsuario, String username, String password, String correo, String nombre, String apellidos, String telefono, String dni, boolean activo, String ruc, boolean eliminado, String direccion, String representanteLegal, Role role) {
         this.idUsuario = idUsuario;
         this.username = username;
         this.password = password;
@@ -37,6 +53,12 @@ public class Users {
         this.apellidos = apellidos;
         this.telefono = telefono;
         this.dni = dni;
+        this.activo = activo;
+        this.ruc = ruc;
+        this.eliminado = eliminado;
+        this.direccion = direccion;
+        this.representanteLegal = representanteLegal;
+        this.role = role;
     }
 
     public int getIdUsuario() {
@@ -101,5 +123,53 @@ public class Users {
 
     public void setDni(String dni) {
         this.dni = dni;
+    }
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
+
+    public String getRuc() {
+        return ruc;
+    }
+
+    public void setRuc(String ruc) {
+        this.ruc = ruc;
+    }
+
+    public boolean isEliminado() {
+        return eliminado;
+    }
+
+    public void setEliminado(boolean eliminado) {
+        this.eliminado = eliminado;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getRepresentanteLegal() {
+        return representanteLegal;
+    }
+
+    public void setRepresentanteLegal(String representanteLegal) {
+        this.representanteLegal = representanteLegal;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }

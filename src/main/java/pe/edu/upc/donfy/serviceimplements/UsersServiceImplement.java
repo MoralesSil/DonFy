@@ -28,10 +28,10 @@ public class UsersServiceImplement implements IUsersService {
         return uR.findById(idUsuario).orElse(new Users());
     }
 
-    @Override
+    /*@Override
     public void update(Users users) {
         uR.save(users);
-    }
+    }*/
 
     @Override
     public void delete(int idUsuario) {
