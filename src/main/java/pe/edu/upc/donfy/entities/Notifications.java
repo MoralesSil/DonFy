@@ -10,8 +10,14 @@ public class Notifications {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idNotificacion;
 
-    private int Mensaje;
+    @Column(name = "mensaje", nullable = false)
+    private String mensaje;
+    @Column(name="estado", nullable=false, length=50)
     private String estado;
+
+    @ManyToOne
+    @JoinTable(name = "tipoNotificacion_id")
+    private NotificationType tipoNotificacion;
 
     public Notifications() {
 
@@ -19,7 +25,7 @@ public class Notifications {
 
     public Notifications(int idNotificacion, int Mensaje, String estado) {
         this.idNotificacion = idNotificacion;
-        this.Mensaje = Mensaje;
+        this.mensaje = mensaje;
         this.estado = estado;
     }
 
@@ -31,12 +37,12 @@ public class Notifications {
         this.idNotificacion = idNotificacion;
     }
 
-    public int getMensaje() {
-        return Mensaje;
+    public String getMensaje() {
+        return mensaje;
     }
 
-    public void setMensaje(int mensaje) {
-        Mensaje = mensaje;
+    public void setMensaje(String mensaje) {
+        this.mensaje = mensaje;
     }
 
     public String getEstado() {
