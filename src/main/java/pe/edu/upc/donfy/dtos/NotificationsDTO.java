@@ -1,29 +1,9 @@
-package pe.edu.upc.donfy.entities;
+package pe.edu.upc.donfy.dtos;
 
-
-import jakarta.persistence.*;
-
-@Entity
-@Table(name = "Notifications")
-public class Notifications {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class NotificationsDTO {
     private int idNotificacion;
-
-    @Column(name = "mensaje", nullable = false)
     private String mensaje;
-    @Column(name="estado", nullable=false, length=50)
     private String estado;
-
-    public Notifications() {
-
-    }
-
-    public Notifications(int idNotificacion, int Mensaje, String estado) {
-        this.idNotificacion = idNotificacion;
-        this.mensaje = mensaje;
-        this.estado = estado;
-    }
 
     public int getIdNotificacion() {
         return idNotificacion;
