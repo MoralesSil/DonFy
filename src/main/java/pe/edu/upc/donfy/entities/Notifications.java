@@ -1,6 +1,5 @@
 package pe.edu.upc.donfy.entities;
 
-
 import jakarta.persistence.*;
 
 @Entity
