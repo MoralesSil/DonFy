@@ -10,7 +10,9 @@ public class Notifications {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idNotificacion;
 
-    private int Mensaje;
+    @Column(name = "mensaje", nullable = false)
+    private int mensaje;
+    @Column(name="estado", nullable=false, length=50)
     private String estado;
 
     public Notifications() {
@@ -19,7 +21,7 @@ public class Notifications {
 
     public Notifications(int idNotificacion, int Mensaje, String estado) {
         this.idNotificacion = idNotificacion;
-        this.Mensaje = Mensaje;
+        this.mensaje = Mensaje;
         this.estado = estado;
     }
 
@@ -32,11 +34,11 @@ public class Notifications {
     }
 
     public int getMensaje() {
-        return Mensaje;
+        return mensaje;
     }
 
     public void setMensaje(int mensaje) {
-        Mensaje = mensaje;
+        this.mensaje = mensaje;
     }
 
     public String getEstado() {
