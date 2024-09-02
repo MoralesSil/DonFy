@@ -21,22 +21,22 @@ public class Donations {
     @Column(name = "estado", nullable = false, length = 20)
     private String estado;
 
-    @Column(name = "categoria", length = 50)
+    @Column(name = "categoria", nullable = false, length = 50)
     private String categoria;
 
-    @Column(name = "fotoDonativo")
+    @Column(name = "fotoDonativo", nullable = false)
     private String fotoDonativo;
 
-    @Column(name = "fechaEntrega")
+    @Column(name = "fechaEntrega", nullable = false)
     private Date fechaEntrega;
 
-    @Column(name = "montoDonado")
+    @Column(name = "montoDonado", nullable = false)
     private float montoDonado;
 
-    @Column(name = "precioDonativo")
+    @Column(name = "precioDonativo", nullable = false)
     private float precioDonativo;
 
-    @Column(name = "stock")
+    @Column(name = "stock", nullable = false)
     private int stock;
 
     @Column(name = "eliminado")
