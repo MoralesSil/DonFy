@@ -22,6 +22,10 @@ public class Notifications {
 
     }
 
+    public Notifications(NotificationType tipoNotificacion) {
+        this.tipoNotificacion = tipoNotificacion;
+    }
+
     public Notifications(int idNotificacion, int Mensaje, String estado) {
         this.idNotificacion = idNotificacion;
         this.mensaje = mensaje;
@@ -50,5 +54,13 @@ public class Notifications {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public NotificationType getTipoNotificacion() {
+        return tipoNotificacion;
+    }
+
+    public void setTipoNotificacion(NotificationType tipoNotificacion) {
+        this.tipoNotificacion = tipoNotificacion;
     }
 }
