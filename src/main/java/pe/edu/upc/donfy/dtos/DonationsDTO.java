@@ -17,7 +17,7 @@ public class DonationsDTO {
     private int stock;
     private boolean eliminado;
     private UsersDTO user;
-    private TypeDonationsDTO typeDonation;
+    private DonationsDTO donationsDTO;
     private NotificationsDTO notifications;
 
     public int getIdDonation() {
@@ -68,11 +68,11 @@ public class DonationsDTO {
         this.fotoDonativo = fotoDonativo;
     }
 
-    public Date getfechaRecojo() {
+    public Date getFechaRecojo() {
         return fechaRecojo;
     }
 
-    public void setfechaRecojo(Date fechaRecojo) {
+    public void setFechaRecojo(Date fechaRecojo) {
         this.fechaRecojo = fechaRecojo;
     }
 
@@ -116,12 +116,12 @@ public class DonationsDTO {
         this.user = user;
     }
 
-    public TypeDonationsDTO getTypeDonation() {
-        return typeDonation;
+    public DonationsDTO getDonationsDTO() {
+        return donationsDTO;
     }
 
-    public void setTypeDonation(TypeDonationsDTO typeDonation) {
-        this.typeDonation = typeDonation;
+    public void setDonationsDTO(DonationsDTO donationsDTO) {
+        this.donationsDTO = donationsDTO;
     }
 
     public NotificationsDTO getNotifications() {

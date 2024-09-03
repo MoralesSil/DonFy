@@ -48,7 +48,7 @@ public class Donations {
 
     @ManyToOne
     @JoinTable(name = "TipoDonativo_id")
-    private TypeDonations typeDonationsypeDonations;
+    private DonationType donationType;
 
     @ManyToOne
     @JoinTable(name = "Notification_id")
@@ -58,7 +58,7 @@ public class Donations {
     public Donations() {
     }
 
-    public Donations(int idDonation, String nombre, String descripcion, String estado, String categoria, String fotoDonativo, Date fechaRecojo, float montoDonado, float precioDonativo, int stock, boolean eliminado, Users users, TypeDonations typeDonationsypeDonations, Notifications notifications) {
+    public Donations(int idDonation, String nombre, String descripcion, String estado, String categoria, String fotoDonativo, Date fechaRecojo, float montoDonado, float precioDonativo, int stock, boolean eliminado, Users users, DonationType donationType, Notifications notifications) {
         this.idDonation = idDonation;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -71,7 +71,7 @@ public class Donations {
         this.stock = stock;
         this.eliminado = eliminado;
         this.users = users;
-        this.typeDonationsypeDonations = typeDonationsypeDonations;
+        this.donationType = donationType;
         this.notifications = notifications;
     }
 
@@ -123,11 +123,11 @@ public class Donations {
         this.fotoDonativo = fotoDonativo;
     }
 
-    public Date getfechaRecojo() {
+    public Date getFechaRecojo() {
         return fechaRecojo;
     }
 
-    public void setfechaRecojo(Date fechaRecojo) {
+    public void setFechaRecojo(Date fechaRecojo) {
         this.fechaRecojo = fechaRecojo;
     }
 
@@ -171,12 +171,12 @@ public class Donations {
         this.users = users;
     }
 
-    public TypeDonations getTypeDonationsypeDonations() {
-        return typeDonationsypeDonations;
+    public DonationType getDonationType() {
+        return donationType;
     }
 
-    public void setTypeDonationsypeDonations(TypeDonations typeDonationsypeDonations) {
-        this.typeDonationsypeDonations = typeDonationsypeDonations;
+    public void setDonationType(DonationType donationType) {
+        this.donationType = donationType;
     }
 
     public Notifications getNotifications() {
