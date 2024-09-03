@@ -15,7 +15,7 @@ public class Notifications {
     private String estado;
 
     @ManyToOne
-    @JoinTable(name = "tipoNotificacion_id")
+    @JoinColumn(name = "tipoNotificacion_id")
     private NotificationType tipoNotificacion;
 
     public Notifications() {
