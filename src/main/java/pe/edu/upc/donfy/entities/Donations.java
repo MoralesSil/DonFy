@@ -42,6 +42,9 @@ public class Donations {
     @Column(name = "eliminado")
     private boolean eliminado;
 
+    @Column(name = "direccionRecojo", nullable = false, length = 200)
+    private String direccionRecojo;
+
     @ManyToOne
     @JoinTable(name = "Users_id")
     private Users users;
@@ -58,7 +61,7 @@ public class Donations {
     public Donations() {
     }
 
-    public Donations(int idDonation, String nombre, String descripcion, String estado, String categoria, String fotoDonativo, Date fechaRecojo, float montoDonado, float precioDonativo, int stock, boolean eliminado, Users users, DonationType donationType, Notifications notifications) {
+    public Donations(int idDonation, String direccionRecojo, String nombre, String descripcion, String estado, String categoria, String fotoDonativo, Date fechaRecojo, float montoDonado, float precioDonativo, int stock, boolean eliminado, Users users, DonationType donationType, Notifications notifications) {
         this.idDonation = idDonation;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -73,6 +76,15 @@ public class Donations {
         this.users = users;
         this.donationType = donationType;
         this.notifications = notifications;
+        this.direccionRecojo = direccionRecojo;
+    }
+
+    public String getDireccionRecojo() {
+        return direccionRecojo;
+    }
+
+    public void setDireccionRecojo(String direccionRecojo) {
+        this.direccionRecojo = direccionRecojo;
     }
 
     public int getIdDonation() {

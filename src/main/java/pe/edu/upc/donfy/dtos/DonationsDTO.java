@@ -19,6 +19,15 @@ public class DonationsDTO {
     private UsersDTO user;
     private DonationsDTO donationsDTO;
     private NotificationsDTO notifications;
+    private String direccionRecojo;
+
+    public String getDireccionRecojo() {
+        return direccionRecojo;
+    }
+
+    public void setDireccionRecojo(String direccionRecojo) {
+        this.direccionRecojo = direccionRecojo;
+    }
 
     public int getIdDonation() {
         return idDonation;
