@@ -1,4 +1,7 @@
 package pe.edu.upc.donfy.repositories;
 
-public interface IRoleRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import pe.edu.upc.donfy.entities.Role;
+
+public interface IRoleRepository extends JpaRepository<Role, Integer> {
 }
