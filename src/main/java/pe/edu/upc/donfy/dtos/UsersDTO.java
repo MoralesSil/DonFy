@@ -1,5 +1,8 @@
 package pe.edu.upc.donfy.dtos;
 
+import pe.edu.upc.donfy.entities.Notifications;
+import pe.edu.upc.donfy.entities.Role;
+
 public class UsersDTO {
     private int idUsuario;
 
@@ -27,7 +30,17 @@ public class UsersDTO {
 
     private String representanteLegal;
 
-    private RoleDTO role;
+    private Role role;
+
+    private Notifications notifications;
+
+    public Notifications getNotifications() {
+        return notifications;
+    }
+
+    public void setNotifications(Notifications notifications) {
+        this.notifications = notifications;
+    }
 
     public int getIdUsuario() {
         return idUsuario;
@@ -133,11 +146,11 @@ public class UsersDTO {
         this.representanteLegal = representanteLegal;
     }
 
-    public RoleDTO getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(RoleDTO role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 }
