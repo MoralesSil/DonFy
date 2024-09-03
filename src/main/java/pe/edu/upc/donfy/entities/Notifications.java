@@ -22,10 +22,11 @@ public class Notifications {
 
     }
 
-    public Notifications(int idNotificacion, int Mensaje, String estado) {
+    public Notifications(int idNotificacion, String mensaje, String estado, NotificationType tipoNotificacion) {
         this.idNotificacion = idNotificacion;
         this.mensaje = mensaje;
         this.estado = estado;
+        this.tipoNotificacion = tipoNotificacion;
     }
 
     public int getIdNotificacion() {
@@ -50,5 +51,13 @@ public class Notifications {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public NotificationType getTipoNotificacion() {
+        return tipoNotificacion;
+    }
+
+    public void setTipoNotificacion(NotificationType tipoNotificacion) {
+        this.tipoNotificacion = tipoNotificacion;
     }
 }

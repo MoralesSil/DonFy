@@ -7,6 +7,6 @@ import java.util.List;
 public interface INotificationsService {
     public List<Notifications> list();
     public void insert(Notifications notification);
-    public Notifications listId(int idNotifications);
-    public void delete(int idNotifications);
+    public Notifications listId(int idNotificacion);
+    public void delete(int idNotificacion);
 }

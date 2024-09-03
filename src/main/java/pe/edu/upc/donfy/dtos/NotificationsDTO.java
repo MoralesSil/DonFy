@@ -31,6 +31,7 @@ public class NotificationsDTO {
     public void setEstado(String estado) {
         this.estado = estado;
     }
+
     public NotificationType getTipoNotificacion() {
         return tipoNotificacion;
     }

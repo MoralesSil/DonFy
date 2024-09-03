@@ -38,13 +38,17 @@ public class Users implements Serializable {
     private String representanteLegal;
 
     @ManyToOne
-    @JoinTable(name = "role_id")
+    @JoinColumn(name = "idRole")
     private Role role;
+
+    @ManyToOne
+    @JoinColumn(name = "idNotifications")
+    private Notifications notifications;
 
     public Users() {
     }
 
-    public Users(int idUsuario, String username, String password, String correo, String nombre, String apellidos, String telefono, String dni, boolean activo, String ruc, boolean eliminado, String direccion, String representanteLegal, Role role) {
+    public Users(int idUsuario, String username, String password, String correo, String nombre, String apellidos, String telefono, String dni, boolean activo, String ruc, boolean eliminado, String direccion, String representanteLegal, Role role, Notifications notifications) {
         this.idUsuario = idUsuario;
         this.username = username;
         this.password = password;
@@ -59,6 +63,7 @@ public class Users implements Serializable {
         this.direccion = direccion;
         this.representanteLegal = representanteLegal;
         this.role = role;
+        this.notifications = notifications;
     }
 
     public int getIdUsuario() {
@@ -171,5 +176,13 @@ public class Users implements Serializable {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public Notifications getNotifications() {
+        return notifications;
+    }
+
+    public void setNotifications(Notifications notifications) {
+        this.notifications = notifications;
     }
 }
