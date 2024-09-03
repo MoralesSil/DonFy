@@ -11,7 +11,7 @@ public class DonationsDTO {
     private String estado;
     private String categoria;
     private String fotoDonativo;
-    private Date fechaEntrega;
+    private Date fechaRecojo;
     private float montoDonado;
     private float precioDonativo;
     private int stock;
@@ -68,12 +68,12 @@ public class DonationsDTO {
         this.fotoDonativo = fotoDonativo;
     }
 
-    public Date getFechaEntrega() {
-        return fechaEntrega;
+    public Date getfechaRecojo() {
+        return fechaRecojo;
     }
 
-    public void setFechaEntrega(Date fechaEntrega) {
-        this.fechaEntrega = fechaEntrega;
+    public void setfechaRecojo(Date fechaRecojo) {
+        this.fechaRecojo = fechaRecojo;
     }
 
     public float getMontoDonado() {

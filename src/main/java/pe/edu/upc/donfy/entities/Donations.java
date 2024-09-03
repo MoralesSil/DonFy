@@ -27,8 +27,8 @@ public class Donations {
     @Column(name = "fotoDonativo", nullable = false)
     private String fotoDonativo;
 
-    @Column(name = "fechaEntrega", nullable = false)
-    private Date fechaEntrega;
+    @Column(name = "fechaRecojo", nullable = false)
+    private Date fechaRecojo;
 
     @Column(name = "montoDonado", nullable = false)
     private float montoDonado;
@@ -58,14 +58,14 @@ public class Donations {
     public Donations() {
     }
 
-    public Donations(int idDonation, String nombre, String descripcion, String estado, String categoria, String fotoDonativo, Date fechaEntrega, float montoDonado, float precioDonativo, int stock, boolean eliminado, Users users, TypeDonations typeDonationsypeDonations, Notifications notifications) {
+    public Donations(int idDonation, String nombre, String descripcion, String estado, String categoria, String fotoDonativo, Date fechaRecojo, float montoDonado, float precioDonativo, int stock, boolean eliminado, Users users, TypeDonations typeDonationsypeDonations, Notifications notifications) {
         this.idDonation = idDonation;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.estado = estado;
         this.categoria = categoria;
         this.fotoDonativo = fotoDonativo;
-        this.fechaEntrega = fechaEntrega;
+        this.fechaRecojo = fechaRecojo;
         this.montoDonado = montoDonado;
         this.precioDonativo = precioDonativo;
         this.stock = stock;
@@ -123,12 +123,12 @@ public class Donations {
         this.fotoDonativo = fotoDonativo;
     }
 
-    public Date getFechaEntrega() {
-        return fechaEntrega;
+    public Date getfechaRecojo() {
+        return fechaRecojo;
     }
 
-    public void setFechaEntrega(Date fechaEntrega) {
-        this.fechaEntrega = fechaEntrega;
+    public void setfechaRecojo(Date fechaRecojo) {
+        this.fechaRecojo = fechaRecojo;
     }
 
     public float getMontoDonado() {
