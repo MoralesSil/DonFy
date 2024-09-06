@@ -9,6 +9,6 @@ public interface IUsersService {
 
     public void insert(Users users);
     public Users listId(int idUsuario);
-    //public void update(Users users);
+    public void update(Users users);
     public void delete(int idUsuario);
 }
