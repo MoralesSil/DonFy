@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>pe.edu.upc</groupId>
-    <artifactId>demoSI61</artifactId>
+    <artifactId>donfy</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>donfy</name>
     <description>donfy</description>
