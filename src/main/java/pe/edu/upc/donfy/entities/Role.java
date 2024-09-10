@@ -3,13 +3,13 @@ package pe.edu.upc.donfy.entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="Role")
+@Table(name = "Role")
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idRolUsuario;
 
-    @Column(name = "nombre",nullable = false, length = 50)
+    @Column(name = "nombre", nullable = false, length = 50)
     private String nombre;
 
     public Role() {

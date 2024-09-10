@@ -26,8 +26,8 @@ public class Users implements Serializable {
     private String telefono;
     @Column(name = "dni",nullable = false, length = 8)
     private String dni;
-    @Column(name = "activo")
-    private boolean activo;
+    @Column(name = "enabled")
+    private boolean enabled;
     @Column(name = "ruc",nullable = false, length = 11)
     private String ruc;
     @Column(name = "eliminado")
@@ -48,7 +48,7 @@ public class Users implements Serializable {
     public Users() {
     }
 
-    public Users(int idUsuario, String username, String password, String correo, String nombre, String apellidos, String telefono, String dni, boolean activo, String ruc, boolean eliminado, String direccion, String representanteLegal, Role role, Notifications notifications) {
+    public Users(int idUsuario, String username, String password, String correo, String nombre, String apellidos, String telefono, String dni, boolean enabled, String ruc, boolean eliminado, String direccion, String representanteLegal, Role role, Notifications notifications) {
         this.idUsuario = idUsuario;
         this.username = username;
         this.password = password;
@@ -57,7 +57,7 @@ public class Users implements Serializable {
         this.apellidos = apellidos;
         this.telefono = telefono;
         this.dni = dni;
-        this.activo = activo;
+        this.enabled = enabled;
         this.ruc = ruc;
         this.eliminado = eliminado;
         this.direccion = direccion;
@@ -130,12 +130,12 @@ public class Users implements Serializable {
         this.dni = dni;
     }
 
-    public boolean isActivo() {
-        return activo;
+    public boolean isEnabled() {
+        return enabled;
     }
 
-    public void setActivo(boolean activo) {
-        this.activo = activo;
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
     public String getRuc() {

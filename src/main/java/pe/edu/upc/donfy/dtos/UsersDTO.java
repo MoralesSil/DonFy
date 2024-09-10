@@ -20,7 +20,7 @@ public class UsersDTO {
 
     private String dni;
 
-    private boolean activo;
+    private boolean enabled;
 
     private String ruc;
 
@@ -106,12 +106,12 @@ public class UsersDTO {
         this.dni = dni;
     }
 
-    public boolean isActivo() {
-        return activo;
+    public boolean isenabled() {
+        return enabled;
     }
 
-    public void setActivo(boolean activo) {
-        this.activo = activo;
+    public void setenabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
     public String getRuc() {
