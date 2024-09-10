@@ -1,5 +1,6 @@
 package pe.edu.upc.donfy.dtos;
 import jakarta.persistence.Column;
+import pe.edu.upc.donfy.entities.Donations;
 
 import java.time.LocalDateTime;
 
@@ -11,7 +12,7 @@ public class VouchersDTO {
     private double total;
     private String nombreDonante;
     private String descripcion;
-    private int donativoId;
+    private Donations donations;
 
     public int getIdComprobante() {
         return idComprobante;
@@ -53,11 +54,11 @@ public class VouchersDTO {
         this.descripcion = descripcion;
     }
 
-    public int getDonativoId() {
-        return donativoId;
+    public Donations getDonations() {
+        return donations;
     }
 
-    public void setDonativoId(int donativoId) {
-        this.donativoId = donativoId;
+    public void setDonations(Donations donations) {
+        this.donations = donations;
     }
 }
