@@ -1,24 +1,33 @@
 package pe.edu.upc.donfy.dtos;
 
-import jakarta.persistence.Column;
+import pe.edu.upc.donfy.entities.Users;
 
 public class RoleDTO {
-    private int idRolUsuario;
-    private String nombre;
+    private Long id;
+    private String rol;
+    private Users user;
 
-    public int getIdRolUsuario() {
-        return idRolUsuario;
+    public Long getId() {
+        return id;
     }
 
-    public void setIdRolUsuario(int idRolUsuario) {
-        this.idRolUsuario = idRolUsuario;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getRol() {
+        return rol;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setRol(String rol) {
+        this.rol = rol;
+    }
+
+    public Users getUser() {
+        return user;
+    }
+
+    public void setUser(Users user) {
+        this.user = user;
     }
 }

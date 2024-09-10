@@ -9,10 +9,12 @@ import org.springframework.transaction.annotation.Transactional;
 import pe.edu.upc.donfy.entities.Users;
 
 @Repository
-public interface IUsersRepository extends JpaRepository<Users, Integer> {
+public interface IUsersRepository extends JpaRepository<Users, Long> {
+    public Users findOneByUsername(String username);
+
+    //INSERTAR ROLES
     @Transactional
     @Modifying
-    @Query(value="INSERT INTO RolUsuario (nombre, idRolUsuario) VALUES (:rol, :idRole)", nativeQuery = true)
-    public void insRol(@Param("rol") String rol, @Param("idRole") Integer idRole);
-
+    @Query(value = "insert into roles (rol, user_id) VALUES (:rol, :user_id)", nativeQuery = true)
+    public void insRol(@Param("rol") String authority, @Param("user_id") Long user_id);
 }

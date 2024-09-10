@@ -24,7 +24,7 @@ public class UsersServiceImplement implements IUsersService {
     }
 
     @Override
-    public Users listId(int idUsuario) {
+    public Users listId(Long idUsuario) {
         return uR.findById(idUsuario).orElse(new Users());
     }
 
@@ -34,7 +34,7 @@ public class UsersServiceImplement implements IUsersService {
     }
 
     @Override
-    public void delete(int idUsuario) {
+    public void delete(Long idUsuario) {
         uR.deleteById(idUsuario);
     }
 }
