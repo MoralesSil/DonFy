@@ -1,12 +1,15 @@
 package pe.edu.upc.donfy.dtos;
 
 import pe.edu.upc.donfy.entities.NotificationType;
+import pe.edu.upc.donfy.entities.Users;
 
 public class NotificationsDTO {
     private int idNotificacion;
     private String mensaje;
     private String estado;
     private NotificationType tipoNotificacion;
+    private Users usuario;
+
 
     public int getIdNotificacion() {
         return idNotificacion;
@@ -38,5 +41,13 @@ public class NotificationsDTO {
 
     public void setTipoNotificacion(NotificationType tipoNotificacion) {
         this.tipoNotificacion = tipoNotificacion;
+    }
+
+    public Users getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Users usuario) {
+        this.usuario = usuario;
     }
 }
