@@ -46,15 +46,15 @@ public class Donations {
     private String direccionRecojo;
 
     @ManyToOne
-    @JoinTable(name = "Users_id")
+    @JoinColumn(name = "Users_id")
     private Users users;
 
     @ManyToOne
-    @JoinTable(name = "TipoDonativo_id")
+    @JoinColumn(name = "TipoDonativo_id")
     private DonationType donationType;
 
     @ManyToOne
-    @JoinTable(name = "Notification_id")
+    @JoinColumn(name = "Notification_id")
     private Notifications notifications;
 
 
