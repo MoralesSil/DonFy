@@ -13,11 +13,9 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/Users")
-
 public class UsersControllers {
     @Autowired
     private IUsersService uS;
-
     @Autowired
     private PasswordEncoder passwordEncoder;
 
@@ -37,10 +35,10 @@ public class UsersControllers {
         urs.setPassword(encodedPassword);
         uS.insert(urs);
     }
-    @GetMapping("/{idUsuario}")
-    public UsersDTO listarId(@PathVariable("idUsuario") Integer idUsuario  ) {
+    @GetMapping("/{id}")
+    public UsersDTO listarId(@PathVariable("id") Long id  ) {
         ModelMapper m=new ModelMapper();
-        UsersDTO dto=m.map(uS.listId(idUsuario), UsersDTO.class);
+        UsersDTO dto=m.map(uS.listId(id), UsersDTO.class);
         return dto;
     }
     @PutMapping
@@ -49,8 +47,8 @@ public class UsersControllers {
         Users urs=m.map(dto, Users.class);
         uS.update(urs);
     }
-    @DeleteMapping("/{idUsuario}")
-    public void eliminar(@PathVariable("idUsuario") Integer idUsuario){
-        uS.delete(idUsuario);
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable("id") Long id){
+        uS.delete(id);
     }
 }

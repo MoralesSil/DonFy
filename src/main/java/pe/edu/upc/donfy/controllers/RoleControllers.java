@@ -30,10 +30,10 @@ public class RoleControllers {
         Role nt = m.map(dto, Role.class);
         rS.insert(nt);
     }
-    @GetMapping("/{idRole}")
-    public RoleDTO listarId(@PathVariable("idRole") Integer idRole  ) {
+    @GetMapping("/{id}")
+    public RoleDTO listarId(@PathVariable("id") Long id  ) {
         ModelMapper m=new ModelMapper();
-        RoleDTO dto=m.map(rS.listId(idRole), RoleDTO.class);
+        RoleDTO dto=m.map(rS.listId(id), RoleDTO.class);
         return dto;
     }
     @PutMapping
@@ -42,8 +42,8 @@ public class RoleControllers {
         Role nt=m.map(dto, Role.class);
         rS.update(nt);
     }
-    @DeleteMapping("/{idRole}")
-    public void eliminar(@PathVariable("idRole") Integer idRole) {
-        rS.delete(idRole);
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable("id") Long id) {
+        rS.delete(id);
     }
 }
