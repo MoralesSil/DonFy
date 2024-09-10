@@ -1,6 +1,7 @@
 package pe.edu.upc.donfy.dtos;
 
 import jakarta.persistence.Column;
+import pe.edu.upc.donfy.entities.Users;
 
 import java.util.Date;
 
@@ -16,18 +17,10 @@ public class DonationsDTO {
     private float precioDonativo;
     private int stock;
     private boolean eliminado;
-    private UsersDTO user;
+    private Users user;
     private DonationsDTO donationsDTO;
     private NotificationsDTO notifications;
     private String direccionRecojo;
-
-    public String getDireccionRecojo() {
-        return direccionRecojo;
-    }
-
-    public void setDireccionRecojo(String direccionRecojo) {
-        this.direccionRecojo = direccionRecojo;
-    }
 
     public int getIdDonation() {
         return idDonation;
@@ -117,11 +110,11 @@ public class DonationsDTO {
         this.eliminado = eliminado;
     }
 
-    public UsersDTO getUser() {
+    public Users getUser() {
         return user;
     }
 
-    public void setUser(UsersDTO user) {
+    public void setUser(Users user) {
         this.user = user;
     }
 
@@ -139,5 +132,13 @@ public class DonationsDTO {
 
     public void setNotifications(NotificationsDTO notifications) {
         this.notifications = notifications;
+    }
+
+    public String getDireccionRecojo() {
+        return direccionRecojo;
+    }
+
+    public void setDireccionRecojo(String direccionRecojo) {
+        this.direccionRecojo = direccionRecojo;
     }
 }
