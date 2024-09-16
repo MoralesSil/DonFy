@@ -26,7 +26,7 @@ public class UsersDTO {
 
     private String direccion;
 
-    private String representanteLegal;
+    private String nombreONG;
 
     public Long getId() {
         return id;
@@ -116,11 +116,11 @@ public class UsersDTO {
         this.direccion = direccion;
     }
 
-    public String getRepresentanteLegal() {
-        return representanteLegal;
+    public String getNombreONG() {
+        return nombreONG;
     }
 
-    public void setRepresentanteLegal(String representanteLegal) {
-        this.representanteLegal = representanteLegal;
+    public void setNombreONG(String nombreONG) {
+        this.nombreONG = nombreONG;
     }
 }

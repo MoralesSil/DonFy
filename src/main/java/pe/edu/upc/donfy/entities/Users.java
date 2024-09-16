@@ -20,22 +20,22 @@ public class Users implements Serializable {
 
     private Boolean enabled;
 
-    @Column(name = "correo",nullable = false, length = 50)
+    @Column(name = "correo", nullable = false, length = 50)
     private String correo;
-    @Column(name = "nombre",nullable = false, length = 20)
+    @Column(name = "nombre", nullable = false, length = 20)
     private String nombre;
-    @Column(name = "apellidos",nullable = false, length = 30)
+    @Column(name = "apellidos", nullable = false, length = 30)
     private String apellidos;
-    @Column(name = "telefono",nullable = false, length = 9)
+    @Column(name = "telefono", nullable = false, length = 9)
     private String telefono;
-    @Column(name = "dni",nullable = false, length = 8)
+    @Column(name = "dni", nullable = false, length = 8)
     private String dni;
-    @Column(name = "ruc",nullable = false, length = 11)
+    @Column(name = "ruc", nullable = false, length = 11)
     private String ruc;
-    @Column (name = "direccion",nullable = false, length = 150)
+    @Column(name = "direccion", nullable = false, length = 150)
     private String direccion;
-    @Column(name = "representanteLegal",nullable = false, length = 100)
-    private String representanteLegal;
+    @Column(name = "nombreONG", nullable = false, length = 200)
+    private String nombreONG;
 
     @JsonIgnore
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -45,7 +45,7 @@ public class Users implements Serializable {
     public Users() {
     }
 
-    public Users(Long id, String username, String password, Boolean enabled, String correo, String nombre, String apellidos, String telefono, String dni, String ruc, String direccion, String representanteLegal, List<Role> roles) {
+    public Users(Long id, String username, String password, Boolean enabled, String correo, String nombre, String apellidos, String telefono, String dni, String ruc, String direccion, String nombreONG, List<Role> roles) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -57,7 +57,7 @@ public class Users implements Serializable {
         this.dni = dni;
         this.ruc = ruc;
         this.direccion = direccion;
-        this.representanteLegal = representanteLegal;
+        this.nombreONG = nombreONG;
         this.roles = roles;
     }
 
@@ -149,12 +149,12 @@ public class Users implements Serializable {
         this.direccion = direccion;
     }
 
-    public String getRepresentanteLegal() {
-        return representanteLegal;
+    public String getNombreONG() {
+        return nombreONG;
     }
 
-    public void setRepresentanteLegal(String representanteLegal) {
-        this.representanteLegal = representanteLegal;
+    public void setNombreONG(String nombreONG) {
+        this.nombreONG = nombreONG;
     }
 
     public List<Role> getRoles() {

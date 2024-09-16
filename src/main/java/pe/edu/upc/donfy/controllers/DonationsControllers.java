@@ -47,6 +47,7 @@ public class DonationsControllers {
     public void eliminar(@PathVariable("idDonation") Integer idDonation){
         dC.delete(idDonation);
     }
+
     @GetMapping("/FiltrarDonativosFisicos")
     public List<DonativosPhysicalDTO> FiltrarPorEstado(@RequestParam String estado)
     {

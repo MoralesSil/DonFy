@@ -12,7 +12,6 @@ public class DonationsDTO {
     private String nombre;
     private String descripcion;
     private String estado;
-    private String usuarioReceptor;
     private String categoria;
     private String fotoDonativo;
     private LocalDate fechaRecojo;
@@ -56,14 +55,6 @@ public class DonationsDTO {
 
     public void setEstado(String estado) {
         this.estado = estado;
-    }
-
-    public String getUsuarioReceptor() {
-        return usuarioReceptor;
-    }
-
-    public void setUsuarioReceptor(String usuarioReceptor) {
-        this.usuarioReceptor = usuarioReceptor;
     }
 
     public String getCategoria() {
