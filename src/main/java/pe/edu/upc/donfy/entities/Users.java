@@ -34,8 +34,8 @@ public class Users implements Serializable {
     private String ruc;
     @Column (name = "direccion",nullable = false, length = 150)
     private String direccion;
-    @Column(name = "nombreONG",nullable = false, length = 200)
-    private String nombreONG;
+    @Column(name = "representanteLegal",nullable = false, length = 100)
+    private String representanteLegal;
 
     @JsonIgnore
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -45,7 +45,7 @@ public class Users implements Serializable {
     public Users() {
     }
 
-    public Users(Long id, String username, String password, Boolean enabled, String correo, String nombre, String apellidos, String telefono, String dni, String ruc, String direccion, String nombreONG, List<Role> roles) {
+    public Users(Long id, String username, String password, Boolean enabled, String correo, String nombre, String apellidos, String telefono, String dni, String ruc, String direccion, String representanteLegal, List<Role> roles) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -57,7 +57,7 @@ public class Users implements Serializable {
         this.dni = dni;
         this.ruc = ruc;
         this.direccion = direccion;
-        this.nombreONG = nombreONG;
+        this.representanteLegal = representanteLegal;
         this.roles = roles;
     }
 
@@ -149,12 +149,12 @@ public class Users implements Serializable {
         this.direccion = direccion;
     }
 
-    public String getNombreONG() {
-        return nombreONG;
+    public String getRepresentanteLegal() {
+        return representanteLegal;
     }
 
-    public void setNombreONG(String nombreONG) {
-        this.nombreONG = nombreONG;
+    public void setRepresentanteLegal(String representanteLegal) {
+        this.representanteLegal = representanteLegal;
     }
 
     public List<Role> getRoles() {

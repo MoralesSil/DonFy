@@ -20,7 +20,6 @@ public class Vouchers {
     @Column(name = "nombreDonante", nullable = false, length = 200)
     private String nombreDonante;
 
-    @Lob
     @Column(name = "descripcion", nullable = false)
     private String descripcion;
 

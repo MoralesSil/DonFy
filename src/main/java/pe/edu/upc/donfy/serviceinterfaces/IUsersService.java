@@ -11,4 +11,6 @@ public interface IUsersService {
     public Users listId(Long idUsuario);
     public void update(Users users);
     public void delete(Long idUsuario);
+
+    public List<Users>rolesONG();
 }
