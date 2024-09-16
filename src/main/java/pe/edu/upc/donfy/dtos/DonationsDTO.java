@@ -4,6 +4,7 @@ import jakarta.persistence.Column;
 import pe.edu.upc.donfy.entities.Donations;
 import pe.edu.upc.donfy.entities.Users;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class DonationsDTO {
@@ -11,9 +12,10 @@ public class DonationsDTO {
     private String nombre;
     private String descripcion;
     private String estado;
+    private String usuarioReceptor;
     private String categoria;
     private String fotoDonativo;
-    private Date fechaRecojo;
+    private LocalDate fechaRecojo;
     private float montoDonado;
     private float precioDonativo;
     private int stock;
@@ -55,6 +57,14 @@ public class DonationsDTO {
         this.estado = estado;
     }
 
+    public String getUsuarioReceptor() {
+        return usuarioReceptor;
+    }
+
+    public void setUsuarioReceptor(String usuarioReceptor) {
+        this.usuarioReceptor = usuarioReceptor;
+    }
+
     public String getCategoria() {
         return categoria;
     }
@@ -71,11 +81,11 @@ public class DonationsDTO {
         this.fotoDonativo = fotoDonativo;
     }
 
-    public Date getFechaRecojo() {
+    public LocalDate getFechaRecojo() {
         return fechaRecojo;
     }
 
-    public void setFechaRecojo(Date fechaRecojo) {
+    public void setFechaRecojo(LocalDate fechaRecojo) {
         this.fechaRecojo = fechaRecojo;
     }
 

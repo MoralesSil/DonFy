@@ -39,4 +39,16 @@ public class DonationsServiceImplement implements IDonationsService {
     public void delete(int idDonations) {
         dR.deleteById(idDonations);
     }
+
+    @Override
+    public List<String[]> listDonationsForYourStatus(String estado) {
+        return dR.findDonationsByEstadoAndTipoFisico(estado);
+    }
+
+    @Override
+    public List<String[]> listOfMonetaryDonationsByONG() {
+        return dR.resumenDonacionesMonetarias();
+    }
+
+
 }

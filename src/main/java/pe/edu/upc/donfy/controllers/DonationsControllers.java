@@ -3,7 +3,9 @@ package pe.edu.upc.donfy.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.donfy.dtos.DonationSummaryDTO;
 import pe.edu.upc.donfy.dtos.DonationsDTO;
+import pe.edu.upc.donfy.dtos.DonativosPhysicalDTO;
 import pe.edu.upc.donfy.entities.Donations;
 import pe.edu.upc.donfy.serviceinterfaces.IDonationsService;
 
@@ -45,5 +47,21 @@ public class DonationsControllers {
     public void eliminar(@PathVariable("idDonation") Integer idDonation){
         dC.delete(idDonation);
     }
+    @GetMapping("/FiltrarDonativosFisicos")
+    public List<DonativosPhysicalDTO> FiltrarPorEstado(@RequestParam String estado)
+    {
+        return dC.listDonationsForYourStatus(estado).stream().map(x -> {
+            ModelMapper m = new ModelMapper();
+            return m.map(x, DonativosPhysicalDTO.class);
+        }).collect(Collectors.toList());
+    }
 
+    @GetMapping("/ResumenMonetarioPorONG")
+    public List<DonationSummaryDTO> TotalDonadoPorONG()
+    {
+        return dC.listOfMonetaryDonationsByONG().stream().map(x -> {
+            ModelMapper m = new ModelMapper();
+            return m.map(x, DonationSummaryDTO.class);
+        }).collect(Collectors.toList());
+    }
 }

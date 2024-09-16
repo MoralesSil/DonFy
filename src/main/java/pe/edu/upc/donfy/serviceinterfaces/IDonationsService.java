@@ -10,4 +10,6 @@ public interface IDonationsService {
     public void update(Donations donations);
     public Donations listId(int idDonations);
     public void delete(int idDonations);
+    public List<String[]> listDonationsForYourStatus(String estado);
+    public List<String[]> listOfMonetaryDonationsByONG();
 }
