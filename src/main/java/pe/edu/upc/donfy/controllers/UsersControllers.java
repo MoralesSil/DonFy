@@ -8,6 +8,8 @@ import pe.edu.upc.donfy.dtos.UsersDTO;
 import pe.edu.upc.donfy.entities.Users;
 import pe.edu.upc.donfy.serviceinterfaces.IUsersService;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -50,5 +52,14 @@ public class UsersControllers {
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") Long id){
         uS.delete(id);
+    }
+
+    //Query Roles ONG por usuario
+    @GetMapping("/busquedas")
+    public List<UsersDTO> buscar() {
+        return uS.rolesONG().stream().map(x -> {
+            ModelMapper m = new ModelMapper();
+            return m.map(x, UsersDTO.class);
+        }).collect(Collectors.toList());
     }
 }

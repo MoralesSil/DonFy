@@ -57,11 +57,15 @@ public class Donations {
     @JoinColumn(name = "Notification_id")
     private Notifications notifications;
 
+    @ManyToOne
+    @JoinColumn(name = "Users_Id_Receptor")
+    private Users userReceptor;
+
 
     public Donations() {
     }
 
-    public Donations(int idDonation, String direccionRecojo, String nombre, String descripcion, String estado, String categoria, String fotoDonativo, Date fechaRecojo, float montoDonado, float precioDonativo, int stock, boolean eliminado, Users users, DonationType donationType, Notifications notifications) {
+    public Donations(int idDonation, String nombre, String descripcion, String estado, String categoria, String fotoDonativo, Date fechaRecojo, float montoDonado, float precioDonativo, int stock, boolean eliminado, String direccionRecojo, Users users, DonationType donationType, Notifications notifications, Users userReceptor) {
         this.idDonation = idDonation;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -73,18 +77,11 @@ public class Donations {
         this.precioDonativo = precioDonativo;
         this.stock = stock;
         this.eliminado = eliminado;
+        this.direccionRecojo = direccionRecojo;
         this.users = users;
         this.donationType = donationType;
         this.notifications = notifications;
-        this.direccionRecojo = direccionRecojo;
-    }
-
-    public String getDireccionRecojo() {
-        return direccionRecojo;
-    }
-
-    public void setDireccionRecojo(String direccionRecojo) {
-        this.direccionRecojo = direccionRecojo;
+        this.userReceptor = userReceptor;
     }
 
     public int getIdDonation() {
@@ -175,6 +172,14 @@ public class Donations {
         this.eliminado = eliminado;
     }
 
+    public String getDireccionRecojo() {
+        return direccionRecojo;
+    }
+
+    public void setDireccionRecojo(String direccionRecojo) {
+        this.direccionRecojo = direccionRecojo;
+    }
+
     public Users getUsers() {
         return users;
     }
@@ -197,5 +202,13 @@ public class Donations {
 
     public void setNotifications(Notifications notifications) {
         this.notifications = notifications;
+    }
+
+    public Users getUserReceptor() {
+        return userReceptor;
+    }
+
+    public void setUserReceptor(Users userReceptor) {
+        this.userReceptor = userReceptor;
     }
 }
