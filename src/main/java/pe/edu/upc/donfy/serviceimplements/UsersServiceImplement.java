@@ -37,4 +37,11 @@ public class UsersServiceImplement implements IUsersService {
     public void delete(Long idUsuario) {
         uR.deleteById(idUsuario);
     }
+
+    @Override
+    public List<Users> rolesONG() {
+        return uR.rolesONG();
+    }
+
+
 }

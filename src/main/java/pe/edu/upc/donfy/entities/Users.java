@@ -17,7 +17,6 @@ public class Users implements Serializable {
     private String username;
     @Column(length = 200)
     private String password;
-
     private Boolean enabled;
 
     @Column(name = "correo",nullable = false, length = 50)
@@ -41,25 +40,6 @@ public class Users implements Serializable {
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private List<Role> roles;
-
-    public Users() {
-    }
-
-    public Users(Long id, String username, String password, Boolean enabled, String correo, String nombre, String apellidos, String telefono, String dni, String ruc, String direccion, String representanteLegal, List<Role> roles) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.enabled = enabled;
-        this.correo = correo;
-        this.nombre = nombre;
-        this.apellidos = apellidos;
-        this.telefono = telefono;
-        this.dni = dni;
-        this.ruc = ruc;
-        this.direccion = direccion;
-        this.representanteLegal = representanteLegal;
-        this.roles = roles;
-    }
 
     public Long getId() {
         return id;
