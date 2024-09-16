@@ -1,6 +1,7 @@
 package pe.edu.upc.donfy.dtos;
 
 import jakarta.persistence.Column;
+import pe.edu.upc.donfy.entities.Donations;
 import pe.edu.upc.donfy.entities.Users;
 
 import java.util.Date;
@@ -18,7 +19,7 @@ public class DonationsDTO {
     private int stock;
     private boolean eliminado;
     private Users user;
-    private DonationsDTO donationsDTO;
+    private Donations donations;
     private NotificationsDTO notifications;
     private String direccionRecojo;
 
@@ -118,12 +119,12 @@ public class DonationsDTO {
         this.user = user;
     }
 
-    public DonationsDTO getDonationsDTO() {
-        return donationsDTO;
+    public Donations getDonations() {
+        return donations;
     }
 
-    public void setDonationsDTO(DonationsDTO donationsDTO) {
-        this.donationsDTO = donationsDTO;
+    public void setDonations(Donations donations) {
+        this.donations = donations;
     }
 
     public NotificationsDTO getNotifications() {
