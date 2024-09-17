@@ -4,6 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import pe.edu.upc.donfy.dtos.DonationsDTO;
 import pe.edu.upc.donfy.entities.Donations;
 
 import java.util.List;
@@ -47,4 +48,21 @@ public interface IDonationsRepository extends JpaRepository <Donations,Integer>{
             "WHERE U.nombreONG IS NOT NULL AND U.nombreONG != ''",
             nativeQuery = true)
     List<String[]> getDonationStatistics();
+
+
+    //HU29: Generar Reporte de historial de donaciones
+
+    @Query(value = "SELECT " +
+            "    d.nombre AS nombreDonativo, " +
+            "    d.monto_donado AS montoDonado, " +
+            "    d.fecha_recojo AS fechaRecojo, " +
+            "    d.estado AS estadoDonacion, " +
+            "    u.nombre AS nombreDonante " +
+            "FROM " +
+            "    donations d " +
+            "JOIN " +
+            "    Users u ON d.Users_id = u.id " +
+            "ORDER BY " +
+            "    d.fecha_recojo DESC", nativeQuery = true)
+    public List<DonationsDTO> getDonations();
 }
