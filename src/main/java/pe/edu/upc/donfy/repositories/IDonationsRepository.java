@@ -26,4 +26,25 @@ public interface IDonationsRepository extends JpaRepository <Donations,Integer>{
                     "WHERE dt.nombreTipoDonation = 'monetario' " +
                     "GROUP BY u.nombre, d.usersReceptor.nombreONG")
     List<String[]> resumenDonacionesMonetarias();
+
+    //Ver el estado de mi donación física de un usuario en específico
+    @Query("SELECT d " +
+            "FROM Donations d" +
+            " JOIN d.users u " +
+            "JOIN d.donationType dt" +
+            " WHERE u.id = :userId" +
+            " AND dt.nombreTipoDonation = 'física'" +
+            " AND d.estado IN ('Pendiente', 'En proceso', 'Recogido')")
+    List<String[]> findPhysicalDonationsByUserIdAndStatus(@Param("userId") Long userId);
+
+    //Visualizar estadisticas de las donaciones
+    @Query(value = "SELECT " +
+            "COUNT(D.id_donation) AS total_donativos, " +
+            "SUM(D.monto_donado) AS valor_total_estimado, " +
+            "COUNT(DISTINCT U.id) AS cantidad_ONG_beneficiadas " +
+            "FROM Donations D " +
+            "JOIN Users U ON D.users_id_receptor = U.id " +
+            "WHERE U.nombreONG IS NOT NULL AND U.nombreONG != ''",
+            nativeQuery = true)
+    List<String[]> getDonationStatistics();
 }

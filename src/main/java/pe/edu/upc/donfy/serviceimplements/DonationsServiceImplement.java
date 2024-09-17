@@ -50,5 +50,15 @@ public class DonationsServiceImplement implements IDonationsService {
         return dR.resumenDonacionesMonetarias();
     }
 
+    @Override
+    public List<String[]> listOfPhysicalDonationsByUserIdAndStatus(Long userId) {
+        return dR.findPhysicalDonationsByUserIdAndStatus(userId);
+    }
+
+    @Override
+    public List<String[]> getDonationStatistics() {
+        return dR.getDonationStatistics();
+    }
+
 
 }
