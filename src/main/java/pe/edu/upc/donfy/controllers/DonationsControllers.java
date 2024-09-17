@@ -7,6 +7,7 @@ import pe.edu.upc.donfy.dtos.*;
 import pe.edu.upc.donfy.entities.Donations;
 import pe.edu.upc.donfy.serviceinterfaces.IDonationsService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -64,17 +65,28 @@ public class DonationsControllers {
         }).collect(Collectors.toList());
     }
     @GetMapping("/Users/{userId}/physical-donations")
-    public List<PhysicalDonationsByUserIdAndStatusDTO> DonacionesFisicaPorUsario(@PathVariable("userId") Long userId) {
-        return dC.listOfPhysicalDonationsByUserIdAndStatus(userId).stream().map(x -> {
+    public List<PhysicalDonationsByUserIdAndStatusDTO> DonacionesFisicaPorUsuario(@PathVariable("userId") Long User_id_receptor) {
+        List<PhysicalDonationsByUserIdAndStatusDTO> listaDTO = new ArrayList<>();
+        dC.listOfPhysicalDonationsByUserIdAndStatus(User_id_receptor).stream().forEach(x -> {
             ModelMapper m = new ModelMapper();
-            return m.map(x, PhysicalDonationsByUserIdAndStatusDTO.class);
-        }).collect(Collectors.toList());
+            PhysicalDonationsByUserIdAndStatusDTO dto = m.map(x, PhysicalDonationsByUserIdAndStatusDTO.class);
+            listaDTO.add(dto);
+        });
+        return listaDTO;
     }
     @GetMapping("/donation-statistics")
-    public List<DonationStatisticsDTO>DonacionesEstadisticas(){
-        return dC.getDonationStatistics().stream().map(x -> {
-            ModelMapper m = new ModelMapper();
-            return m.map(x, DonationStatisticsDTO.class);
-        }).collect(Collectors.toList());
+    public List<DonationStatisticsDTO> obtenerEstadisticas() {
+        List<String[]> lista = dC.getDonationStatistics();
+        List<DonationStatisticsDTO> listaDTO = new ArrayList<>();
+
+        for (String[] columna : lista) {
+            DonationStatisticsDTO dto = new DonationStatisticsDTO();
+            dto.setTotalDonativos(Long.parseLong(columna[0]));
+            dto.setValorTotalEstimado(Double.parseDouble(columna[1]));
+            dto.setCantidadONGBeneficiadas(Long.parseLong(columna[2]));
+            listaDTO.add(dto);
+        }
+
+        return listaDTO;
     }
 }

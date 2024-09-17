@@ -12,6 +12,6 @@ public interface IDonationsService {
     public void delete(int idDonations);
     public List<String[]> listDonationsForYourStatus(String estado);
     public List<String[]> listOfMonetaryDonationsByONG();
-    public List<String[]> listOfPhysicalDonationsByUserIdAndStatus(Long userId);
+    public List<Donations> listOfPhysicalDonationsByUserIdAndStatus(Long Users_id_receptor);
     List<String[]> getDonationStatistics();
 }
