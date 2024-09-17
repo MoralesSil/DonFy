@@ -35,6 +35,7 @@ pe\edu\upc\donfy\serviceinterfaces\INotificationsService.class
 pe\edu\upc\donfy\dtos\DonativosPhysicalDTO.class
 pe\edu\upc\donfy\securities\JwtResponse.class
 pe\edu\upc\donfy\controllers\DonationTypeControllers.class
+pe\edu\upc\donfy\dtos\TrendsDonationsDTO.class
 pe\edu\upc\donfy\securities\JwtRequest.class
 pe\edu\upc\donfy\securities\JwtAuthenticationEntryPoint.class
 pe\edu\upc\donfy\dtos\NotificationTypeDTO.class
