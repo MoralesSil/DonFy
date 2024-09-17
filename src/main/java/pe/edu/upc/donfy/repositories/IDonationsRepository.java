@@ -33,10 +33,10 @@ public interface IDonationsRepository extends JpaRepository <Donations,Integer>{
             "FROM Donations d" +
             " JOIN d.users u " +
             "JOIN d.donationType dt" +
-            " WHERE u.id = :userId" +
-            " AND dt.nombreTipoDonation = 'física'" +
+            " WHERE u.id = :users_id_receptor" +
+            " AND dt.nombreTipoDonation = 'fisico'" +
             " AND d.estado IN ('Pendiente', 'En proceso', 'Recogido')")
-    List<String[]> findPhysicalDonationsByUserIdAndStatus(@Param("userId") Long userId);
+    List<Donations> findPhysicalDonationsByUserIdAndStatus(@Param("users_id_receptor") Long Users_id_receptor);
 
     //Visualizar estadisticas de las donaciones
     @Query(value = "SELECT " +
