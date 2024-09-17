@@ -43,5 +43,11 @@ public class UsersServiceImplement implements IUsersService {
         return uR.rolesONG();
     }
 
+    @Override
+    public Long findByUsername(String username) {
+        Users user = uR.findUsersByUsername(username);
+        return user.getId();
+    }
+
 
 }

@@ -18,8 +18,6 @@ import java.util.stream.Collectors;
 public class UsersControllers {
     @Autowired
     private IUsersService uS;
-    @Autowired
-    private PasswordEncoder passwordEncoder;
 
     @GetMapping
     public List<UsersDTO> listar() {
@@ -29,14 +27,7 @@ public class UsersControllers {
             return m.map(x, UsersDTO.class);
         }).collect(Collectors.toList());
     }
-    @PostMapping
-    public void registar(@RequestBody UsersDTO dto) {
-        ModelMapper m = new ModelMapper();
-        Users urs = m.map(dto, Users.class);
-        String encodedPassword = passwordEncoder.encode(urs.getPassword());
-        urs.setPassword(encodedPassword);
-        uS.insert(urs);
-    }
+
     @GetMapping("/{id}")
     public UsersDTO listarId(@PathVariable("id") Long id  ) {
         ModelMapper m=new ModelMapper();

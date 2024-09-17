@@ -50,5 +50,10 @@ public class DonationsServiceImplement implements IDonationsService {
         return dR.resumenDonacionesMonetarias();
     }
 
+    @Override
+    public List<String[]> tendenciasDonacionesMeses() {
+        return dR.tendenciasDonacionesMeses();
+    }
+
 
 }
