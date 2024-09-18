@@ -1,9 +1,8 @@
 package pe.edu.upc.donfy.entities;
 
 import jakarta.persistence.*;
-import jakarta.persistence.Table;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "Donations")
@@ -28,7 +27,7 @@ public class Donations {
     private String fotoDonativo;
 
     @Column(name = "fechaRecojo", nullable = false)
-    private Date fechaRecojo;
+    private LocalDate fechaRecojo;
 
     @Column(name = "montoDonado", nullable = false)
     private float montoDonado;
@@ -57,11 +56,14 @@ public class Donations {
     @JoinColumn(name = "Notification_id")
     private Notifications notifications;
 
+    @ManyToOne
+    @JoinColumn(name = "Users_Id_Receptor")
+    private Users usersReceptor;
 
     public Donations() {
     }
 
-    public Donations(int idDonation, String direccionRecojo, String nombre, String descripcion, String estado, String categoria, String fotoDonativo, Date fechaRecojo, float montoDonado, float precioDonativo, int stock, boolean eliminado, Users users, DonationType donationType, Notifications notifications) {
+    public Donations(int idDonation, String nombre, String descripcion, String estado, String categoria, String fotoDonativo, LocalDate fechaRecojo, float montoDonado, float precioDonativo, int stock, boolean eliminado, String direccionRecojo, Users users, DonationType donationType, Notifications notifications, Users usersReceptor) {
         this.idDonation = idDonation;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -73,18 +75,11 @@ public class Donations {
         this.precioDonativo = precioDonativo;
         this.stock = stock;
         this.eliminado = eliminado;
+        this.direccionRecojo = direccionRecojo;
         this.users = users;
         this.donationType = donationType;
         this.notifications = notifications;
-        this.direccionRecojo = direccionRecojo;
-    }
-
-    public String getDireccionRecojo() {
-        return direccionRecojo;
-    }
-
-    public void setDireccionRecojo(String direccionRecojo) {
-        this.direccionRecojo = direccionRecojo;
+        this.usersReceptor = usersReceptor;
     }
 
     public int getIdDonation() {
@@ -135,11 +130,11 @@ public class Donations {
         this.fotoDonativo = fotoDonativo;
     }
 
-    public Date getFechaRecojo() {
+    public LocalDate getFechaRecojo() {
         return fechaRecojo;
     }
 
-    public void setFechaRecojo(Date fechaRecojo) {
+    public void setFechaRecojo(LocalDate fechaRecojo) {
         this.fechaRecojo = fechaRecojo;
     }
 
@@ -175,6 +170,14 @@ public class Donations {
         this.eliminado = eliminado;
     }
 
+    public String getDireccionRecojo() {
+        return direccionRecojo;
+    }
+
+    public void setDireccionRecojo(String direccionRecojo) {
+        this.direccionRecojo = direccionRecojo;
+    }
+
     public Users getUsers() {
         return users;
     }
@@ -197,5 +200,13 @@ public class Donations {
 
     public void setNotifications(Notifications notifications) {
         this.notifications = notifications;
+    }
+
+    public Users getUsersReceptor() {
+        return usersReceptor;
+    }
+
+    public void setUsersReceptor(Users usersReceptor) {
+        this.usersReceptor = usersReceptor;
     }
 }

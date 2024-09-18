@@ -1,8 +1,10 @@
 package pe.edu.upc.donfy.dtos;
 
-import jakarta.persistence.Column;
+import pe.edu.upc.donfy.entities.DonationType;
+import pe.edu.upc.donfy.entities.Notifications;
+import pe.edu.upc.donfy.entities.Users;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class DonationsDTO {
     private int idDonation;
@@ -11,23 +13,16 @@ public class DonationsDTO {
     private String estado;
     private String categoria;
     private String fotoDonativo;
-    private Date fechaRecojo;
+    private LocalDate fechaRecojo;
     private float montoDonado;
     private float precioDonativo;
     private int stock;
     private boolean eliminado;
-    private UsersDTO user;
-    private DonationsDTO donationsDTO;
-    private NotificationsDTO notifications;
+    private Users user;
+    private DonationType donationType;
+    private Notifications notifications;
     private String direccionRecojo;
-
-    public String getDireccionRecojo() {
-        return direccionRecojo;
-    }
-
-    public void setDireccionRecojo(String direccionRecojo) {
-        this.direccionRecojo = direccionRecojo;
-    }
+    private Users userReceptor;
 
     public int getIdDonation() {
         return idDonation;
@@ -77,11 +72,11 @@ public class DonationsDTO {
         this.fotoDonativo = fotoDonativo;
     }
 
-    public Date getFechaRecojo() {
+    public LocalDate getFechaRecojo() {
         return fechaRecojo;
     }
 
-    public void setFechaRecojo(Date fechaRecojo) {
+    public void setFechaRecojo(LocalDate fechaRecojo) {
         this.fechaRecojo = fechaRecojo;
     }
 
@@ -117,27 +112,44 @@ public class DonationsDTO {
         this.eliminado = eliminado;
     }
 
-    public UsersDTO getUser() {
+    public Users getUser() {
         return user;
     }
 
-    public void setUser(UsersDTO user) {
+    public void setUser(Users user) {
         this.user = user;
     }
 
-    public DonationsDTO getDonationsDTO() {
-        return donationsDTO;
+    public DonationType getDonationType() {
+        return donationType;
     }
 
-    public void setDonationsDTO(DonationsDTO donationsDTO) {
-        this.donationsDTO = donationsDTO;
+    public void setDonationType(DonationType donationType) {
+        this.donationType = donationType;
     }
 
-    public NotificationsDTO getNotifications() {
+    public Notifications getNotifications() {
         return notifications;
     }
 
-    public void setNotifications(NotificationsDTO notifications) {
+    public void setNotifications(Notifications notifications) {
         this.notifications = notifications;
     }
+
+    public String getDireccionRecojo() {
+        return direccionRecojo;
+    }
+
+    public void setDireccionRecojo(String direccionRecojo) {
+        this.direccionRecojo = direccionRecojo;
+    }
+
+    public Users getUserReceptor() {
+        return userReceptor;
+    }
+
+    public void setUserReceptor(Users userReceptor) {
+        this.userReceptor = userReceptor;
+    }
 }
+

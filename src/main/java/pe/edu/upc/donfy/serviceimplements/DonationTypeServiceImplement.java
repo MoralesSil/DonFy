@@ -3,7 +3,6 @@ package pe.edu.upc.donfy.serviceimplements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.donfy.entities.DonationType;
-import pe.edu.upc.donfy.entities.NotificationType;
 import pe.edu.upc.donfy.repositories.IDonationTypeRepository;
 import pe.edu.upc.donfy.serviceinterfaces.IDonationTypeService;
 

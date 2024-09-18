@@ -15,6 +15,11 @@ public class DonationType {
 
     }
 
+    public DonationType(int idTipoDonation, String nombreTipoDonation) {
+        this.idTipoDonation = idTipoDonation;
+        this.nombreTipoDonation = nombreTipoDonation;
+    }
+
     public int getIdTipoDonation() {
         return idTipoDonation;
     }

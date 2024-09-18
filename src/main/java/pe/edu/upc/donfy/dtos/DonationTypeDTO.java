@@ -1,7 +1,5 @@
 package pe.edu.upc.donfy.dtos;
 
-import jakarta.persistence.Column;
-
 public class DonationTypeDTO {
     private int idTipoDonation;
     private String nombreTipoDonation;
