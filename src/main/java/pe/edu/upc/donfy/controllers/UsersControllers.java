@@ -8,16 +8,16 @@ import pe.edu.upc.donfy.dtos.UsersDTO;
 import pe.edu.upc.donfy.entities.Users;
 import pe.edu.upc.donfy.serviceinterfaces.IUsersService;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/Users")
-
 public class UsersControllers {
     @Autowired
     private IUsersService uS;
-
     @Autowired
     private PasswordEncoder passwordEncoder;
 
@@ -37,10 +37,10 @@ public class UsersControllers {
         urs.setPassword(encodedPassword);
         uS.insert(urs);
     }
-    @GetMapping("/{idUsuario}")
-    public UsersDTO listarId(@PathVariable("idUsuario") Integer idUsuario  ) {
+    @GetMapping("/{id}")
+    public UsersDTO listarId(@PathVariable("id") Long id  ) {
         ModelMapper m=new ModelMapper();
-        UsersDTO dto=m.map(uS.listId(idUsuario), UsersDTO.class);
+        UsersDTO dto=m.map(uS.listId(id), UsersDTO.class);
         return dto;
     }
     @PutMapping
@@ -49,8 +49,17 @@ public class UsersControllers {
         Users urs=m.map(dto, Users.class);
         uS.update(urs);
     }
-    @DeleteMapping("/{idUsuario}")
-    public void eliminar(@PathVariable("idUsuario") Integer idUsuario){
-        uS.delete(idUsuario);
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable("id") Long id){
+        uS.delete(id);
+    }
+
+    //Query Roles ONG por usuario
+    @GetMapping("/busquedas")
+    public List<UsersDTO> buscar() {
+        return uS.rolesONG().stream().map(x -> {
+            ModelMapper m = new ModelMapper();
+            return m.map(x, UsersDTO.class);
+        }).collect(Collectors.toList());
     }
 }

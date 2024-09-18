@@ -20,13 +20,24 @@ public class Vouchers {
     @Column(name = "nombreDonante", nullable = false, length = 200)
     private String nombreDonante;
 
-    @Lob
     @Column(name = "descripcion", nullable = false)
     private String descripcion;
 
     @ManyToOne
-    @JoinColumn(name = "donativo_idDonat", referencedColumnName = "idDonativo", nullable = false)
+    @JoinColumn(name = "idDonativo")
     private Donations donations;
+
+    public Vouchers() {
+    }
+
+    public Vouchers(int idComprobante, Date fechaEmision, double total, String nombreDonante, String descripcion, Donations donations) {
+        this.idComprobante = idComprobante;
+        this.fechaEmision = fechaEmision;
+        this.total = total;
+        this.nombreDonante = nombreDonante;
+        this.descripcion = descripcion;
+        this.donations = donations;
+    }
 
     public int getIdComprobante() {
         return idComprobante;

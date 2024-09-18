@@ -1,53 +1,36 @@
 package pe.edu.upc.donfy.dtos;
 
-import pe.edu.upc.donfy.entities.Notifications;
-import pe.edu.upc.donfy.entities.Role;
-
 public class UsersDTO {
-    private int idUsuario;
+    private Long id;
 
     private String username;
 
     private String password;
 
-    private String correo;
+    private Boolean enabled;
 
     private String nombre;
 
     private String apellidos;
 
+    private String correo;
+
     private String telefono;
 
     private String dni;
 
-    private boolean enabled;
-
     private String ruc;
-
-    private boolean eliminado;
 
     private String direccion;
 
-    private String representanteLegal;
+    private String nombreONG;
 
-    private Role role;
-
-    private Notifications notifications;
-
-    public Notifications getNotifications() {
-        return notifications;
+    public Long getId() {
+        return id;
     }
 
-    public void setNotifications(Notifications notifications) {
-        this.notifications = notifications;
-    }
-
-    public int getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -66,12 +49,12 @@ public class UsersDTO {
         this.password = password;
     }
 
-    public String getCorreo() {
-        return correo;
+    public Boolean getEnabled() {
+        return enabled;
     }
 
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
     }
 
     public String getNombre() {
@@ -90,6 +73,14 @@ public class UsersDTO {
         this.apellidos = apellidos;
     }
 
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
     public String getTelefono() {
         return telefono;
     }
@@ -106,28 +97,12 @@ public class UsersDTO {
         this.dni = dni;
     }
 
-    public boolean isenabled() {
-        return enabled;
-    }
-
-    public void setenabled(boolean enabled) {
-        this.enabled = enabled;
-    }
-
     public String getRuc() {
         return ruc;
     }
 
     public void setRuc(String ruc) {
         this.ruc = ruc;
-    }
-
-    public boolean isEliminado() {
-        return eliminado;
-    }
-
-    public void setEliminado(boolean eliminado) {
-        this.eliminado = eliminado;
     }
 
     public String getDireccion() {
@@ -138,19 +113,11 @@ public class UsersDTO {
         this.direccion = direccion;
     }
 
-    public String getRepresentanteLegal() {
-        return representanteLegal;
+    public String getNombreONG() {
+        return nombreONG;
     }
 
-    public void setRepresentanteLegal(String representanteLegal) {
-        this.representanteLegal = representanteLegal;
-    }
-
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
+    public void setNombreONG(String nombreONG) {
+        this.nombreONG = nombreONG;
     }
 }
