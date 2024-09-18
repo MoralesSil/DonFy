@@ -1,77 +1,72 @@
 package pe.edu.upc.donfy.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "Users")
 public class Users implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idUsuario;
+    private Long id;
 
-    @Column(unique = true, length = 20)
+    @Column(unique = true, length = 30)
     private String username;
-    @Column(length = 20)
+    @Column(length = 200)
     private String password;
 
-    @Column(name = "correo",nullable = false, length = 50)
+    private Boolean enabled;
+
+    @Column(name = "correo", nullable = false, length = 50)
     private String correo;
-    @Column(name = "nombre",nullable = false, length = 20)
+    @Column(name = "nombre", nullable = false, length = 20)
     private String nombre;
-    @Column(name = "apellidos",nullable = false, length = 30)
+    @Column(name = "apellidos", nullable = false, length = 30)
     private String apellidos;
-    @Column(name = "telefono",nullable = false, length = 9)
+    @Column(name = "telefono", nullable = false, length = 9)
     private String telefono;
-    @Column(name = "dni",nullable = false, length = 8)
+    @Column(name = "dni", nullable = false, length = 8)
     private String dni;
-    @Column(name = "enabled")
-    private boolean enabled;
-    @Column(name = "ruc",nullable = false, length = 11)
+    @Column(name = "ruc", nullable = false, length = 11)
     private String ruc;
-    @Column(name = "eliminado")
-    private boolean eliminado;
-    @Column (name = "direccion",nullable = false, length = 150)
+    @Column(name = "direccion", nullable = false, length = 150)
     private String direccion;
-    @Column(name = "representanteLegal",nullable = false, length = 100)
-    private String representanteLegal;
+    @Column(name = "nombreONG", nullable = false, length = 200)
+    private String nombreONG;
 
-    @ManyToOne
-    @JoinColumn(name = "idRole")
-    private Role role;
-
-    @ManyToOne
-    @JoinColumn(name = "idNotifications")
-    private Notifications notifications;
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private List<Role> roles;
 
     public Users() {
     }
 
-    public Users(int idUsuario, String username, String password, String correo, String nombre, String apellidos, String telefono, String dni, boolean enabled, String ruc, boolean eliminado, String direccion, String representanteLegal, Role role, Notifications notifications) {
-        this.idUsuario = idUsuario;
+    public Users(Long id, String username, String password, Boolean enabled, String correo, String nombre, String apellidos, String telefono, String dni, String ruc, String direccion, String nombreONG, List<Role> roles) {
+        this.id = id;
         this.username = username;
         this.password = password;
+        this.enabled = enabled;
         this.correo = correo;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.telefono = telefono;
         this.dni = dni;
-        this.enabled = enabled;
         this.ruc = ruc;
-        this.eliminado = eliminado;
         this.direccion = direccion;
-        this.representanteLegal = representanteLegal;
-        this.role = role;
-        this.notifications = notifications;
+        this.nombreONG = nombreONG;
+        this.roles = roles;
     }
 
-    public int getIdUsuario() {
-        return idUsuario;
+    public Long getId() {
+        return id;
     }
 
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -88,6 +83,14 @@ public class Users implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
     }
 
     public String getCorreo() {
@@ -130,28 +133,12 @@ public class Users implements Serializable {
         this.dni = dni;
     }
 
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
-
     public String getRuc() {
         return ruc;
     }
 
     public void setRuc(String ruc) {
         this.ruc = ruc;
-    }
-
-    public boolean isEliminado() {
-        return eliminado;
-    }
-
-    public void setEliminado(boolean eliminado) {
-        this.eliminado = eliminado;
     }
 
     public String getDireccion() {
@@ -162,27 +149,19 @@ public class Users implements Serializable {
         this.direccion = direccion;
     }
 
-    public String getRepresentanteLegal() {
-        return representanteLegal;
+    public String getNombreONG() {
+        return nombreONG;
     }
 
-    public void setRepresentanteLegal(String representanteLegal) {
-        this.representanteLegal = representanteLegal;
+    public void setNombreONG(String nombreONG) {
+        this.nombreONG = nombreONG;
     }
 
-    public Role getRole() {
-        return role;
+    public List<Role> getRoles() {
+        return roles;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
-    }
-
-    public Notifications getNotifications() {
-        return notifications;
-    }
-
-    public void setNotifications(Notifications notifications) {
-        this.notifications = notifications;
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
 }

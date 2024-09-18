@@ -2,37 +2,40 @@ package pe.edu.upc.donfy.entities;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
+
 @Entity
-@Table(name = "Role")
-public class Role {
+@Table(name = "roles", uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "rol"})})
+public class Role implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idRolUsuario;
+    private Long id;
 
-    @Column(name = "nombre", nullable = false, length = 50)
-    private String nombre;
+    @Column(name = "rol",nullable = false, length = 20)
+    private String rol;
 
-    public Role() {
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private Users user;
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public Role(int idRolUsuario, String nombre) {
-        this.idRolUsuario = idRolUsuario;
-        this.nombre = nombre;
+    public String getRol() {
+        return rol;
     }
 
-    public int getIdRolUsuario() {
-        return idRolUsuario;
+    public void setRol(String rol) {
+        this.rol = rol;
     }
 
-    public void setIdRolUsuario(int idRolUsuario) {
-        this.idRolUsuario = idRolUsuario;
+    public Users getUser() {
+        return user;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setUser(Users user) {
+        this.user = user;
     }
 }

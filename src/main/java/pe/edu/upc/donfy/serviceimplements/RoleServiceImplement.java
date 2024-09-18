@@ -10,6 +10,7 @@ import java.util.List;
 
 @Service
 public class RoleServiceImplement implements IRoleService {
+
     @Autowired
     private IRoleRepository rR;
 
@@ -19,23 +20,23 @@ public class RoleServiceImplement implements IRoleService {
     }
 
     @Override
-    public void insert(Role role) {
-        rR.save(role);
+    public void insert(Role rol) {
+        rR.save(rol);
     }
 
     @Override
-    public Role listId(int idRole) {
-        return rR.findById(idRole).orElse(new Role());
+    public Role listId(Long idRol) {
+        return rR.findById(idRol).orElse(new Role());
     }
 
     @Override
-    public void update(Role role) {
-        rR.save(role);
+    public void update(Role rol) {
+        rR.save(rol);
     }
 
     @Override
-    public void delete(int idRole) {
-        rR.deleteById(idRole);
+    public void delete(Long idRol) {
+        rR.deleteById(idRol);
     }
 
 }
