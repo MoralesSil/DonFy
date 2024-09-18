@@ -18,15 +18,20 @@ public class Notifications {
     @JoinColumn(name = "tipoNotificacion_id")
     private NotificationType tipoNotificacion;
 
+    @ManyToOne
+    @JoinColumn(name = "Users_id")
+    private Users usuarios;
+
     public Notifications() {
 
     }
 
-    public Notifications(int idNotificacion, String mensaje, String estado, NotificationType tipoNotificacion) {
+    public Notifications(int idNotificacion, Users usuarios, String mensaje, String estado, NotificationType tipoNotificacion) {
         this.idNotificacion = idNotificacion;
         this.mensaje = mensaje;
         this.estado = estado;
         this.tipoNotificacion = tipoNotificacion;
+        this.usuarios = usuarios;
     }
 
     public int getIdNotificacion() {
@@ -59,5 +64,13 @@ public class Notifications {
 
     public void setTipoNotificacion(NotificationType tipoNotificacion) {
         this.tipoNotificacion = tipoNotificacion;
+    }
+
+    public Users getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(Users usuarios) {
+        this.usuarios = usuarios;
     }
 }
