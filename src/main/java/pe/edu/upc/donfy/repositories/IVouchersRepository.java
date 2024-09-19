@@ -13,20 +13,29 @@ public interface IVouchersRepository extends JpaRepository<Vouchers, Integer> {
 
     // HU53: Generar reporte de comprobante por fecha
     @Query(value = "SELECT " +
-            "    c.id_comprobante AS comprobante_id, " +
-            "    c.fecha_emision AS fecha_emision, " +
-            "    c.total AS monto_comprobante, " +
+            "    v.id_comprobante AS comprobante_id, " +
+            "    v.fecha_emision AS fecha_emision, " +
+            "    v.total AS monto_comprobante, " +
             "    u.nombre AS nombre_donante " +
             "FROM " +
-            "    voucher c " +
+            "    Vouchers v " +
             "JOIN " +
-            "    Donativo d ON c.id_donativo = d.id_donativo " +
+            "    Donations d ON v.id_donativo = d.id_donation " +
             "JOIN " +
-            "    Usuario u ON d.id_usuario = u.id " +
+            "    Users u ON d.users_id = u.id " +
             "WHERE " +
-            "    c.fecha_emision BETWEEN :startDate AND :endDate " +
+            "    v.fecha_emision BETWEEN :startDate AND :endDate " +
             "ORDER BY " +
-            "    c.fecha_emision ASC", nativeQuery = true)
-    public List<Object[]> getVouchers(@Param("startDate") String startDate, @Param("endDate") String endDate);
+            "    v.fecha_emision ASC", nativeQuery = true)
+    List<Object[]> getVouchers(@Param("startDate") String startDate, @Param("endDate") String endDate);
+
+    //HUXX: Gestionar comprobante por Donador (Como donador quiero listar los comprobantes que me emitieron para ... ) A
+    @Query("SELECT v.idComprobante, v.descripcion, v.fechaEmision, v.total, v.nombreDonante " +
+            "FROM Vouchers v " +
+            "JOIN Donations d ON v.donations.idDonation = d.idDonation " +
+            "JOIN Users u ON d.users.id = u.id " +
+            "WHERE u.nombre = :nombreDonador")
+    List<Object[]> findComprobantesByDonador(@Param("nombreDonador") String nombreDonador);
+
 
 }
