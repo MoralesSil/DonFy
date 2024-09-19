@@ -1,13 +1,15 @@
 package pe.edu.upc.donfy.dtos;
+import jakarta.persistence.Column;
 import pe.edu.upc.donfy.entities.Donations;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 
 public class VouchersDTO {
 
     private int idComprobante;
-    private LocalDateTime fechaEmision;
+    private Date fechaEmision;
     private double total;
     private String nombreDonante;
     private String descripcion;
@@ -21,11 +23,11 @@ public class VouchersDTO {
         this.idComprobante = idComprobante;
     }
 
-    public LocalDateTime getFechaEmision() {
+    public Date getFechaEmision() {
         return fechaEmision;
     }
 
-    public void setFechaEmision(LocalDateTime fechaEmision) {
+    public void setFechaEmision(Date fechaEmision) {
         this.fechaEmision = fechaEmision;
     }
 

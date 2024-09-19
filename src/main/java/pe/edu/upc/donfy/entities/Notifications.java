@@ -1,6 +1,7 @@
 package pe.edu.upc.donfy.entities;
 
 import jakarta.persistence.*;
+import pe.edu.upc.donfy.dtos.UsersDTO;
 
 @Entity
 @Table(name = "Notifications")

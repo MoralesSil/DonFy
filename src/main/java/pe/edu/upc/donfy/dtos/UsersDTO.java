@@ -1,5 +1,8 @@
 package pe.edu.upc.donfy.dtos;
 
+import pe.edu.upc.donfy.entities.Notifications;
+import pe.edu.upc.donfy.entities.Role;
+
 public class UsersDTO {
     private Long id;
 
