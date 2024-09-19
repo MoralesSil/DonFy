@@ -62,4 +62,6 @@ public class UsersControllers {
             return m.map(x, UsersDTO.class);
         }).collect(Collectors.toList());
     }
+    //Query ONG por Ubicacion
+
 }
