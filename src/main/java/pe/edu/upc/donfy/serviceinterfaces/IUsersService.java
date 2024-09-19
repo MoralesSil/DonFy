@@ -13,4 +13,5 @@ public interface IUsersService {
     public void delete(Long idUsuario);
 
     public List<Users>rolesONG();
+    public List<Users> ONGporUbicacion(String direccion);
 }
