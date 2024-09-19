@@ -1,4 +1,4 @@
-package pe.edu.upc.donfy.repositories;
+package pe.edu.upc.donfy.serviceimplements.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

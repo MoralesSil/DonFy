@@ -1,11 +1,11 @@
-package pe.edu.upc.donfy.controllers;
+package pe.edu.upc.donfy.serviceimplements.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.donfy.dtos.NotificationsDTO;
-import pe.edu.upc.donfy.entities.Notifications;
-import pe.edu.upc.donfy.serviceinterfaces.INotificationsService;
+import pe.edu.upc.donfy.serviceimplements.dtos.NotificationsDTO;
+import pe.edu.upc.donfy.serviceimplements.entities.Notifications;
+import pe.edu.upc.donfy.serviceimplements.serviceinterfaces.INotificationsService;
 
 import java.util.List;
 import java.util.stream.Collectors;

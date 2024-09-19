@@ -1,16 +1,15 @@
-package pe.edu.upc.donfy.repositories;
+package pe.edu.upc.donfy.serviceimplements.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import pe.edu.upc.donfy.dtos.DonationsDTO;
-import pe.edu.upc.donfy.entities.Donations;
+import pe.edu.upc.donfy.serviceimplements.dtos.DonationsDTO;
 
 import java.util.List;
 
 @Repository
-public interface IDonationsRepository extends JpaRepository <Donations,Integer>{
+public interface IDonationsRepository extends JpaRepository <pe.edu.upc.donfy.serviceimplements.entities.Donations,Integer>{
     //Filtrar donativos físicos por su estado
     @Query("SELECT d.usersReceptor.nombreONG, d.fotoDonativo, d.fechaRecojo, d.estado FROM Donations d " +
             "JOIN d.donationType dt WHERE dt.nombreTipoDonation = 'físico' AND d.estado = :estado")
@@ -36,7 +35,7 @@ public interface IDonationsRepository extends JpaRepository <Donations,Integer>{
             " WHERE u.id = :users_id_receptor" +
             " AND dt.nombreTipoDonation = 'fisico'" +
             " AND d.estado IN ('Pendiente', 'En proceso', 'Recogido')")
-    List<Donations> findPhysicalDonationsByUserIdAndStatus(@Param("users_id_receptor") Long Users_id_receptor);
+    List<pe.edu.upc.donfy.serviceimplements.entities.Donations> findPhysicalDonationsByUserIdAndStatus(@Param("users_id_receptor") Long Users_id_receptor);
 
     //Visualizar estadisticas de las donaciones
     @Query(value = "SELECT " +
@@ -70,5 +69,5 @@ public interface IDonationsRepository extends JpaRepository <Donations,Integer>{
     @Query("SELECT d " +
             "FROM Donations d " +
             "WHERE d.usersReceptor.id = :userId")
-    List<Donations> findByUserId(@Param("userId") Long userId);
+    List<pe.edu.upc.donfy.serviceimplements.entities.Donations> findByUserId(@Param("userId") Long userId);
 }

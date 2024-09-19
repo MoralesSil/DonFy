@@ -1,4 +1,4 @@
-package pe.edu.upc.donfy.serviceinterfaces;
+package pe.edu.upc.donfy.serviceimplements.serviceinterfaces;
 
 import pe.edu.upc.donfy.entities.Donations;
 

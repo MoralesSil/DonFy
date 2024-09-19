@@ -1,6 +1,6 @@
-package pe.edu.upc.donfy.serviceinterfaces;
+package pe.edu.upc.donfy.serviceimplements.serviceinterfaces;
 
-import pe.edu.upc.donfy.entities.Notifications;
+import pe.edu.upc.donfy.serviceimplements.entities.Notifications;
 
 import java.util.List;
 
