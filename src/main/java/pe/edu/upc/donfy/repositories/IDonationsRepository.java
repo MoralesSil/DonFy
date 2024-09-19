@@ -65,4 +65,10 @@ public interface IDonationsRepository extends JpaRepository <Donations,Integer>{
             "ORDER BY " +
             "    d.fecha_recojo DESC", nativeQuery = true)
     public List<DonationsDTO> getDonations();
+
+    //Listar donativos por Usuario (Como Donador(user) quiero leer los donativos que realice ...)
+    @Query("SELECT d " +
+            "FROM Donations d " +
+            "WHERE d.usersReceptor.id = :userId")
+    List<Donations> findByUserId(@Param("userId") Long userId);
 }
