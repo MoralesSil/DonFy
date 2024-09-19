@@ -5,6 +5,7 @@ import pe.edu.upc.donfy.entities.Notifications;
 import pe.edu.upc.donfy.entities.Users;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 public class DonationsDTO {
     private int idDonation;

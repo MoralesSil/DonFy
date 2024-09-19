@@ -1,8 +1,10 @@
 package pe.edu.upc.donfy.entities;
 
 import jakarta.persistence.*;
+import jakarta.persistence.Table;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Table(name = "Donations")

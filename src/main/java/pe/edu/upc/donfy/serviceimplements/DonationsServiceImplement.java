@@ -3,6 +3,7 @@ package pe.edu.upc.donfy.serviceimplements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.donfy.entities.Donations;
+import pe.edu.upc.donfy.entities.Users;
 import pe.edu.upc.donfy.repositories.IDonationsRepository;
 import pe.edu.upc.donfy.serviceinterfaces.IDonationsService;
 
