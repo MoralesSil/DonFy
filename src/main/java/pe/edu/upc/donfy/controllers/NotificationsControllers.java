@@ -45,4 +45,12 @@ public class NotificationsControllers {
         nS.delete(idNotificacion);
     }
 
+    @GetMapping("/Users/{userId}/NotificationsByUser")
+    public List<NotificationsDTO> getNotificationsByUserId(@PathVariable Long userId) {
+        List<Notifications> notifications = nS.NotificationsByUserId(userId);
+        ModelMapper modelMapper = new ModelMapper();
+        return notifications.stream()
+                .map(notification -> modelMapper.map(notification, NotificationsDTO.class))
+                .collect(Collectors.toList());
+    }
 }
