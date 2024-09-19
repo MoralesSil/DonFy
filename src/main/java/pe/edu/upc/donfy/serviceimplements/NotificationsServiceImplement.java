@@ -32,4 +32,9 @@ public class NotificationsServiceImplement implements INotificationsService {
     public void delete(int idNotificacion){
         nR.deleteById(idNotificacion);
     }
+
+    @Override
+    public List<Notifications> NotificationsByUserId(Long userId) {
+        return nR.findNotificationsByUserId(userId);
+    }
 }
