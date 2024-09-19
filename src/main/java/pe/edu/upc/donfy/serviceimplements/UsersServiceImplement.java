@@ -43,5 +43,8 @@ public class UsersServiceImplement implements IUsersService {
         return uR.rolesONG();
     }
 
-
+    @Override
+    public List<Users> ONGporUbicacion(String direccion) {
+        return uR.findONGsByAddressPattern(direccion);
+    }
 }
