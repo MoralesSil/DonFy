@@ -89,4 +89,12 @@ public class DonationsControllers {
 
         return listaDTO;
     }
+    @GetMapping("/Users/{userId}/DonativosporUsuario")
+    public List<DonationsDTO> getDonationsByUserId(@PathVariable Long userId) {
+        List<Donations> donations = dC.findDonationsByUserId(userId);
+        ModelMapper modelMapper = new ModelMapper();
+        return donations.stream()
+                .map(donation -> modelMapper.map(donation, DonationsDTO.class))
+                .collect(Collectors.toList());
+    }
 }

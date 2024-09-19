@@ -61,7 +61,7 @@ public class DonationsServiceImplement implements IDonationsService {
     }
 
     @Override
-    public List<Donations> findByUserId(Long Users_id_receptor) {
+    public List<Donations> findDonationsByUserId(Long Users_id_receptor) {
         return dR.findByUserId(Users_id_receptor);
     }
 
