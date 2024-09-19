@@ -14,5 +14,5 @@ public interface INotificationsRepository extends JpaRepository<Notifications, I
             "FROM Notifications n " +
             "JOIN Users u ON n.users_id = u.id " +
             "WHERE u.id = :userId", nativeQuery = true)
-    List<Notifications> findNotificationsByUserIdNative(@Param("userId") Long userId);
+    List<Notifications> findNotificationsByUserId(@Param("userId") Long userId);
 }
