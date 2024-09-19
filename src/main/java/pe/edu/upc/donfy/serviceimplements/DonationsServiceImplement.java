@@ -60,5 +60,10 @@ public class DonationsServiceImplement implements IDonationsService {
         return dR.getDonationStatistics();
     }
 
+    @Override
+    public List<Donations> findByUserId(Long Users_id_receptor) {
+        return dR.findByUserId(Users_id_receptor);
+    }
+
 
 }
