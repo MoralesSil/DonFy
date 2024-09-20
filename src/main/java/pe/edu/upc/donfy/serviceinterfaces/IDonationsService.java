@@ -12,6 +12,7 @@ public interface IDonationsService {
     public void delete(int idDonations);
     public List<String[]> listDonationsForYourStatus(String estado);
     public List<String[]> listOfMonetaryDonationsByONG();
+    public List<String[]> tendenciasDonacionesMeses();
     public List<Donations> listOfPhysicalDonationsByUserIdAndStatus(Long Users_id_receptor);
     public List<String[]> getDonationStatistics();
     public List<Donations> findDonationsByUserId(Long Users_id_receptor);

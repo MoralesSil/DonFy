@@ -24,12 +24,7 @@ public class RoleControllers {
             return m.map(x, RoleDTO.class);
         }).collect(Collectors.toList());
     }
-    @PostMapping
-    public void registrar(@RequestBody RoleDTO dto) {
-        ModelMapper m = new ModelMapper();
-        Role nt = m.map(dto, Role.class);
-        rS.insert(nt);
-    }
+
     @GetMapping("/{id}")
     public RoleDTO listarId(@PathVariable("id") Long id  ) {
         ModelMapper m=new ModelMapper();
