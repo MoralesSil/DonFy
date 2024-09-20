@@ -54,4 +54,10 @@ public class DonationsServiceImplement implements IDonationsService {
         return dR.findDonationsByONG(ONG);
     }
 
+    @Override
+    public List<String[]> listDonationAndONGByIds(int idDonation, int idONG) {
+        return dR.findDonationAndONGByIds(idDonation, idONG);
+    }
+
+
 }

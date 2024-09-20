@@ -33,6 +33,13 @@ public interface IDonationsRepository extends JpaRepository <Donations,Integer>{
             "JOIN d.donationType dt WHERE d.usersReceptor = :ong")
     List<Donations> findDonationsByONG(@Param("ong") String ong);
 
+    @Query(value =
+            "SELECT d.idDonation AS id_donativo, p.id AS id_ONG, p.nombreONG AS nombre_ONG FROM Donations d " +
+                    "JOIN Users p ON p.id = :idONG " +
+                    "WHERE d.idDonation = :idDonation " +
+                    "AND p.roles = 'ONG'")
+    List<String[]> findDonationAndONGByIds(@Param("idDonation") int idDonation,
+                                               @Param("idProject") int idONG);
 
 }
 
