@@ -19,7 +19,6 @@ public class DonationsControllers {
     @Autowired
     private IDonationsService dC;
 
-    @PreAuthorize("hasRole('ADMINISTRADOR')")
     @GetMapping
     public List<DonationsDTO> listar(){
         return dC.list().stream().map(x-> {
@@ -36,7 +35,6 @@ public class DonationsControllers {
         dC.insert(donations);
     }
 
-    @PreAuthorize("hasRole('ADMINISTRADOR')")
     @GetMapping("/{idDonation}")
     public DonationsDTO listarId(@PathVariable("idUsuario") Integer idDonation) {
         ModelMapper m=new ModelMapper();
