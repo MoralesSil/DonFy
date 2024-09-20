@@ -11,6 +11,7 @@ import java.util.List;
 @Repository
 public interface IVouchersRepository extends JpaRepository<Vouchers, Integer> {
 
+    //HU43
     @Query(value =
             "SELECT c.idComprobante AS id_comprobante, " +
                     "c.fechaEmision AS fecha_emision, " +
