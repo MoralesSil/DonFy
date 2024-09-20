@@ -1,9 +1,17 @@
 package pe.edu.upc.donfy.dtos;
 
 public class DonationStatisticsDTO {
+    private String nombreONG;
     private Long totalDonativos;
     private Double valorTotalEstimado;
-    private Long cantidadONGBeneficiadas;
+
+    public String getNombreONG() {
+        return nombreONG;
+    }
+
+    public void setNombreONG(String nombreONG) {
+        this.nombreONG = nombreONG;
+    }
 
     public Long getTotalDonativos() {
         return totalDonativos;
@@ -19,13 +27,5 @@ public class DonationStatisticsDTO {
 
     public void setValorTotalEstimado(Double valorTotalEstimado) {
         this.valorTotalEstimado = valorTotalEstimado;
-    }
-
-    public Long getCantidadONGBeneficiadas() {
-        return cantidadONGBeneficiadas;
-    }
-
-    public void setCantidadONGBeneficiadas(Long cantidadONGBeneficiadas) {
-        this.cantidadONGBeneficiadas = cantidadONGBeneficiadas;
     }
 }

@@ -50,12 +50,14 @@ public interface IDonationsRepository extends JpaRepository <Donations,Integer>{
 
     //Visualizar estadisticas de las donaciones
     @Query(value = "SELECT " +
+            "U.nombreONG AS nombreONG, " +
             "COUNT(D.id_donation) AS total_donativos, " +
-            "SUM(D.monto_donado) AS valor_total_estimado, " +
-            "COUNT(DISTINCT U.id) AS cantidad_ONG_beneficiadas " +
+            "SUM(D.monto_donado) AS valor_total_estimado " +
             "FROM Donations D " +
             "JOIN Users U ON D.users_id_receptor = U.id " +
-            "WHERE U.nombreONG IS NOT NULL AND U.nombreONG != ''",
+            "WHERE U.nombreONG IS NOT NULL AND U.nombreONG != '' " +
+            "GROUP BY U.nombreONG " +
+            "ORDER BY U.nombreONG",
             nativeQuery = true)
     List<String[]> getDonationStatistics();
 
@@ -76,7 +78,7 @@ public interface IDonationsRepository extends JpaRepository <Donations,Integer>{
             "    d.fecha_recojo DESC", nativeQuery = true)
     public List<DonationsDTO> getDonations();
 
-    //Listar donativos por Usuario (Como Donador(user) quiero leer los donativos que realice ...)
+    //Listar donativos por Usuario
     @Query("SELECT d " +
             "FROM Donations d " +
             "WHERE d.usersReceptor.id = :userId")

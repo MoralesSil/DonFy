@@ -82,14 +82,14 @@ public class DonationsControllers {
     }
     @GetMapping("/donation-statistics")
     public List<DonationStatisticsDTO> obtenerEstadisticas() {
-        List<String[]> lista = dC.getDonationStatistics();
+        List<String[]> resultados = dC.getDonationStatistics();
         List<DonationStatisticsDTO> listaDTO = new ArrayList<>();
 
-        for (String[] columna : lista) {
+        for (String[] resultado : resultados) {
             DonationStatisticsDTO dto = new DonationStatisticsDTO();
-            dto.setTotalDonativos(Long.parseLong(columna[0]));
-            dto.setValorTotalEstimado(Double.parseDouble(columna[1]));
-            dto.setCantidadONGBeneficiadas(Long.parseLong(columna[2]));
+            dto.setNombreONG(resultado[0]);
+            dto.setTotalDonativos(Long.parseLong(resultado[1]));
+            dto.setValorTotalEstimado(Double.parseDouble(resultado[2]));
             listaDTO.add(dto);
         }
 
