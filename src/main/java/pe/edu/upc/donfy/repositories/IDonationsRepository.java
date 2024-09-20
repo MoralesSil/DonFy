@@ -71,4 +71,17 @@ public interface IDonationsRepository extends JpaRepository <Donations,Integer>{
             "FROM Donations d " +
             "WHERE d.usersReceptor.id = :userId")
     List<Donations> findByUserId(@Param("userId") Long userId);
+
+    //Monto anual por cada ONG
+    @Query(value = "SELECT " +
+            "u.nombreONG AS nombreONG, " +
+            "SUM(d.monto_donado) AS totalDonadoEnElAno " +
+            "FROM Donations d " +
+            "JOIN Users u ON d.Users_Id_Receptor = u.id " +
+            "WHERE EXTRACT(YEAR FROM d.fecha_recojo) = EXTRACT(YEAR FROM CURRENT_DATE) " +
+            "AND u.nombreONG IS NOT NULL " +
+            "GROUP BY u.nombreONG " +
+            "ORDER BY SUM(d.monto_donado) DESC",
+            nativeQuery = true)
+    List<Object[]> obtenerTotalDonadoPorONG();
 }
