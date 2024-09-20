@@ -16,8 +16,7 @@ public interface IDonationsRepository extends JpaRepository <Donations,Integer>{
     List<Donations> findDonationsForYourStatus(@Param("estado") String estado);
 
     //HU34
-    @Query(value =
-            "SELECT u.nombre AS nombre_donante, " +
+    @Query("SELECT u.nombre AS nombre_donante, " +
                     "d.usersReceptor.nombreONG AS usuario_receptor, " +
                     "SUM(d.montoDonado) AS monto_donado " +
                     "FROM Donations d " +
