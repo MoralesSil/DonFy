@@ -28,6 +28,7 @@ public interface IDonationsRepository extends JpaRepository <Donations,Integer>{
                     "GROUP BY u.nombre, d.usersReceptor.nombreONG")
     List<String[]> resumenDonacionesMonetarias(@Param("anio") int anio);
 
+    //HU37
     @Query("SELECT d FROM Donations d " +
             "JOIN d.donationType dt WHERE d.usersReceptor = :ong")
     List<Donations> findDonationsByONG(@Param("ong") String ong);
