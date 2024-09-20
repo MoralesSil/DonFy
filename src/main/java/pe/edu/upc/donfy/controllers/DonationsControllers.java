@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.donfy.dtos.DonationSummaryDTO;
 import pe.edu.upc.donfy.dtos.DonationsDTO;
-import pe.edu.upc.donfy.dtos.DonativosPhysicalDTO;
 import pe.edu.upc.donfy.entities.Donations;
 import pe.edu.upc.donfy.serviceinterfaces.IDonationsService;
 
@@ -48,21 +47,31 @@ public class DonationsControllers {
         dC.delete(idDonation);
     }
 
-    @GetMapping("/FiltrarDonativosFisicos")
-    public List<DonativosPhysicalDTO> FiltrarPorEstado(@RequestParam String estado)
+    @GetMapping("/FiltrarDonativosPorEstado")
+    public List<DonationsDTO> FiltrarPorEstado(@RequestParam String estado)
     {
         return dC.listDonationsForYourStatus(estado).stream().map(x -> {
             ModelMapper m = new ModelMapper();
-            return m.map(x, DonativosPhysicalDTO.class);
+            return m.map(x, DonationsDTO.class);
         }).collect(Collectors.toList());
     }
 
     @GetMapping("/ResumenMonetarioPorONG")
-    public List<DonationSummaryDTO> TotalDonadoPorONG()
+    public List<DonationSummaryDTO> TotalDonadoPorONG(@RequestParam int anio)
     {
-        return dC.listOfMonetaryDonationsByONG().stream().map(x -> {
+        return dC.listOfMonetaryDonationsByONG(anio).stream().map(x -> {
             ModelMapper m = new ModelMapper();
             return m.map(x, DonationSummaryDTO.class);
         }).collect(Collectors.toList());
     }
+
+    @GetMapping("/FiltrarDonativosPorONG")
+    public List<DonationsDTO> FiltrarPorONG(@RequestParam String ong)
+    {
+        return dC.listDonationsByONG(ong).stream().map(x -> {
+            ModelMapper m = new ModelMapper();
+            return m.map(x, DonationsDTO.class);
+        }).collect(Collectors.toList());
+    }
+
 }

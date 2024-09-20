@@ -10,12 +10,12 @@ import java.util.List;
 
 @Repository
 public interface IDonationsRepository extends JpaRepository <Donations,Integer>{
-    //Filtrar donativos físicos por su estado
-    @Query("SELECT d.usersReceptor.nombreONG, d.fotoDonativo, d.fechaRecojo, d.estado FROM Donations d " +
-            "JOIN d.donationType dt WHERE dt.nombreTipoDonation = 'físico' AND d.estado = :estado")
-    List<String[]> findDonationsByEstadoAndTipoFisico(@Param("estado") String estado);
+    //HU53
+    @Query("SELECT d FROM Donations d " +
+            "JOIN d.donationType dt WHERE d.estado = :estado")
+    List<Donations> findDonationsForYourStatus(@Param("estado") String estado);
 
-    //Mostrar el total donado para cada ONG
+    //HU34
     @Query(value =
             "SELECT u.nombre AS nombre_donante, " +
                     "d.usersReceptor.nombreONG AS usuario_receptor, " +
@@ -24,6 +24,14 @@ public interface IDonationsRepository extends JpaRepository <Donations,Integer>{
                     "JOIN Users u ON d.users.id = u.id " +
                     "JOIN DonationType dt ON d.donationType.idTipoDonation = dt.idTipoDonation " +
                     "WHERE dt.nombreTipoDonation = 'monetario' " +
+                    "AND YEAR(d.fechaRecojo) = :anio " +
                     "GROUP BY u.nombre, d.usersReceptor.nombreONG")
-    List<String[]> resumenDonacionesMonetarias();
+    List<String[]> resumenDonacionesMonetarias(@Param("anio") int anio);
+
+    @Query("SELECT d FROM Donations d " +
+            "JOIN d.donationType dt WHERE d.usersReceptor = :ong")
+    List<Donations> findDonationsByONG(@Param("ong") String ong);
+
+
 }
+

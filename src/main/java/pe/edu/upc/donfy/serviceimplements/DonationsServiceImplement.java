@@ -3,7 +3,6 @@ package pe.edu.upc.donfy.serviceimplements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.donfy.entities.Donations;
-import pe.edu.upc.donfy.entities.Users;
 import pe.edu.upc.donfy.repositories.IDonationsRepository;
 import pe.edu.upc.donfy.serviceinterfaces.IDonationsService;
 
@@ -41,14 +40,18 @@ public class DonationsServiceImplement implements IDonationsService {
     }
 
     @Override
-    public List<String[]> listDonationsForYourStatus(String estado) {
-        return dR.findDonationsByEstadoAndTipoFisico(estado);
+    public List<Donations> listDonationsForYourStatus(String estado) {
+        return dR.findDonationsForYourStatus(estado);
     }
 
     @Override
-    public List<String[]> listOfMonetaryDonationsByONG() {
-        return dR.resumenDonacionesMonetarias();
+    public List<String[]> listOfMonetaryDonationsByONG(int year) {
+        return dR.resumenDonacionesMonetarias(year);
     }
 
+    @Override
+    public List<Donations> listDonationsByONG(String ONG) {
+        return dR.findDonationsByONG(ONG);
+    }
 
 }
