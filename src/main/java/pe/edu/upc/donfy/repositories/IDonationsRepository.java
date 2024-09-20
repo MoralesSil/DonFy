@@ -83,5 +83,5 @@ public interface IDonationsRepository extends JpaRepository <Donations,Integer>{
             "GROUP BY u.nombreONG " +
             "ORDER BY SUM(d.monto_donado) DESC",
             nativeQuery = true)
-    List<Object[]> obtenerTotalDonadoPorONG();
+    List<String[]> obtenerTotalDonadoPorONG();
 }

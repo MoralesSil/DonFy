@@ -97,4 +97,12 @@ public class DonationsControllers {
                 .map(donation -> modelMapper.map(donation, DonationsDTO.class))
                 .collect(Collectors.toList());
     }
+    @GetMapping("/MontoAnualporONG")
+    public List<DonationsSummaryYearONGDTO> MontoAnualporONG()
+    {
+        return dC.getDonationOngYear().stream().map(x -> {
+            ModelMapper m = new ModelMapper();
+            return m.map(x, DonationsSummaryYearONGDTO.class);
+        }).collect(Collectors.toList());
+    }
 }
