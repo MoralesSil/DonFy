@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.donfy.dtos.NotificationsDTO;
+import pe.edu.upc.donfy.dtos.VouchersDTO;
 import pe.edu.upc.donfy.entities.Notifications;
 import pe.edu.upc.donfy.serviceinterfaces.INotificationsService;
 
@@ -45,4 +46,12 @@ public class NotificationsControllers {
         nS.delete(idNotificacion);
     }
 
+    @GetMapping("/ListarNotificacionesPorUsuario")
+    public List<NotificationsDTO> NotificacionesPorUsuario(@RequestParam Long iduser)
+    {
+        return nS.searchNotificationsByUserId(iduser).stream().map(x -> {
+            ModelMapper m = new ModelMapper();
+            return m.map(x,NotificationsDTO.class);
+        }).collect(Collectors.toList());
+    }
 }
