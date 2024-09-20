@@ -81,4 +81,17 @@ public interface IDonationsRepository extends JpaRepository <Donations,Integer>{
             "FROM Donations d " +
             "WHERE d.usersReceptor.id = :userId")
     List<Donations> findByUserId(@Param("userId") Long userId);
+
+    //HU42: Listar personas con más donaciones según el tipo de donativo
+    @Query(value = "SELECT DISTINCT ON (dt.nombre_tipo_donation) \n" +
+            "       u.nombre, \n" +
+            "       dt.nombre_tipo_donation, \n" +
+            "       COUNT(d.*) AS Total_donaciones\n" +
+            "FROM donations d \n" +
+            "INNER JOIN users u ON d.users_id = u.id\n" +
+            "INNER JOIN donation_type dt ON d.tipo_donativo_id = dt.id_tipo_donation\n" +
+            "GROUP BY u.nombre, dt.nombre_tipo_donation\n" +
+            "ORDER BY dt.nombre_tipo_donation, Total_donaciones DESC;",nativeQuery = true)
+    List<String[]>personasConMaxDonaciones();
+
 }

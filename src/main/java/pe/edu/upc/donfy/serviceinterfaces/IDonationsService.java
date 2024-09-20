@@ -16,4 +16,5 @@ public interface IDonationsService {
     public List<Donations> listOfPhysicalDonationsByUserIdAndStatus(Long Users_id_receptor);
     public List<String[]> getDonationStatistics();
     public List<Donations> findDonationsByUserId(Long Users_id_receptor);
+    public List<String[]>personasConMaxDonaciones();
 }

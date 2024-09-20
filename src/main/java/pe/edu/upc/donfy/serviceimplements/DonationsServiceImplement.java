@@ -70,5 +70,10 @@ public class DonationsServiceImplement implements IDonationsService {
         return dR.findByUserId(Users_id_receptor);
     }
 
+    @Override
+    public List<String[]> personasConMaxDonaciones() {
+        return dR.personasConMaxDonaciones();
+    }
+
 
 }

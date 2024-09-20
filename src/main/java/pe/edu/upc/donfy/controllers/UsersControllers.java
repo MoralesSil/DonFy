@@ -2,6 +2,7 @@ package pe.edu.upc.donfy.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.donfy.dtos.DonanteXFechaDTO;
@@ -21,6 +22,7 @@ public class UsersControllers {
     private IUsersService uS;
 
     @GetMapping
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public List<UsersDTO> listar() {
 
         return uS.list().stream().map(x -> {
@@ -30,23 +32,27 @@ public class UsersControllers {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public UsersDTO listarId(@PathVariable("id") Long id  ) {
         ModelMapper m=new ModelMapper();
         UsersDTO dto=m.map(uS.listId(id), UsersDTO.class);
         return dto;
     }
     @PutMapping
+    @PreAuthorize("hasAuthority('ADMINISTRADOR') or hasAuthority('DONADOR') or hasAuthority('ONG')")
     public void modificar(@RequestBody UsersDTO dto) {
         ModelMapper m=new ModelMapper();
         Users urs=m.map(dto, Users.class);
         uS.update(urs);
     }
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public void eliminar(@PathVariable("id") Long id){
         uS.delete(id);
     }
 
     //Query Roles ONG por usuario
+    @PreAuthorize("hasAuthority('ADMINISTRADOR') or hasAuthority('DONADOR')")
     @GetMapping("/busquedas")
     public List<UsersDTO> buscar() {
         return uS.rolesONG().stream().map(x -> {
@@ -56,6 +62,7 @@ public class UsersControllers {
     }
 
     @GetMapping("/donantePorFecha")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public List<DonanteXFechaDTO> donantePorFecha(@RequestParam("startDate") String startDate, @RequestParam("endDate") String endDate) {
         List<String[]> lista = uS.donantesXfecha(startDate, endDate);
         List<DonanteXFechaDTO>listadto=new ArrayList<>();
