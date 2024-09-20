@@ -3,6 +3,7 @@ package pe.edu.upc.donfy.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.donfy.dtos.DonationONGDTO;
 import pe.edu.upc.donfy.dtos.VouchersDTO;
 import pe.edu.upc.donfy.entities.Vouchers;
 import pe.edu.upc.donfy.serviceinterfaces.IVouchersService;
@@ -49,7 +50,13 @@ public class VouchersControllers {
     public void eliminar(@PathVariable("idComprobante") Integer idComprobante) {
         vS.delete(idComprobante);
     }
+
+    @GetMapping("/ListarComprobantesPorUsuario")
+    public List<VouchersDTO> ComprobantesPorUsuario(@RequestParam Long iduser)
+    {
+        return vS.listAllVoucherForUser(iduser).stream().map(x -> {
+            ModelMapper m = new ModelMapper();
+            return m.map(x,VouchersDTO.class);
+        }).collect(Collectors.toList());
+    }
 }
-
-
-//

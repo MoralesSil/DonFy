@@ -47,6 +47,5 @@ public interface IDonationsRepository extends JpaRepository <Donations,Integer>{
                     "AND r.rol = 'ONG'")
     List<String[]> findDonationAndONGByIds(@Param("idDonation") int idDonation,
                                            @Param("idONG") Long idONG);
-
 }
 

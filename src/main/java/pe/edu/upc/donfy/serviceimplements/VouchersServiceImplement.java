@@ -39,7 +39,7 @@ public class VouchersServiceImplement implements IVouchersService {
     }
 
     @Override
-    public List<Vouchers> getAllComprobantes() {
-        return vR.findAll();
+    public List<Vouchers> listAllVoucherForUser(Long idUser) {
+        return vR.findComprobantesByUserId(idUser);
     }
 }
