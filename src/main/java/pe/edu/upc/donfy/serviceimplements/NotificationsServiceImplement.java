@@ -33,10 +33,4 @@ public class NotificationsServiceImplement implements INotificationsService {
         nR.deleteById(idNotificacion);
     }
 
-    @Override
-    public List<Notifications> searchNotificationsByUserId(Long userid) {
-        return nR.findNotificationsByUserId(userid);
-    }
-
-
 }

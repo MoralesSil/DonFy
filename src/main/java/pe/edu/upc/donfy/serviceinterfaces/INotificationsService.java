@@ -9,5 +9,4 @@ public interface INotificationsService {
     public void insert(Notifications notification);
     public Notifications listId(int idNotificacion);
     public void delete(int idNotificacion);
-    public List<Notifications> searchNotificationsByUserId(Long userid);
 }

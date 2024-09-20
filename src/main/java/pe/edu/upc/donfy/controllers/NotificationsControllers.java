@@ -45,13 +45,4 @@ public class NotificationsControllers {
     public void eliminar(@PathVariable ("idNotification") Integer idNotificacion) {
         nS.delete(idNotificacion);
     }
-
-    @GetMapping("/ListarNotificacionesPorUsuario")
-    public List<NotificationsDTO> NotificacionesPorUsuario(@RequestParam Long iduser)
-    {
-        return nS.searchNotificationsByUserId(iduser).stream().map(x -> {
-            ModelMapper m = new ModelMapper();
-            return m.map(x,NotificationsDTO.class);
-        }).collect(Collectors.toList());
-    }
 }
