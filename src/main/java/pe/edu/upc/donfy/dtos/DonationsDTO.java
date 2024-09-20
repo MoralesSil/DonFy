@@ -19,11 +19,19 @@ public class DonationsDTO {
     private float precioDonativo;
     private int stock;
     private boolean eliminado;
-    private Users user;
+    private Users users;
     private DonationType donationType;
     private Notifications notifications;
     private String direccionRecojo;
-    private Users userReceptor;
+    private Users usersReceptor;
+
+    public boolean isEliminado() {
+        return eliminado;
+    }
+
+    public void setEliminado(boolean eliminado) {
+        this.eliminado = eliminado;
+    }
 
     public int getIdDonation() {
         return idDonation;
@@ -105,20 +113,12 @@ public class DonationsDTO {
         this.stock = stock;
     }
 
-    public boolean isEliminado() {
-        return eliminado;
+    public Users getUsers() {
+        return users;
     }
 
-    public void setEliminado(boolean eliminado) {
-        this.eliminado = eliminado;
-    }
-
-    public Users getUser() {
-        return user;
-    }
-
-    public void setUser(Users user) {
-        this.user = user;
+    public void setUsers(Users users) {
+        this.users = users;
     }
 
     public DonationType getDonationType() {
@@ -145,12 +145,12 @@ public class DonationsDTO {
         this.direccionRecojo = direccionRecojo;
     }
 
-    public Users getUserReceptor() {
-        return userReceptor;
+    public Users getUsersReceptor() {
+        return usersReceptor;
     }
 
-    public void setUserReceptor(Users userReceptor) {
-        this.userReceptor = userReceptor;
+    public void setUsersReceptor(Users usersReceptor) {
+        this.usersReceptor = usersReceptor;
     }
 }
 

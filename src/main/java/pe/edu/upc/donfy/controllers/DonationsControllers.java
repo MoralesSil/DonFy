@@ -7,10 +7,12 @@ import pe.edu.upc.donfy.dtos.DonationSummaryDTO;
 import pe.edu.upc.donfy.dtos.DonationsDTO;
 import pe.edu.upc.donfy.dtos.DonativosPhysicalDTO;
 import pe.edu.upc.donfy.dtos.TrendsDonationsDTO;
+import pe.edu.upc.donfy.dtos.*;
 import pe.edu.upc.donfy.entities.Donations;
 import pe.edu.upc.donfy.serviceinterfaces.IDonationsService;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -67,6 +69,39 @@ public class DonationsControllers {
             ModelMapper m = new ModelMapper();
             return m.map(x, DonationSummaryDTO.class);
         }).collect(Collectors.toList());
+    }
+    @GetMapping("/Users/{userId}/physical-donations")
+    public List<PhysicalDonationsByUserIdAndStatusDTO> DonacionesFisicaPorUsuario(@PathVariable("userId") Long User_id_receptor) {
+        List<PhysicalDonationsByUserIdAndStatusDTO> listaDTO = new ArrayList<>();
+        dC.listOfPhysicalDonationsByUserIdAndStatus(User_id_receptor).stream().forEach(x -> {
+            ModelMapper m = new ModelMapper();
+            PhysicalDonationsByUserIdAndStatusDTO dto = m.map(x, PhysicalDonationsByUserIdAndStatusDTO.class);
+            listaDTO.add(dto);
+        });
+        return listaDTO;
+    }
+    @GetMapping("/donation-statistics")
+    public List<DonationStatisticsDTO> obtenerEstadisticas() {
+        List<String[]> lista = dC.getDonationStatistics();
+        List<DonationStatisticsDTO> listaDTO = new ArrayList<>();
+
+        for (String[] columna : lista) {
+            DonationStatisticsDTO dto = new DonationStatisticsDTO();
+            dto.setTotalDonativos(Long.parseLong(columna[0]));
+            dto.setValorTotalEstimado(Double.parseDouble(columna[1]));
+            dto.setCantidadONGBeneficiadas(Long.parseLong(columna[2]));
+            listaDTO.add(dto);
+        }
+
+        return listaDTO;
+    }
+    @GetMapping("/Users/{userId}/DonativosporUsuario")
+    public List<DonationsDTO> getDonationsByUserId(@PathVariable Long userId) {
+        List<Donations> donations = dC.findDonationsByUserId(userId);
+        ModelMapper modelMapper = new ModelMapper();
+        return donations.stream()
+                .map(donation -> modelMapper.map(donation, DonationsDTO.class))
+                .collect(Collectors.toList());
     }
 
     @GetMapping("/tendenciasDonacionesMes")
