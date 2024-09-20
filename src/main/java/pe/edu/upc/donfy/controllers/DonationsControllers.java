@@ -2,6 +2,7 @@ package pe.edu.upc.donfy.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.donfy.dtos.DonationSummaryDTO;
 import pe.edu.upc.donfy.dtos.DonationsDTO;
@@ -24,6 +25,7 @@ public class DonationsControllers {
     private IDonationsService dC;
 
     @GetMapping
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public List<DonationsDTO> listar(){
         return dC.list().stream().map(x-> {
             ModelMapper m = new ModelMapper();
@@ -31,24 +33,28 @@ public class DonationsControllers {
         }).collect(Collectors.toList());
     }
     @PostMapping
+    @PreAuthorize("hasAuthority('DONADOR')")
     public void registar(@RequestBody DonationsDTO dto) {
         ModelMapper m = new ModelMapper();
         Donations donations = m.map(dto, Donations.class);
         dC.insert(donations);
     }
     @GetMapping("/{idDonation}")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public DonationsDTO listarId(@PathVariable("idUsuario") Integer idDonation) {
         ModelMapper m=new ModelMapper();
         DonationsDTO dto=m.map(dC.listId(idDonation), DonationsDTO.class);
         return dto;
     }
     @PutMapping
+    @PreAuthorize("hasAuthority('DONADOR')")
     public void modificar(@RequestBody DonationsDTO dto) {
         ModelMapper m=new ModelMapper();
         Donations donations = m.map(dto, Donations.class);
         dC.update(donations);
     }
     @DeleteMapping("/{idDonation}")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public void eliminar(@PathVariable("idDonation") Integer idDonation){
         dC.delete(idDonation);
     }
@@ -105,7 +111,8 @@ public class DonationsControllers {
     }
 
     @GetMapping("/tendenciasDonacionesMes")
-    public List<TrendsDonationsDTO> obtener() {
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    public List<TrendsDonationsDTO> obtenerTendencias() {
         List<String[]>lista=dC.tendenciasDonacionesMeses();
         List<TrendsDonationsDTO>listaDTO=new ArrayList<>();
         for(String[]columna:lista) {
@@ -130,6 +137,21 @@ public class DonationsControllers {
             listaDTO.add(dto);
         }
 
+        return listaDTO;
+    }
+
+    @GetMapping("/personasConMasDonaciones")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    public List<PersonasconMasDonacionesDTO> obtenerPersonas() {
+        List<String[]>lista=dC.personasConMaxDonaciones();
+        List<PersonasconMasDonacionesDTO>listaDTO=new ArrayList<>();
+        for(String[]columna:lista) {
+            PersonasconMasDonacionesDTO dto=new PersonasconMasDonacionesDTO();
+            dto.setNombre(columna[0]);
+            dto.setNombreTipoDonation(columna[1]);
+            dto.setTotalDonaciones(Integer.parseInt(columna[2]));
+            listaDTO.add(dto);
+        }
         return listaDTO;
     }
 }

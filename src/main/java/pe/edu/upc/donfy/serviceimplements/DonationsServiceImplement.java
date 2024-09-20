@@ -71,6 +71,11 @@ public class DonationsServiceImplement implements IDonationsService {
     }
 
     @Override
+    public List<String[]> personasConMaxDonaciones() {
+        return dR.personasConMaxDonaciones();
+    }
+
+    @Override
     public List<String[]> getDonationOngYear() {
         return dR.obtenerTotalDonadoPorONG();
     }
