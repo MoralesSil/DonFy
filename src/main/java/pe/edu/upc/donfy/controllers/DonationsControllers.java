@@ -83,4 +83,13 @@ public class DonationsControllers {
             return m.map(x, DonationONGDTO.class);
         }).collect(Collectors.toList());
     }
+
+    @GetMapping("/FiltrarReportePorTipoDonativo")
+    public List<DonationsDTO> FiltrarReportePorTipoDonativo(@RequestParam String typeDonationName)
+    {
+        return dC.listDonationsByDonationsType(typeDonationName).stream().map(x -> {
+            ModelMapper m = new ModelMapper();
+            return m.map(x, DonationsDTO.class);
+        }).collect(Collectors.toList());
+    }
 }
