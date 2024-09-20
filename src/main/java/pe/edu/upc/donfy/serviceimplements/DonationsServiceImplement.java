@@ -76,8 +76,8 @@ public class DonationsServiceImplement implements IDonationsService {
     }
 
     @Override
-    public List<String[]> getDonationOngYear() {
-        return dR.obtenerTotalDonadoPorONG();
+    public List<String[]> getDonationOngYear(int year) {
+        return dR.obtenerTotalDonadoPorONG(year);
     }
 
 

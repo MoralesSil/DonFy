@@ -103,10 +103,10 @@ public interface IDonationsRepository extends JpaRepository <Donations,Integer>{
             "SUM(d.monto_donado) AS totalDonadoEnElAno " +
             "FROM Donations d " +
             "JOIN Users u ON d.Users_Id_Receptor = u.id " +
-            "WHERE EXTRACT(YEAR FROM d.fecha_recojo) = EXTRACT(YEAR FROM CURRENT_DATE) " +
+            "WHERE EXTRACT(YEAR FROM d.fecha_recojo) = :year " +  // Cambio aquí para usar un parámetro
             "AND u.nombreONG IS NOT NULL " +
             "GROUP BY u.nombreONG " +
             "ORDER BY SUM(d.monto_donado) DESC",
             nativeQuery = true)
-    List<String[]> obtenerTotalDonadoPorONG();
+    List<String[]> obtenerTotalDonadoPorONG(@Param("year") int year);
 }

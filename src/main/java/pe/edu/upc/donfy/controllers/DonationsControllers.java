@@ -125,9 +125,8 @@ public class DonationsControllers {
         return listaDTO;
     }
     @GetMapping("/MontoAnualporONG")
-    public List<DonationsSummaryYearONGDTO> MontoAnualporONG()
-    {
-        List<String[]> results = dC.getDonationOngYear();
+    public List<DonationsSummaryYearONGDTO> MontoAnualporONG(@RequestParam int year) {
+        List<String[]> results = dC.getDonationOngYear(year);
         List<DonationsSummaryYearONGDTO> listaDTO = new ArrayList<>();
 
         for (String[] columna : results) {
