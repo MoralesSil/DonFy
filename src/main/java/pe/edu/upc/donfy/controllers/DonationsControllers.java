@@ -3,6 +3,7 @@ package pe.edu.upc.donfy.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.donfy.dtos.DonationONGDTO;
 import pe.edu.upc.donfy.dtos.DonationSummaryDTO;
 import pe.edu.upc.donfy.dtos.DonationsDTO;
 import pe.edu.upc.donfy.entities.Donations;
@@ -74,4 +75,12 @@ public class DonationsControllers {
         }).collect(Collectors.toList());
     }
 
+    @GetMapping("/AsignarDonativoONG")
+    public List<DonationONGDTO> FiltrarPorONG(@RequestParam int idDonativo, Long idong)
+    {
+        return dC.listDonationAndONGByIds(idDonativo,idong).stream().map(x -> {
+            ModelMapper m = new ModelMapper();
+            return m.map(x, DonationONGDTO.class);
+        }).collect(Collectors.toList());
+    }
 }

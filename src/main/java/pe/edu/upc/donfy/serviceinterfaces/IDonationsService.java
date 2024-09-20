@@ -13,5 +13,5 @@ public interface IDonationsService {
     public List<Donations> listDonationsForYourStatus(String estado);
     public List<String[]> listOfMonetaryDonationsByONG(int year);
     public List<Donations> listDonationsByONG(String ONG);
-    public List<String[]> listDonationAndONGByIds(int idDonation, int idONG);
+    public List<String[]> listDonationAndONGByIds(int idDonation, Long idONG);
 }
