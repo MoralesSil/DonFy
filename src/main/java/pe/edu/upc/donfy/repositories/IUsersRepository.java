@@ -26,11 +26,6 @@ public interface IUsersRepository extends JpaRepository<Users, Long> {
             " WHERE r.rol = 'ONG';",nativeQuery = true)
     public List<Users> rolesONG();
 
-// BUSCAR ONG POR UBICACION
-    @Query(value = "SELECT u.nombreONG AS nombre, u.direccion AS direccion " +
-            "FROM Users u " +
-            "WHERE u.direccion LIKE %:direccion% AND u.nombreONG IS NOT NULL", nativeQuery = true)
-    List<Users> findONGsByAddressPattern(@Param("direccion")String direccion);
 
 
 }

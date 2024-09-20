@@ -8,8 +8,6 @@ import pe.edu.upc.donfy.dtos.UsersDTO;
 import pe.edu.upc.donfy.entities.Users;
 import pe.edu.upc.donfy.serviceinterfaces.IUsersService;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -62,6 +60,4 @@ public class UsersControllers {
             return m.map(x, UsersDTO.class);
         }).collect(Collectors.toList());
     }
-    //Query ONG por Ubicacion
-
 }
