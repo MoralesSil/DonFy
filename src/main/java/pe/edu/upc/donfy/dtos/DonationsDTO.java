@@ -21,7 +21,6 @@ public class DonationsDTO {
     private boolean eliminado;
     private Users users;
     private DonationType donationType;
-    private Notifications notifications;
     private String direccionRecojo;
     private Users usersReceptor;
 
@@ -127,14 +126,6 @@ public class DonationsDTO {
 
     public void setDonationType(DonationType donationType) {
         this.donationType = donationType;
-    }
-
-    public Notifications getNotifications() {
-        return notifications;
-    }
-
-    public void setNotifications(Notifications notifications) {
-        this.notifications = notifications;
     }
 
     public String getDireccionRecojo() {

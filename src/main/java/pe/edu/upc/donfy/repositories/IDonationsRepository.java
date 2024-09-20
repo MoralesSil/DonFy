@@ -28,6 +28,16 @@ public interface IDonationsRepository extends JpaRepository <Donations,Integer>{
                     "GROUP BY u.nombre, d.usersReceptor.nombreONG")
     List<String[]> resumenDonacionesMonetarias();
 
+    //Mostrar las tendencias de donaciones
+    @Query(value = "SELECT dt.nombre_tipo_donation AS tipo_donacion, DATE_TRUNC('month', d.fecha_recojo) AS mes,\n" +
+            " COUNT(d.id_donation) AS total_donaciones\n" +
+            " FROM donations d\n" +
+            " JOIN donation_type dt ON d.tipo_donativo_id = dt.id_tipo_donation\n" +
+            " WHERE d.fecha_recojo >= CURRENT_DATE - INTERVAL '6 months'\n" +
+            " GROUP BY dt.nombre_tipo_donation, DATE_TRUNC('month', d.fecha_recojo)",nativeQuery = true)
+    List<String[]> tendenciasDonacionesMeses();
+
+
     //Ver el estado de mi donación física de un usuario en específico
     @Query("SELECT d " +
             "FROM Donations d" +

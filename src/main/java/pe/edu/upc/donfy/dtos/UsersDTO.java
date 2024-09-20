@@ -28,6 +28,8 @@ public class UsersDTO {
 
     private String nombreONG;
 
+    private float saldo;
+
     public Long getId() {
         return id;
     }
@@ -122,5 +124,13 @@ public class UsersDTO {
 
     public void setNombreONG(String nombreONG) {
         this.nombreONG = nombreONG;
+    }
+
+    public float getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(float saldo) {
+        this.saldo = saldo;
     }
 }

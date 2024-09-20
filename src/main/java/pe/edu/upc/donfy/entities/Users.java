@@ -30,12 +30,14 @@ public class Users implements Serializable {
     private String telefono;
     @Column(name = "dni", nullable = false, length = 8)
     private String dni;
-    @Column(name = "ruc", nullable = false, length = 11)
+    @Column(name = "ruc", length = 11)
     private String ruc;
     @Column(name = "direccion", nullable = false, length = 150)
     private String direccion;
-    @Column(name = "nombreONG", nullable = false, length = 200)
+    @Column(name = "nombreONG", length = 200)
     private String nombreONG;
+    @Column(name = "saldo", nullable = false, length = 200)
+    private float saldo;
 
     @JsonIgnore
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -45,7 +47,7 @@ public class Users implements Serializable {
     public Users() {
     }
 
-    public Users(Long id, String username, String password, Boolean enabled, String correo, String nombre, String apellidos, String telefono, String dni, String ruc, String direccion, String nombreONG, List<Role> roles) {
+    public Users(Long id, String username, String password, Boolean enabled, String correo, String nombre, String apellidos, String telefono, String dni, String ruc, String direccion, String nombreONG, float saldo, List<Role> roles) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -58,6 +60,7 @@ public class Users implements Serializable {
         this.ruc = ruc;
         this.direccion = direccion;
         this.nombreONG = nombreONG;
+        this.saldo = saldo;
         this.roles = roles;
     }
 
@@ -155,6 +158,14 @@ public class Users implements Serializable {
 
     public void setNombreONG(String nombreONG) {
         this.nombreONG = nombreONG;
+    }
+
+    public float getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(float saldo) {
+        this.saldo = saldo;
     }
 
     public List<Role> getRoles() {

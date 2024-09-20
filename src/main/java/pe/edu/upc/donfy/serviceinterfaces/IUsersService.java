@@ -14,4 +14,8 @@ public interface IUsersService {
 
     public List<Users>rolesONG();
 
+    Long  findByUsername(String username);
+
+    public List<String[]> donantesXfecha(String startDate,String endDate);
+
 }

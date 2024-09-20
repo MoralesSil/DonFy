@@ -51,6 +51,11 @@ public class DonationsServiceImplement implements IDonationsService {
     }
 
     @Override
+    public List<String[]> tendenciasDonacionesMeses() {
+        return dR.tendenciasDonacionesMeses();
+    }
+
+    @Override
     public List<Donations> listOfPhysicalDonationsByUserIdAndStatus(Long Users_id_receptor) {
         return dR.findPhysicalDonationsByUserIdAndStatus(Users_id_receptor);
     }
