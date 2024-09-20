@@ -100,9 +100,16 @@ public class DonationsControllers {
     @GetMapping("/MontoAnualporONG")
     public List<DonationsSummaryYearONGDTO> MontoAnualporONG()
     {
-        return dC.getDonationOngYear().stream().map(x -> {
-            ModelMapper m = new ModelMapper();
-            return m.map(x, DonationsSummaryYearONGDTO.class);
-        }).collect(Collectors.toList());
+        List<String[]> results = dC.getDonationOngYear();
+        List<DonationsSummaryYearONGDTO> listaDTO = new ArrayList<>();
+
+        for (String[] columna : results) {
+            DonationsSummaryYearONGDTO dto = new DonationsSummaryYearONGDTO();
+            dto.setNombreONG(columna[0]);
+            dto.setMontoDonado(Float.parseFloat(columna[1]));
+            listaDTO.add(dto);
+        }
+
+        return listaDTO;
     }
 }
