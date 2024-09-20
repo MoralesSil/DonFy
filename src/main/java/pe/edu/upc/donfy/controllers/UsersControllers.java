@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.donfy.dtos.DonanteXFechaDTO;
 import pe.edu.upc.donfy.dtos.UsersDTO;
 import pe.edu.upc.donfy.entities.Users;
 import pe.edu.upc.donfy.serviceinterfaces.IUsersService;
@@ -52,5 +53,17 @@ public class UsersControllers {
             ModelMapper m = new ModelMapper();
             return m.map(x, UsersDTO.class);
         }).collect(Collectors.toList());
+    }
+
+    @GetMapping("/donantePorFecha")
+    public List<DonanteXFechaDTO> donantePorFecha(@RequestParam("startDate") String startDate, @RequestParam("endDate") String endDate) {
+        List<String[]> lista = uS.donantesXfecha(startDate, endDate);
+        List<DonanteXFechaDTO>listadto=new ArrayList<>();
+        for(String[] data:lista){
+            DonanteXFechaDTO dto =  new DonanteXFechaDTO();
+            dto.setNombre(data[0]);
+            listadto.add(dto);
+        }
+        return listadto;
     }
 }

@@ -49,5 +49,9 @@ public class UsersServiceImplement implements IUsersService {
         return user.getId();
     }
 
+    @Override
+    public List<String[]> donantesXfecha(String startDate, String endDate) {
+        return uR.donantesXfechas(startDate, endDate);
+    }
 
 }

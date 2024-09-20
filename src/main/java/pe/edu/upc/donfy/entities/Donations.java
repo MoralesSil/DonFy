@@ -54,9 +54,6 @@ public class Donations {
     @JoinColumn(name = "TipoDonativo_id")
     private DonationType donationType;
 
-    @ManyToOne
-    @JoinColumn(name = "Notification_id")
-    private Notifications notifications;
 
     @ManyToOne
     @JoinColumn(name = "Users_Id_Receptor")
@@ -65,7 +62,7 @@ public class Donations {
     public Donations() {
     }
 
-    public Donations(int idDonation, String nombre, String descripcion, String estado, String categoria, String fotoDonativo, LocalDate fechaRecojo, float montoDonado, float precioDonativo, int stock, boolean eliminado, String direccionRecojo, Users users, DonationType donationType, Notifications notifications, Users usersReceptor) {
+    public Donations(int idDonation, String nombre, String descripcion, String estado, String categoria, String fotoDonativo, LocalDate fechaRecojo, float montoDonado, float precioDonativo, int stock, boolean eliminado, String direccionRecojo, Users users, DonationType donationType, Users usersReceptor) {
         this.idDonation = idDonation;
         this.nombre = nombre;
         this.descripcion = descripcion;
@@ -80,7 +77,6 @@ public class Donations {
         this.direccionRecojo = direccionRecojo;
         this.users = users;
         this.donationType = donationType;
-        this.notifications = notifications;
         this.usersReceptor = usersReceptor;
     }
 
@@ -194,14 +190,6 @@ public class Donations {
 
     public void setDonationType(DonationType donationType) {
         this.donationType = donationType;
-    }
-
-    public Notifications getNotifications() {
-        return notifications;
-    }
-
-    public void setNotifications(Notifications notifications) {
-        this.notifications = notifications;
     }
 
     public Users getUsersReceptor() {
