@@ -79,9 +79,10 @@ public interface IDonationsRepository extends JpaRepository <Donations,Integer>{
     public List<DonationsDTO> getDonations();
 
     //Listar donativos por Usuario
-    @Query("SELECT d " +
-            "FROM Donations d " +
-            "WHERE d.usersReceptor.id = :userId")
+    @Query("SELECT d FROM Donations d " +
+            "JOIN d.users u " +
+            "WHERE u.id = :userId AND 'DONADOR' IN (SELECT r.rol FROM u.roles r) " +
+            "ORDER BY d.fechaRecojo DESC")
     List<Donations> findByUserId(@Param("userId") Long userId);
 
     //HU42: Listar personas con más donaciones según el tipo de donativo
