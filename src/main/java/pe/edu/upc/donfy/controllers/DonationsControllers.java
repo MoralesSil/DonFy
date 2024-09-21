@@ -87,6 +87,7 @@ public class DonationsControllers {
         return listaDTO;
     }
     @GetMapping("/donation-statistics")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public List<DonationStatisticsDTO> obtenerEstadisticas() {
         List<String[]> resultados = dC.getDonationStatistics();
         List<DonationStatisticsDTO> listaDTO = new ArrayList<>();
