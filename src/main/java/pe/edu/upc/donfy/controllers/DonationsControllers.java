@@ -77,6 +77,7 @@ public class DonationsControllers {
         }).collect(Collectors.toList());
     }
     @GetMapping("/Users/{userId}/physical-donations")
+    @PreAuthorize("hasAuthority('DONADOR')")
     public List<PhysicalDonationsByUserIdAndStatusDTO> DonacionesFisicaPorUsuario(@PathVariable("userId") Long User_id_receptor) {
         List<PhysicalDonationsByUserIdAndStatusDTO> listaDTO = new ArrayList<>();
         dC.listOfPhysicalDonationsByUserIdAndStatus(User_id_receptor).stream().forEach(x -> {
