@@ -47,6 +47,7 @@ public class NotificationTypeControllers {
         NotificationType nt=m.map(dto, NotificationType.class);
         ntS.update(nt);
     }
+
     @DeleteMapping("/{idTipoNotificacion}")
     @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public void eliminar(@PathVariable("idTipoNotificacion") Integer idTipoNotificacion) {
