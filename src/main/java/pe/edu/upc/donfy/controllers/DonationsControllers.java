@@ -104,6 +104,7 @@ public class DonationsControllers {
         return listaDTO;
     }
     @GetMapping("/Users/{userId}/DonativosporUsuario")
+    @PreAuthorize("hasAuthority('DONADOR')")
     public List<DonationsDTO> getDonationsByUserId(@PathVariable Long userId) {
         List<Donations> donations = dC.findDonationsByUserId(userId);
         ModelMapper modelMapper = new ModelMapper();
