@@ -126,6 +126,7 @@ public class DonationsControllers {
         return listaDTO;
     }
     @GetMapping("/MontoAnualporONG")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public List<DonationsSummaryYearONGDTO> MontoAnualporONG(@RequestParam int year) {
         List<String[]> results = dC.getDonationOngYear(year);
         List<DonationsSummaryYearONGDTO> listaDTO = new ArrayList<>();
