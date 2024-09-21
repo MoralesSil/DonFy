@@ -66,18 +66,22 @@ public class DonationsControllers {
         }).collect(Collectors.toList());
     }
 
-    @GetMapping("/ResumenMonetarioPorONG")
-    public List<DonationSummaryDTO> TotalDonadoPorONG(@RequestParam int anio)
+    @PreAuthorize("hasRole('DONADOR')")
+    @GetMapping("/ResumenMonetarioDeDonacionesPorDonante")
+    public List<DonationSummaryDTO> TotalDonadoPorONG(@RequestParam int anio, Long iduser)
     {
-        return dC.listOfMonetaryDonationsByONG(anio).stream().map(x -> {
-            ModelMapper m = new ModelMapper();
-            return m.map(x, DonationSummaryDTO.class);
+        return dC.listOfMonetaryDonationsByDonante(anio, iduser).stream().map(x -> {
+            DonationSummaryDTO dto = new DonationSummaryDTO();
+            dto.setNombreDonante(x[0]);
+            dto.setUsuarioReceptor(x[1]);
+            dto.setMontoDonado(Float.parseFloat(x[2]));
+            return dto;
         }).collect(Collectors.toList());
     }
 
     @PreAuthorize("hasRole('ONG')")
     @GetMapping("/FiltrarDonativosPorONG")
-    public List<DonationsDTO> FiltrarPorONG(@RequestParam String ong)
+    public List<DonationsDTO> FiltrarPorONG(@RequestParam int ong)
     {
         return dC.listDonationsByONG(ong).stream().map(x -> {
             ModelMapper m = new ModelMapper();

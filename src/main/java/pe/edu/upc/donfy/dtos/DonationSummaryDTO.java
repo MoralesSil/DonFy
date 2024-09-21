@@ -1,6 +1,7 @@
 package pe.edu.upc.donfy.dtos;
 
 public class DonationSummaryDTO {
+
     private String nombreDonante;
     private String usuarioReceptor;
     private float montoDonado;

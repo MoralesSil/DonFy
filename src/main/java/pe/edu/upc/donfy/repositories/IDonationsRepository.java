@@ -10,27 +10,28 @@ import java.util.List;
 
 @Repository
 public interface IDonationsRepository extends JpaRepository <Donations,Integer>{
-    //HU53
+    //HU53- FUNCIONA
     @Query("SELECT d FROM Donations d " +
             "JOIN d.donationType dt WHERE d.estado = :estado")
     List<Donations> findDonationsForYourStatus(@Param("estado") String estado);
 
     //HU34
-    @Query("SELECT u.nombre AS nombre_donante, " +
-                    "d.usersReceptor.nombreONG AS usuario_receptor, " +
-                    "SUM(d.montoDonado) AS monto_donado " +
-                    "FROM Donations d " +
-                    "JOIN Users u ON d.users.id = u.id " +
-                    "JOIN DonationType dt ON d.donationType.idTipoDonation = dt.idTipoDonation " +
-                    "WHERE dt.nombreTipoDonation = 'monetario' " +
-                    "AND YEAR(d.fechaRecojo) = :anio " +
-                    "GROUP BY u.nombre, d.usersReceptor.nombreONG")
-    List<String[]> resumenDonacionesMonetarias(@Param("anio") int anio);
+    @Query("SELECT u.nombre AS nombreDonante, " +
+            "d.usersReceptor.nombreONG AS usuarioReceptor, " +
+            "SUM(d.montoDonado) AS montoDonado " +
+            "FROM Donations d " +
+            "JOIN Users u ON d.users.id = u.id " +
+            "JOIN DonationType dt ON d.donationType.idTipoDonation = dt.idTipoDonation " +
+            "WHERE dt.nombreTipoDonation = 'MONETARIO' " +
+            "AND EXTRACT(YEAR FROM d.fechaRecojo) = :anio " +
+            "AND u.id = :donadorId " +
+            "GROUP BY u.nombre, d.usersReceptor.nombreONG")
+    List<String[]> resumenDonacionesMonetariasPorDonador(@Param("anio") int anio, @Param("donadorId") Long donadorId);
 
     //HU37
     @Query("SELECT d FROM Donations d " +
-            "JOIN d.donationType dt WHERE d.usersReceptor = :ong")
-    List<Donations> findDonationsByONG(@Param("ong") String ong);
+            "JOIN d.donationType dt WHERE d.usersReceptor.id = :ong")
+    List<Donations> findDonationsByONG(@Param("ong") int ong);
 
     //HU39
     @Query("SELECT d.idDonation AS id_donativo, d.nombre AS nombre_donativo, " +

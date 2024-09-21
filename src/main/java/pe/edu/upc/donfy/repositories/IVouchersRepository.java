@@ -12,18 +12,9 @@ import java.util.List;
 public interface IVouchersRepository extends JpaRepository<Vouchers, Integer> {
 
     //HU43
-    @Query(value =
-            "SELECT c.idComprobante AS id_comprobante, " +
-                    "c.fechaEmision AS fecha_emision, " +
-                    "c.total AS total, " +
-                    "u.nombre AS nombre_donante, " +
-                    "c.descripcion AS descripcion, " +
-                    "d AS donations " +
-                    "FROM Vouchers c " +
-                    "JOIN c.donations d " +
-                    "JOIN d.users u " +
-                    "WHERE u.id = :userId")
+    @Query("SELECT c FROM Vouchers c " +
+            "JOIN c.donations d " +
+            "JOIN d.users u " +
+            "WHERE u.id = :userId")
     List<Vouchers> findComprobantesByUserId(@Param("userId") Long userId);
-
-
 }
