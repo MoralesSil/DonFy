@@ -12,21 +12,19 @@ import java.util.List;
 public interface IVouchersRepository extends JpaRepository<Vouchers, Integer> {
 
     // HU53: Generar reporte de comprobante por fecha
-    @Query(value = "SELECT " +
-            "    c.id_comprobante AS comprobante_id, " +
-            "    c.fecha_emision AS fecha_emision, " +
-            "    c.total AS monto_comprobante, " +
-            "    u.nombre AS nombre_donante " +
-            "FROM " +
-            "    voucher c " +
-            "JOIN " +
-            "    Donativo d ON c.id_donativo = d.id_donativo " +
-            "JOIN " +
-            "    Usuario u ON d.id_usuario = u.id " +
-            "WHERE " +
-            "    c.fecha_emision BETWEEN :startDate AND :endDate " +
-            "ORDER BY " +
-            "    c.fecha_emision ASC", nativeQuery = true)
-    public List<Object[]> getVouchers(@Param("startDate") String startDate, @Param("endDate") String endDate);
+    @Query(value =
+            "SELECT \n" +
+                    "\tc.id_comprobante AS id_comprobante,\n" +
+                    "    c.fecha_emision AS fecha_emision,  \n" +
+                    "    SUM(c.total) AS monto_total \n" +
+                    "FROM \n" +
+                    "    vouchers c \n" +
+                    "GROUP BY \n" +
+                    "    c.fecha_emision,\n" +
+                    "\tc.id_comprobante\n" +
+                    "ORDER BY \n" +
+                    "    c.fecha_emision ASC;\n", nativeQuery = true)
+    List<String[]> ComprobanteFecha();
 
 }
+
