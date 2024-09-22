@@ -7,6 +7,9 @@ import pe.edu.upc.donfy.dtos.VouchersDTO;
 import pe.edu.upc.donfy.entities.Vouchers;
 import pe.edu.upc.donfy.serviceinterfaces.IVouchersService;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -49,6 +52,27 @@ public class VouchersControllers {
     public void eliminar(@PathVariable("idComprobante") Integer idComprobante) {
         vS.delete(idComprobante);
     }
+
+
+    @GetMapping("/ComprobanteFecha")
+    public List<VouchersDTO> ObtenerComprobanteFecha(){
+        List<String[]> lista=vS.GenerarComprobanteFecha();
+        List<VouchersDTO>listaDTO=new ArrayList<>();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S");
+        for(String[]columna:lista){
+            VouchersDTO dto=new VouchersDTO();
+            dto.setIdComprobante(Integer.parseInt(columna[0]));
+            dto.setFechaEmision(LocalDateTime.parse(columna[1],formatter));
+            dto.setTotal(Double.parseDouble(columna[2]));
+            listaDTO.add(dto);
+        }
+        return listaDTO;
+    }
+
+
+
+
+
 }
 
 
