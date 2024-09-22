@@ -42,4 +42,10 @@ public class VouchersServiceImplement implements IVouchersService {
     public List<Vouchers> getAllComprobantes() {
         return vR.findAll();
     }
+
+    public List<String[]> GenerarComprobanteFecha() {
+        return vR.ComprobanteFecha();
+    }
+
+
 }
