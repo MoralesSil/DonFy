@@ -11,4 +11,6 @@ public interface IVouchersService {
     Vouchers listId(int idVouchers);
     void delete(int idVoucher);
     List<Vouchers> getAllComprobantes();
+
+    List<String[]> GenerarComprobanteFecha();
 }
