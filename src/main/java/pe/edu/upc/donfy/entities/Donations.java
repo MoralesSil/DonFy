@@ -5,7 +5,6 @@ import jakarta.persistence.Table;
 
 import java.time.LocalDate;
 import java.util.Date;
-
 @Entity
 @Table(name = "Donations")
 public class Donations {
@@ -13,37 +12,25 @@ public class Donations {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idDonation;
 
-    @Column(name = "nombre", length = 150)
+    @Column(name = "nombre", nullable = false, length = 150)
     private String nombre;
 
-    @Column(name = "descripcion")
+    @Column(name = "descripcion", nullable = false)
     private String descripcion;
 
-    @Column(name = "estado", length = 20)
+    @Column(name = "estado", nullable = false, length = 20)
     private String estado;
 
-    @Column(name = "categoria", length = 50)
-    private String categoria;
-
-    @Column(name = "fotoDonativo")
-    private String fotoDonativo;
-
-    @Column(name = "fechaRecojo")
+    @Column(name = "fechaRecojo", nullable = false)
     private LocalDate fechaRecojo;
 
-    @Column(name = "montoDonado")
+    @Column(name = "montoDonado", nullable = false)
     private float montoDonado;
-
-    @Column(name = "precioDonativo")
-    private float precioDonativo;
-
-    @Column(name = "stock")
-    private int stock;
 
     @Column(name = "eliminado")
     private boolean eliminado;
 
-    @Column(name = "direccionRecojo", length = 200)
+    @Column(name = "direccionRecojo", nullable = false, length = 200)
     private String direccionRecojo;
 
     @ManyToOne
@@ -54,7 +41,6 @@ public class Donations {
     @JoinColumn(name = "TipoDonativo_id")
     private DonationType donationType;
 
-
     @ManyToOne
     @JoinColumn(name = "Users_Id_Receptor")
     private Users usersReceptor;
@@ -62,17 +48,13 @@ public class Donations {
     public Donations() {
     }
 
-    public Donations(int idDonation, String nombre, String descripcion, String estado, String categoria, String fotoDonativo, LocalDate fechaRecojo, float montoDonado, float precioDonativo, int stock, boolean eliminado, String direccionRecojo, Users users, DonationType donationType, Users usersReceptor) {
+    public Donations(int idDonation, String nombre, String descripcion, String estado, LocalDate fechaRecojo, float montoDonado, boolean eliminado, String direccionRecojo, Users users, DonationType donationType, Users usersReceptor) {
         this.idDonation = idDonation;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.estado = estado;
-        this.categoria = categoria;
-        this.fotoDonativo = fotoDonativo;
         this.fechaRecojo = fechaRecojo;
         this.montoDonado = montoDonado;
-        this.precioDonativo = precioDonativo;
-        this.stock = stock;
         this.eliminado = eliminado;
         this.direccionRecojo = direccionRecojo;
         this.users = users;
@@ -112,22 +94,6 @@ public class Donations {
         this.estado = estado;
     }
 
-    public String getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
-    }
-
-    public String getFotoDonativo() {
-        return fotoDonativo;
-    }
-
-    public void setFotoDonativo(String fotoDonativo) {
-        this.fotoDonativo = fotoDonativo;
-    }
-
     public LocalDate getFechaRecojo() {
         return fechaRecojo;
     }
@@ -142,22 +108,6 @@ public class Donations {
 
     public void setMontoDonado(float montoDonado) {
         this.montoDonado = montoDonado;
-    }
-
-    public float getPrecioDonativo() {
-        return precioDonativo;
-    }
-
-    public void setPrecioDonativo(float precioDonativo) {
-        this.precioDonativo = precioDonativo;
-    }
-
-    public int getStock() {
-        return stock;
-    }
-
-    public void setStock(int stock) {
-        this.stock = stock;
     }
 
     public boolean isEliminado() {

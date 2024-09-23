@@ -4,16 +4,11 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import pe.edu.upc.donfy.dtos.DonationSummaryDTO;
-import pe.edu.upc.donfy.dtos.DonationsDTO;
-import pe.edu.upc.donfy.dtos.DonativosPhysicalDTO;
-import pe.edu.upc.donfy.dtos.TrendsDonationsDTO;
 import pe.edu.upc.donfy.dtos.*;
 import pe.edu.upc.donfy.entities.Donations;
 import pe.edu.upc.donfy.serviceinterfaces.IDonationsService;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -53,29 +48,66 @@ public class DonationsControllers {
         Donations donations = m.map(dto, Donations.class);
         dC.update(donations);
     }
+
     @DeleteMapping("/{idDonation}")
     @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public void eliminar(@PathVariable("idDonation") Integer idDonation){
         dC.delete(idDonation);
     }
 
-    @GetMapping("/FiltrarDonativosFisicos")
-    public List<DonativosPhysicalDTO> FiltrarPorEstado(@RequestParam String estado)
+    @PreAuthorize("hasAuthority('ONG')")
+    @GetMapping("/FiltrarDonativosPorEstado")
+    public List<DonationsDTO> FiltrarPorEstado(@RequestParam String estado)
     {
         return dC.listDonationsForYourStatus(estado).stream().map(x -> {
             ModelMapper m = new ModelMapper();
-            return m.map(x, DonativosPhysicalDTO.class);
+            return m.map(x, DonationsDTO.class);
         }).collect(Collectors.toList());
     }
 
-    @GetMapping("/ResumenMonetarioPorONG")
-    public List<DonationSummaryDTO> TotalDonadoPorONG()
+    @PreAuthorize("hasAuthority('DONADOR')")
+    @GetMapping("/ResumenMonetarioDeDonacionesPorDonante")
+    public List<DonationSummaryDTO> TotalDonadoPorONG(@RequestParam int anio, Long iduser)
     {
-        return dC.listOfMonetaryDonationsByONG().stream().map(x -> {
-            ModelMapper m = new ModelMapper();
-            return m.map(x, DonationSummaryDTO.class);
+        return dC.listOfMonetaryDonationsByDonante(anio, iduser).stream().map(x -> {
+            DonationSummaryDTO dto = new DonationSummaryDTO();
+            dto.setNombreDonante(x[0]);
+            dto.setUsuarioReceptor(x[1]);
+            dto.setMontoDonado(Float.parseFloat(x[2]));
+            return dto;
         }).collect(Collectors.toList());
     }
+
+    @PreAuthorize("hasAuthority('ONG')")
+    @GetMapping("/FiltrarDonativosPorONG")
+    public List<DonationsDTO> FiltrarPorONG(@RequestParam int ong)
+    {
+        return dC.listDonationsByONG(ong).stream().map(x -> {
+            ModelMapper m = new ModelMapper();
+            return m.map(x, DonationsDTO.class);
+        }).collect(Collectors.toList());
+    }
+
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    @GetMapping("/AsignarDonativoONG")
+    public List<DonationONGDTO> AsignarDonativoAOng(@RequestParam int idDonativo, Long idong)
+    {
+        return dC.listDonationAndONGByIds(idDonativo,idong).stream().map(x -> {
+            ModelMapper m = new ModelMapper();
+            return m.map(x, DonationONGDTO.class);
+        }).collect(Collectors.toList());
+    }
+
+    @PreAuthorize("hasAuthority('ONG')")
+    @GetMapping("/FiltrarReportePorTipoDonativo")
+    public List<DonationsDTO> FiltrarReportePorTipoDonativo(@RequestParam String typeDonationName)
+    {
+        return dC.listDonationsByDonationsType(typeDonationName).stream().map(x -> {
+            ModelMapper m = new ModelMapper();
+            return m.map(x, DonationsDTO.class);
+        }).collect(Collectors.toList());
+    }
+
     @GetMapping("/Users/{userId}/physical-donations")
     @PreAuthorize("hasAuthority('DONADOR')")
     public List<PhysicalDonationsByUserIdAndStatusDTO> DonacionesFisicaPorUsuario(@PathVariable("userId") Long User_id_receptor) {

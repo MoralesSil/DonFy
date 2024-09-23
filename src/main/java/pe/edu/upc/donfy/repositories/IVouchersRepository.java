@@ -26,7 +26,11 @@ public interface IVouchersRepository extends JpaRepository<Vouchers, Integer> {
                     "    c.fecha_emision ASC;\n", nativeQuery = true)
     List<String[]> ComprobanteFecha();
 
-
-
+    //HU43
+    @Query("SELECT c FROM Vouchers c " +
+            "JOIN c.donations d " +
+            "JOIN d.users u " +
+            "WHERE u.id = :userId")
+    List<Vouchers> findComprobantesByUserId(@Param("userId") Long userId);
 }
 
