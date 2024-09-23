@@ -10,7 +10,9 @@ public interface IVouchersService {
     void update(Vouchers vouchers);
     Vouchers listId(int idVouchers);
     void delete(int idVoucher);
-    List<Vouchers> getAllComprobantes();
 
     List<String[]> GenerarComprobanteFecha();
+
+    List<Vouchers> listAllVoucherForUser(Long idUser);
+
 }
