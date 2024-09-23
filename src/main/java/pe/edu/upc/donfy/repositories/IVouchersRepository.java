@@ -26,5 +26,7 @@ public interface IVouchersRepository extends JpaRepository<Vouchers, Integer> {
                     "    c.fecha_emision ASC;\n", nativeQuery = true)
     List<String[]> ComprobanteFecha();
 
+
+
 }
 
