@@ -64,5 +64,35 @@ public class DonationsServiceImplement implements IDonationsService {
         return dR.findDonationsByDonationsType(donationsType);
     }
 
+    @Override
+    public List<String[]> tendenciasDonacionesMeses() {
+        return dR.tendenciasDonacionesMeses();
+    }
+
+    @Override
+    public List<Donations> listOfPhysicalDonationsByUserIdAndStatus(Long Users_id_receptor) {
+        return dR.findPhysicalDonationsByUserIdAndStatus(Users_id_receptor);
+    }
+
+    @Override
+    public List<String[]> getDonationStatistics() {
+        return dR.getDonationStatistics();
+    }
+
+    @Override
+    public List<Donations> findDonationsByUserId(Long Users_id_receptor) {
+        return dR.findByUserId(Users_id_receptor);
+    }
+
+    @Override
+    public List<String[]> personasConMaxDonaciones() {
+        return dR.personasConMaxDonaciones();
+    }
+
+    @Override
+    public List<String[]> getDonationOngYear(int year) {
+        return dR.obtenerTotalDonadoPorONG(year);
+    }
+
 
 }

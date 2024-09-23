@@ -8,8 +8,7 @@ public class NotificationsDTO {
     private String mensaje;
     private String estado;
     private NotificationType tipoNotificacion;
-    private Users usuario;
-
+    private Users usuarios;
 
     public int getIdNotificacion() {
         return idNotificacion;
@@ -43,11 +42,11 @@ public class NotificationsDTO {
         this.tipoNotificacion = tipoNotificacion;
     }
 
-    public Users getUsuario() {
-        return usuario;
+    public Users getUsuarios() {
+        return usuarios;
     }
 
-    public void setUsuario(Users usuario) {
-        this.usuario = usuario;
+    public void setUsuarios(Users usuarios) {
+        this.usuarios = usuarios;
     }
 }

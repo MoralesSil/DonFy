@@ -12,13 +12,25 @@ public class DonationsDTO {
     private String nombre;
     private String descripcion;
     private String estado;
+    private String categoria;
+    private String fotoDonativo;
     private LocalDate fechaRecojo;
     private float montoDonado;
-    private String direccionRecojo;
+    private float precioDonativo;
+    private int stock;
     private boolean eliminado;
-    private Users user;
+    private Users users;
     private DonationType donationType;
-    private Users userReceptor;
+    private String direccionRecojo;
+    private Users usersReceptor;
+
+    public boolean isEliminado() {
+        return eliminado;
+    }
+
+    public void setEliminado(boolean eliminado) {
+        this.eliminado = eliminado;
+    }
 
     public int getIdDonation() {
         return idDonation;
@@ -52,6 +64,22 @@ public class DonationsDTO {
         this.estado = estado;
     }
 
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    public String getFotoDonativo() {
+        return fotoDonativo;
+    }
+
+    public void setFotoDonativo(String fotoDonativo) {
+        this.fotoDonativo = fotoDonativo;
+    }
+
     public LocalDate getFechaRecojo() {
         return fechaRecojo;
     }
@@ -68,28 +96,28 @@ public class DonationsDTO {
         this.montoDonado = montoDonado;
     }
 
-    public String getDireccionRecojo() {
-        return direccionRecojo;
+    public float getPrecioDonativo() {
+        return precioDonativo;
     }
 
-    public void setDireccionRecojo(String direccionRecojo) {
-        this.direccionRecojo = direccionRecojo;
+    public void setPrecioDonativo(float precioDonativo) {
+        this.precioDonativo = precioDonativo;
     }
 
-    public boolean isEliminado() {
-        return eliminado;
+    public int getStock() {
+        return stock;
     }
 
-    public void setEliminado(boolean eliminado) {
-        this.eliminado = eliminado;
+    public void setStock(int stock) {
+        this.stock = stock;
     }
 
-    public Users getUser() {
-        return user;
+    public Users getUsers() {
+        return users;
     }
 
-    public void setUser(Users user) {
-        this.user = user;
+    public void setUsers(Users users) {
+        this.users = users;
     }
 
     public DonationType getDonationType() {
@@ -100,12 +128,20 @@ public class DonationsDTO {
         this.donationType = donationType;
     }
 
-    public Users getUserReceptor() {
-        return userReceptor;
+    public String getDireccionRecojo() {
+        return direccionRecojo;
     }
 
-    public void setUserReceptor(Users userReceptor) {
-        this.userReceptor = userReceptor;
+    public void setDireccionRecojo(String direccionRecojo) {
+        this.direccionRecojo = direccionRecojo;
+    }
+
+    public Users getUsersReceptor() {
+        return usersReceptor;
+    }
+
+    public void setUsersReceptor(Users usersReceptor) {
+        this.usersReceptor = usersReceptor;
     }
 }
 

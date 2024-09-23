@@ -10,4 +10,9 @@ import java.util.List;
 
 @Repository
 public interface INotificationsRepository extends JpaRepository<Notifications, Integer> {
+    @Query(value = "SELECT n.* " +
+            "FROM Notifications n " +
+            "JOIN Users u ON n.users_id = u.id " +
+            "WHERE u.id = :userId", nativeQuery = true)
+    List<Notifications> findNotificationsByUserId(@Param("userId") Long userId);
 }

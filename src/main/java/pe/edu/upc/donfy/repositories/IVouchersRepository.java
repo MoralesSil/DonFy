@@ -11,10 +11,20 @@ import java.util.List;
 @Repository
 public interface IVouchersRepository extends JpaRepository<Vouchers, Integer> {
 
-    //HU43
-    @Query("SELECT c FROM Vouchers c " +
-            "JOIN c.donations d " +
-            "JOIN d.users u " +
-            "WHERE u.id = :userId")
-    List<Vouchers> findComprobantesByUserId(@Param("userId") Long userId);
+    // HU53: Generar reporte de comprobante por fecha
+    @Query(value =
+            "SELECT \n" +
+                    "\tc.id_comprobante AS id_comprobante,\n" +
+                    "    c.fecha_emision AS fecha_emision,  \n" +
+                    "    SUM(c.total) AS monto_total \n" +
+                    "FROM \n" +
+                    "    vouchers c \n" +
+                    "GROUP BY \n" +
+                    "    c.fecha_emision,\n" +
+                    "\tc.id_comprobante\n" +
+                    "ORDER BY \n" +
+                    "    c.fecha_emision ASC;\n", nativeQuery = true)
+    List<String[]> ComprobanteFecha();
+
 }
+
