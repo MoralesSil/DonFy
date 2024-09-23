@@ -94,5 +94,4 @@ public class DonationsServiceImplement implements IDonationsService {
         return dR.obtenerTotalDonadoPorONG(year);
     }
 
-
 }
