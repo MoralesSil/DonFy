@@ -3,9 +3,11 @@ pe\edu\upc\donfy\serviceimplements\NotificationTypeServiceImplement.class
 pe\edu\upc\donfy\dtos\NotificationsDTO.class
 pe\edu\upc\donfy\repositories\IRoleRepository.class
 pe\edu\upc\donfy\serviceimplements\DonationsServiceImplement.class
+pe\edu\upc\donfy\dtos\PhysicalDonationsByUserIdAndStatusDTO.class
 pe\edu\upc\donfy\entities\Users.class
 pe\edu\upc\donfy\securities\WebSecurityConfig.class
 pe\edu\upc\donfy\serviceinterfaces\INotificationTypeService.class
+pe\edu\upc\donfy\dtos\DonationsSummaryYearONGDTO.class
 pe\edu\upc\donfy\DonfyApplication.class
 pe\edu\upc\donfy\repositories\IVouchersRepository.class
 pe\edu\upc\donfy\controllers\UsersControllers.class
@@ -19,9 +21,12 @@ pe\edu\upc\donfy\entities\Vouchers.class
 pe\edu\upc\donfy\repositories\INotificationTypeRepository.class
 pe\edu\upc\donfy\controllers\NotificationsControllers.class
 pe\edu\upc\donfy\repositories\IDonationsRepository.class
+pe\edu\upc\donfy\dtos\DonanteXFechaDTO.class
 pe\edu\upc\donfy\serviceimplements\UsersServiceImplement.class
+pe\edu\upc\donfy\dtos\DonationStatisticsDTO.class
 pe\edu\upc\donfy\dtos\DonationsDTO.class
 pe\edu\upc\donfy\serviceinterfaces\IDonationTypeService.class
+pe\edu\upc\donfy\dtos\PersonasconMasDonacionesDTO.class
 pe\edu\upc\donfy\securities\JwtTokenUtil.class
 pe\edu\upc\donfy\entities\DonationType.class
 pe\edu\upc\donfy\serviceinterfaces\IRoleService.class
