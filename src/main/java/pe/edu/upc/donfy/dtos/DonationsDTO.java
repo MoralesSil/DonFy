@@ -12,17 +12,12 @@ public class DonationsDTO {
     private String nombre;
     private String descripcion;
     private String estado;
-    private String categoria;
-    private String fotoDonativo;
     private LocalDate fechaRecojo;
     private float montoDonado;
-    private float precioDonativo;
-    private int stock;
+    private String direccionRecojo;
     private boolean eliminado;
     private Users user;
     private DonationType donationType;
-    private Notifications notifications;
-    private String direccionRecojo;
     private Users userReceptor;
 
     public int getIdDonation() {
@@ -57,22 +52,6 @@ public class DonationsDTO {
         this.estado = estado;
     }
 
-    public String getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
-    }
-
-    public String getFotoDonativo() {
-        return fotoDonativo;
-    }
-
-    public void setFotoDonativo(String fotoDonativo) {
-        this.fotoDonativo = fotoDonativo;
-    }
-
     public LocalDate getFechaRecojo() {
         return fechaRecojo;
     }
@@ -89,20 +68,12 @@ public class DonationsDTO {
         this.montoDonado = montoDonado;
     }
 
-    public float getPrecioDonativo() {
-        return precioDonativo;
+    public String getDireccionRecojo() {
+        return direccionRecojo;
     }
 
-    public void setPrecioDonativo(float precioDonativo) {
-        this.precioDonativo = precioDonativo;
-    }
-
-    public int getStock() {
-        return stock;
-    }
-
-    public void setStock(int stock) {
-        this.stock = stock;
+    public void setDireccionRecojo(String direccionRecojo) {
+        this.direccionRecojo = direccionRecojo;
     }
 
     public boolean isEliminado() {
@@ -127,22 +98,6 @@ public class DonationsDTO {
 
     public void setDonationType(DonationType donationType) {
         this.donationType = donationType;
-    }
-
-    public Notifications getNotifications() {
-        return notifications;
-    }
-
-    public void setNotifications(Notifications notifications) {
-        this.notifications = notifications;
-    }
-
-    public String getDireccionRecojo() {
-        return direccionRecojo;
-    }
-
-    public void setDireccionRecojo(String direccionRecojo) {
-        this.direccionRecojo = direccionRecojo;
     }
 
     public Users getUserReceptor() {

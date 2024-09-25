@@ -11,22 +11,59 @@ import java.util.List;
 
 @Repository
 public interface IDonationsRepository extends JpaRepository <Donations,Integer>{
-    //Filtrar donativos físicos por su estado
-    @Query("SELECT d.usersReceptor.nombreONG, d.fotoDonativo, d.fechaRecojo, d.estado FROM Donations d " +
-            "JOIN d.donationType dt WHERE dt.nombreTipoDonation = 'físico' AND d.estado = :estado")
-    List<String[]> findDonationsByEstadoAndTipoFisico(@Param("estado") String estado);
 
-    //Mostrar el total donado para cada ONG
-    @Query(value =
-            "SELECT u.nombre AS nombre_donante, " +
-                    "d.usersReceptor.nombreONG AS usuario_receptor, " +
-                    "SUM(d.montoDonado) AS monto_donado " +
-                    "FROM Donations d " +
-                    "JOIN Users u ON d.users.id = u.id " +
-                    "JOIN DonationType dt ON d.donationType.idTipoDonation = dt.idTipoDonation " +
-                    "WHERE dt.nombreTipoDonation = 'monetario' " +
-                    "GROUP BY u.nombre, d.usersReceptor.nombreONG")
-    List<String[]> resumenDonacionesMonetarias();
+    //HU53- FUNCIONA
+    @Query("SELECT d FROM Donations d " +
+            "JOIN d.donationType dt WHERE d.estado = :estado")
+    List<Donations> findDonationsForYourStatus(@Param("estado") String estado);
+
+    //HU34
+    @Query("SELECT u.nombre AS nombreDonante, " +
+            "d.usersReceptor.nombreONG AS usuarioReceptor, " +
+            "SUM(d.montoDonado) AS montoDonado " +
+            "FROM Donations d " +
+            "JOIN Users u ON d.users.id = u.id " +
+            "JOIN DonationType dt ON d.donationType.idTipoDonation = dt.idTipoDonation " +
+            "WHERE dt.nombreTipoDonation = 'MONETARIO' " +
+            "AND EXTRACT(YEAR FROM d.fechaRecojo) = :anio " +
+            "AND u.id = :donadorId " +
+            "GROUP BY u.nombre, d.usersReceptor.nombreONG")
+    List<String[]> resumenDonacionesMonetariasPorDonador(@Param("anio") int anio, @Param("donadorId") Long donadorId);
+
+    //HU37
+    @Query("SELECT d FROM Donations d " +
+            "JOIN d.donationType dt WHERE d.usersReceptor.id = :ong")
+    List<Donations> findDonationsByONG(@Param("ong") int ong);
+
+    //HU39
+    @Query("SELECT d.idDonation AS id_donativo, d.nombre AS nombre_donativo, " +
+            "d.descripcion AS descripcion, d.estado AS estado, " +
+            "d.fechaRecojo AS fecha_recojo, d.montoDonado AS monto_donado, " +
+            "d.direccionRecojo AS direccion_recojo, " +
+            "p.id AS id_ONG, p.nombreONG AS nombre_ONG " +
+            "FROM Donations d " +
+            "JOIN Users p ON p.id = :idONG " +
+            "JOIN p.roles r " +
+            "WHERE d.idDonation = :idDonation " +
+            "AND r.rol = 'ONG'")
+    List<String[]> findDonationAndONGByIds(@Param("idDonation") int idDonation,
+                                           @Param("idONG") Long idONG);
+
+    //HU58
+    @Query("SELECT d FROM Donations d " +
+            "JOIN d.donationType dt WHERE d.donationType.nombreTipoDonation = :typeDonation")
+    List<Donations> findDonationsByDonationsType(@Param("typeDonation") String typeDonation);
+
+
+    //Mostrar las tendencias de donaciones
+    @Query(value = "SELECT dt.nombre_tipo_donation AS tipo_donacion, DATE_TRUNC('month', d.fecha_recojo) AS mes,\n" +
+            " COUNT(d.id_donation) AS total_donaciones\n" +
+            " FROM donations d\n" +
+            " JOIN donation_type dt ON d.tipo_donativo_id = dt.id_tipo_donation\n" +
+            " WHERE d.fecha_recojo >= CURRENT_DATE - INTERVAL '6 months'\n" +
+            " GROUP BY dt.nombre_tipo_donation, DATE_TRUNC('month', d.fecha_recojo)",nativeQuery = true)
+    List<String[]> tendenciasDonacionesMeses();
+
 
     //Ver el estado de mi donación física de un usuario en específico
     @Query("SELECT d " +
@@ -40,12 +77,14 @@ public interface IDonationsRepository extends JpaRepository <Donations,Integer>{
 
     //Visualizar estadisticas de las donaciones
     @Query(value = "SELECT " +
+            "U.nombreONG AS nombreONG, " +
             "COUNT(D.id_donation) AS total_donativos, " +
-            "SUM(D.monto_donado) AS valor_total_estimado, " +
-            "COUNT(DISTINCT U.id) AS cantidad_ONG_beneficiadas " +
+            "SUM(D.monto_donado) AS valor_total_estimado " +
             "FROM Donations D " +
             "JOIN Users U ON D.users_id_receptor = U.id " +
-            "WHERE U.nombreONG IS NOT NULL AND U.nombreONG != ''",
+            "WHERE U.nombreONG IS NOT NULL AND U.nombreONG != '' " +
+            "GROUP BY U.nombreONG " +
+            "ORDER BY U.nombreONG",
             nativeQuery = true)
     List<String[]> getDonationStatistics();
 
@@ -66,9 +105,36 @@ public interface IDonationsRepository extends JpaRepository <Donations,Integer>{
             "    d.fecha_recojo DESC", nativeQuery = true)
     public List<DonationsDTO> getDonations();
 
-    //Listar donativos por Usuario (Como Donador(user) quiero leer los donativos que realice ...)
-    @Query("SELECT d " +
-            "FROM Donations d " +
-            "WHERE d.usersReceptor.id = :userId")
+    //Listar donativos por Usuario
+    @Query("SELECT d FROM Donations d " +
+            "JOIN d.users u " +
+            "WHERE u.id = :userId AND 'DONADOR' IN (SELECT r.rol FROM u.roles r) " +
+            "ORDER BY d.fechaRecojo DESC")
     List<Donations> findByUserId(@Param("userId") Long userId);
+
+    //HU42: Listar personas con más donaciones según el tipo de donativo
+    @Query(value = "SELECT DISTINCT ON (dt.nombre_tipo_donation) \n" +
+            "       u.nombre, \n" +
+            "       dt.nombre_tipo_donation, \n" +
+            "       COUNT(d.*) AS Total_donaciones\n" +
+            "FROM donations d \n" +
+            "INNER JOIN users u ON d.users_id = u.id\n" +
+            "INNER JOIN donation_type dt ON d.tipo_donativo_id = dt.id_tipo_donation\n" +
+            "GROUP BY u.nombre, dt.nombre_tipo_donation\n" +
+            "ORDER BY dt.nombre_tipo_donation, Total_donaciones DESC;",nativeQuery = true)
+    List<String[]>personasConMaxDonaciones();
+
+
+    //Monto anual por cada ONG
+    @Query(value = "SELECT " +
+            "u.nombreONG AS nombreONG, " +
+            "SUM(d.monto_donado) AS totalDonadoEnElAno " +
+            "FROM Donations d " +
+            "JOIN Users u ON d.Users_Id_Receptor = u.id " +
+            "WHERE EXTRACT(YEAR FROM d.fecha_recojo) = :year " +  // Cambio aquí para usar un parámetro
+            "AND u.nombreONG IS NOT NULL " +
+            "GROUP BY u.nombreONG " +
+            "ORDER BY SUM(d.monto_donado) DESC",
+            nativeQuery = true)
+    List<String[]> obtenerTotalDonadoPorONG(@Param("year") int year);
 }
