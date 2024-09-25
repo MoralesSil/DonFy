@@ -43,5 +43,15 @@ public class UsersServiceImplement implements IUsersService {
         return uR.rolesONG();
     }
 
+    @Override
+    public Long findByUsername(String username) {
+        Users user = uR.findUsersByUsername(username);
+        return user.getId();
+    }
+
+    @Override
+    public List<String[]> donantesXfecha(String startDate, String endDate) {
+        return uR.donantesXfechas(startDate, endDate);
+    }
 
 }

@@ -2,6 +2,7 @@ package pe.edu.upc.donfy.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.donfy.dtos.RoleDTO;
 import pe.edu.upc.donfy.entities.Role;
@@ -12,6 +13,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/Role")
+@PreAuthorize("hasAuthority('ADMINISTRADOR')")
 public class RoleControllers {
     @Autowired
     private IRoleService rS;
@@ -24,12 +26,7 @@ public class RoleControllers {
             return m.map(x, RoleDTO.class);
         }).collect(Collectors.toList());
     }
-    @PostMapping
-    public void registrar(@RequestBody RoleDTO dto) {
-        ModelMapper m = new ModelMapper();
-        Role nt = m.map(dto, Role.class);
-        rS.insert(nt);
-    }
+
     @GetMapping("/{id}")
     public RoleDTO listarId(@PathVariable("id") Long id  ) {
         ModelMapper m=new ModelMapper();

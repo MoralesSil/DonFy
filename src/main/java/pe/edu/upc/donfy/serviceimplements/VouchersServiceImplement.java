@@ -39,17 +39,13 @@ public class VouchersServiceImplement implements IVouchersService {
     }
 
     @Override
-    public List<Vouchers> getAllComprobantes() {
-        return vR.findAll();
+    public List<Vouchers> listAllVoucherForUser(Long idUser) {
+        return vR.findComprobantesByUserId(idUser);
     }
 
-    @Override
-    public List<Object[]> GerarReporteFecha(String startDate, String endDate) {
-        return vR.getVouchers(startDate, endDate);
+    public List<String[]> GenerarComprobanteFecha() {
+        return vR.ComprobanteFecha();
     }
 
-    @Override
-    public List<Object[]> ComprobantePorDonador(String nombreDonador) {
-        return vR.findComprobantesByDonador(nombreDonador);
-    }
+
 }
