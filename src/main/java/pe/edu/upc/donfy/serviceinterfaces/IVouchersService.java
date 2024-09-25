@@ -15,4 +15,8 @@ public interface IVouchersService {
 
     List<Vouchers> listAllVoucherForUser(Long idUser);
 
+    List<String[]> ComprobanteFechaPorFecha(String fecha);
+
+
+
 }

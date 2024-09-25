@@ -32,5 +32,22 @@ public interface IVouchersRepository extends JpaRepository<Vouchers, Integer> {
             "JOIN d.users u " +
             "WHERE u.id = :userId")
     List<Vouchers> findComprobantesByUserId(@Param("userId") Long userId);
+
+    @Query(value =
+            "SELECT " +
+                    "c.id_comprobante AS id_comprobante, " +
+                    "c.fecha_emision AS fecha_emision, " +
+                    "SUM(c.total) AS monto_total " +
+                    "FROM " +
+                    "vouchers c " +
+                    "WHERE DATE(c.fecha_emision) = :fecha " + // Filtra por la fecha que se pasa como parámetro
+                    "GROUP BY " +
+                    "c.fecha_emision, " +
+                    "c.id_comprobante " +
+                    "ORDER BY " +
+                    "c.fecha_emision ASC", nativeQuery = true)
+    List<String[]> ComprobanteFechaPorFecha(@Param("fecha") String fecha);
+
+
 }
 
