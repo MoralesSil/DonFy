@@ -40,7 +40,7 @@ public class DonationsControllers {
         dC.insert(donations);
     }
     @GetMapping("/{idDonation}")
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    @PreAuthorize("hasAuthority('DONADOR')")
     public DonationsDTO listarId(@PathVariable("idUsuario") Integer idDonation) {
         ModelMapper m=new ModelMapper();
         DonationsDTO dto=m.map(dC.listId(idDonation), DonationsDTO.class);
@@ -54,7 +54,7 @@ public class DonationsControllers {
         dC.update(donations);
     }
     @DeleteMapping("/{idDonation}")
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    @PreAuthorize("hasAuthority('DONADOR')")
     public void eliminar(@PathVariable("idDonation") Integer idDonation){
         dC.delete(idDonation);
     }
@@ -127,6 +127,8 @@ public class DonationsControllers {
         }
         return listaDTO;
     }
+
+
     @GetMapping("/MontoAnualporONG")
     @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public List<DonationsSummaryYearONGDTO> MontoAnualporONG(@RequestParam int year) {

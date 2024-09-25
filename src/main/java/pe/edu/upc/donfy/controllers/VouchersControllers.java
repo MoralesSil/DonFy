@@ -2,6 +2,7 @@ package pe.edu.upc.donfy.controllers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.donfy.dtos.VouchersDTO;
 import pe.edu.upc.donfy.entities.Vouchers;
@@ -20,6 +21,7 @@ public class VouchersControllers {
     private IVouchersService vS;
 
     @GetMapping
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public List<VouchersDTO> listar() {
         return vS.list().stream().map(x -> {
             ModelMapper m = new ModelMapper();
@@ -28,6 +30,7 @@ public class VouchersControllers {
     }
 
     @PostMapping
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public void registrar(@RequestBody VouchersDTO dto) {
         ModelMapper m = new ModelMapper();
         Vouchers vrs = m.map(dto, Vouchers.class);
@@ -35,6 +38,7 @@ public class VouchersControllers {
     }
 
     @GetMapping("/{idComprobante}")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public VouchersDTO listarId(@PathVariable("idComprobante") Integer idComprobante) {
         ModelMapper m = new ModelMapper();
         VouchersDTO dto = m.map(vS.listId(idComprobante), VouchersDTO.class);
@@ -42,6 +46,7 @@ public class VouchersControllers {
     }
 
     @PutMapping
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public void modificar(@RequestBody VouchersDTO dto) {
         ModelMapper m = new ModelMapper();
         Vouchers vrs = m.map(dto, Vouchers.class);
@@ -49,6 +54,7 @@ public class VouchersControllers {
     }
 
     @DeleteMapping("/{idComprobante}")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public void eliminar(@PathVariable("idComprobante") Integer idComprobante) {
         vS.delete(idComprobante);
     }
