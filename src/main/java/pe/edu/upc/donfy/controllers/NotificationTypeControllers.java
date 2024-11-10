@@ -18,7 +18,7 @@ public class NotificationTypeControllers {
     private INotificationTypeService ntS;
 
     @GetMapping
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    /*@PreAuthorize("hasAuthority('ADMINISTRADOR')")*/
     public List<NotificationTypeDTO> listar() {
 
         return ntS.list().stream().map(x -> {

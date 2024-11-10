@@ -2,6 +2,7 @@ package pe.edu.upc.donfy.entities;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -12,7 +13,7 @@ public class Vouchers {
     private int idComprobante;
 
     @Column(name = "fechaEmision", nullable = false)
-    private Date fechaEmision;
+    private LocalDateTime fechaEmision;
 
     @Column(name = "total", nullable = false)
     private double total;
@@ -30,7 +31,7 @@ public class Vouchers {
     public Vouchers() {
     }
 
-    public Vouchers(int idComprobante, Date fechaEmision, double total, String nombreDonante, String descripcion, Donations donations) {
+    public Vouchers(int idComprobante, LocalDateTime fechaEmision, double total, String nombreDonante, String descripcion, Donations donations) {
         this.idComprobante = idComprobante;
         this.fechaEmision = fechaEmision;
         this.total = total;
@@ -47,11 +48,11 @@ public class Vouchers {
         this.idComprobante = idComprobante;
     }
 
-    public Date getFechaEmision() {
+    public LocalDateTime getFechaEmision() {
         return fechaEmision;
     }
 
-    public void setFechaEmision(Date fechaEmision) {
+    public void setFechaEmision(LocalDateTime fechaEmision) {
         this.fechaEmision = fechaEmision;
     }
 

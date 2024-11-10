@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("Notifications")
+@RequestMapping("/Notifications")
 public class NotificationsControllers {
     @Autowired
     private INotificationsService nS;
@@ -52,7 +52,7 @@ public class NotificationsControllers {
         nS.update(n);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{idNotificacion}")
     @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public void eliminar(@PathVariable ("idNotification") Integer idNotificacion) {
         nS.delete(idNotificacion);
