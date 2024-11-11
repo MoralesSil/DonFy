@@ -30,6 +30,8 @@ public class UsersDTO {
 
     private float saldo;
 
+    private String imagenUrl;
+
     public Long getId() {
         return id;
     }
@@ -132,5 +134,13 @@ public class UsersDTO {
 
     public void setSaldo(float saldo) {
         this.saldo = saldo;
+    }
+
+    public String getImagenUrl() {
+        return imagenUrl;
+    }
+
+    public void setImagenUrl(String imagenUrl) {
+        this.imagenUrl = imagenUrl;
     }
 }

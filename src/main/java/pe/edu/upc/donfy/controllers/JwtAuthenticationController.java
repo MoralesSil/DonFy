@@ -3,6 +3,7 @@ package pe.edu.upc.donfy.controllers;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
@@ -51,6 +52,13 @@ public class JwtAuthenticationController {
     @GetMapping("/user/id/{username}")
     public Long getUserIdByUsername(@PathVariable String username) {
         return uS.findByUsername(username);
+    }
+
+    @GetMapping("/{id}")
+    public UsersDTO listarId(@PathVariable("id") Long id  ) {
+        ModelMapper m=new ModelMapper();
+        UsersDTO dto=m.map(uS.listId(id), UsersDTO.class);
+        return dto;
     }
 
     @PostMapping("/registrar")

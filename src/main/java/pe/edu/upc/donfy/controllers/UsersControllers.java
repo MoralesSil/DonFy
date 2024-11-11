@@ -20,13 +20,7 @@ public class UsersControllers {
     @Autowired
     private IUsersService uS;
 
-    @GetMapping("/{id}")
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
-    public UsersDTO listarId(@PathVariable("id") Long id  ) {
-        ModelMapper m=new ModelMapper();
-        UsersDTO dto=m.map(uS.listId(id), UsersDTO.class);
-        return dto;
-    }
+
     @PutMapping
     @PreAuthorize("hasAuthority('ADMINISTRADOR') or hasAuthority('DONADOR') or hasAuthority('ONG')")
     public void modificar(@RequestBody UsersDTO dto) {
@@ -41,8 +35,9 @@ public class UsersControllers {
     }
 
     //Query Roles ONG por usuario
-    @PreAuthorize("hasAuthority('ADMINISTRADOR') or hasAuthority('DONADOR')")
+
     @GetMapping("/busquedas")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR') or hasAuthority('DONADOR')")
     public List<UsersDTO> buscar() {
         return uS.rolesONG().stream().map(x -> {
             ModelMapper m = new ModelMapper();

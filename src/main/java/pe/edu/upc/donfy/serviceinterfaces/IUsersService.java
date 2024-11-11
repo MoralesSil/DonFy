@@ -12,6 +12,8 @@ public interface IUsersService {
     public void update(Users users);
     public void delete(Long idUsuario);
 
+
+
     public List<Users>rolesONG();
 
     Long  findByUsername(String username);

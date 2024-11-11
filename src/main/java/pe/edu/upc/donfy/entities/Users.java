@@ -38,6 +38,8 @@ public class Users implements Serializable {
     private String nombreONG;
     @Column(name = "saldo", nullable = false, length = 200)
     private float saldo;
+    @Column(name = "imagen")
+    private String imagenUrl;
 
     @JsonIgnore
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -47,7 +49,7 @@ public class Users implements Serializable {
     public Users() {
     }
 
-    public Users(Long id, String username, String password, Boolean enabled, String correo, String nombre, String apellidos, String telefono, String dni, String ruc, String direccion, String nombreONG, float saldo, List<Role> roles) {
+    public Users(Long id, String username, String password, Boolean enabled, String correo, String nombre, String apellidos, String telefono, String dni, String ruc, String direccion, String nombreONG, float saldo, String imagenUrl, List<Role> roles) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -61,6 +63,7 @@ public class Users implements Serializable {
         this.direccion = direccion;
         this.nombreONG = nombreONG;
         this.saldo = saldo;
+        this.imagenUrl = imagenUrl;
         this.roles = roles;
     }
 
@@ -166,6 +169,14 @@ public class Users implements Serializable {
 
     public void setSaldo(float saldo) {
         this.saldo = saldo;
+    }
+
+    public String getImagenUrl() {
+        return imagenUrl;
+    }
+
+    public void setImagenUrl(String imagenUrl) {
+        this.imagenUrl = imagenUrl;
     }
 
     public List<Role> getRoles() {
