@@ -20,16 +20,6 @@ public class UsersControllers {
     @Autowired
     private IUsersService uS;
 
-    @GetMapping
-    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
-    public List<UsersDTO> listar() {
-
-        return uS.list().stream().map(x -> {
-            ModelMapper m = new ModelMapper();
-            return m.map(x, UsersDTO.class);
-        }).collect(Collectors.toList());
-    }
-
     @GetMapping("/{id}")
     @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public UsersDTO listarId(@PathVariable("id") Long id  ) {

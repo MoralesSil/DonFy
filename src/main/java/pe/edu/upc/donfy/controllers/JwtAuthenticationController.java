@@ -21,6 +21,9 @@ import pe.edu.upc.donfy.serviceimplements.JwtUserDetailsService;
 import pe.edu.upc.donfy.serviceinterfaces.IRoleService;
 import pe.edu.upc.donfy.serviceinterfaces.IUsersService;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RestController
 @CrossOrigin
 public class JwtAuthenticationController {
@@ -57,6 +60,14 @@ public class JwtAuthenticationController {
         String encodedPassword = passwordEncoder.encode(urs.getPassword());
         urs.setPassword(encodedPassword);
         uS.insert(urs);
+    }
+
+    @GetMapping("/usuario")
+    public List<UsersDTO> listar() {
+        return uS.list().stream().map(x -> {
+            ModelMapper m = new ModelMapper();
+            return m.map(x, UsersDTO.class);
+        }).collect(Collectors.toList());
     }
 
     @PostMapping("/rol")
