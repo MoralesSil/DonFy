@@ -39,6 +39,11 @@ public class UsersServiceImplement implements IUsersService {
     }
 
     @Override
+    public List<Float[]> saldoXusuario(String username) {
+        return uR.saldoXusuario(username);
+    }
+
+    @Override
     public List<Users> rolesONG() {
         return uR.rolesONG();
     }
@@ -48,6 +53,7 @@ public class UsersServiceImplement implements IUsersService {
         Users user = uR.findUsersByUsername(username);
         return user.getId();
     }
+
 
     @Override
     public List<String[]> donantesXfecha(String startDate, String endDate) {

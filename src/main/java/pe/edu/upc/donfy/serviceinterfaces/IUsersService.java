@@ -11,12 +11,11 @@ public interface IUsersService {
     public Users listId(Long idUsuario);
     public void update(Users users);
     public void delete(Long idUsuario);
-
-
+    public List<Float[]> saldoXusuario(String username);
 
     public List<Users>rolesONG();
 
-    Long  findByUsername(String username);
+    public Long  findByUsername(String username);
 
     public List<String[]> donantesXfecha(String startDate,String endDate);
 
