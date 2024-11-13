@@ -54,7 +54,7 @@ public class NotificationsControllers {
 
     @DeleteMapping("/{idNotificacion}")
     @PreAuthorize("hasAuthority('ADMINISTRADOR')")
-    public void eliminar(@PathVariable ("idNotification") Integer idNotificacion) {
+    public void eliminar(@PathVariable ("idNotificacion") Integer idNotificacion) {
         nS.delete(idNotificacion);
     }
 
