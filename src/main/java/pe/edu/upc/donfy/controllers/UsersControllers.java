@@ -29,6 +29,7 @@ public class UsersControllers {
         Users urs=m.map(dto, Users.class);
         uS.update(urs);
     }
+
     @DeleteMapping("/{id}")
     @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public void eliminar(@PathVariable("id") Long id){
