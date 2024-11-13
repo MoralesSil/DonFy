@@ -27,9 +27,7 @@ public interface IUsersRepository extends JpaRepository<Users, Long> {
             " WHERE r.rol = 'ONG';",nativeQuery = true)
     public List<Users> rolesONG();
 
-    Users findUsersByUsername(String username);
-
-
+    public Users findUsersByUsername(String username);
 
     //HU41: Donantes por rango de fecha
     @Query(value = "Select u.nombre\n" +
@@ -40,7 +38,7 @@ public interface IUsersRepository extends JpaRepository<Users, Long> {
             "group by u.nombre", nativeQuery = true)
     public List<String[]> donantesXfechas(@Param("startDate") String startDate, @Param("endDate") String endDate);
 
-
-
+    @Query(value="SELECT u.saldo FROM users u WHERE u.username = :username", nativeQuery = true)
+    public List<Float[]> saldoXusuario(@Param("username") String username);
 
 }

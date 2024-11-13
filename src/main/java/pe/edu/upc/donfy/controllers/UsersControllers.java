@@ -6,6 +6,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.donfy.dtos.DonanteXFechaDTO;
+import pe.edu.upc.donfy.dtos.SaldoXusuarioDTO;
 import pe.edu.upc.donfy.dtos.UsersDTO;
 import pe.edu.upc.donfy.entities.Users;
 import pe.edu.upc.donfy.serviceinterfaces.IUsersService;
@@ -53,6 +54,18 @@ public class UsersControllers {
         for(String[] data:lista){
             DonanteXFechaDTO dto =  new DonanteXFechaDTO();
             dto.setNombre(data[0]);
+            listadto.add(dto);
+        }
+        return listadto;
+    }
+
+    @GetMapping("/saldo")
+    public List<SaldoXusuarioDTO> saldoXusuario(@RequestParam("username") String username) {
+        List<Float[]> lista = uS.saldoXusuario(username);
+        List<SaldoXusuarioDTO>listadto=new ArrayList<>();
+        for(Float[] data:lista){
+            SaldoXusuarioDTO dto =  new SaldoXusuarioDTO();
+            dto.setSaldo(data[0]);
             listadto.add(dto);
         }
         return listadto;
