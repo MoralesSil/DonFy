@@ -55,6 +55,7 @@ public class UsersControllers {
         for(String[] data:lista){
             DonanteXFechaDTO dto =  new DonanteXFechaDTO();
             dto.setNombre(data[0]);
+            dto.setSuma(Integer.parseInt(data[1]));
             listadto.add(dto);
         }
         return listadto;

@@ -30,7 +30,7 @@ public interface IUsersRepository extends JpaRepository<Users, Long> {
     public Users findUsersByUsername(String username);
 
     //HU41: Donantes por rango de fecha
-    @Query(value = "Select u.nombre\n" +
+    @Query(value = "Select u.nombre, count(*)\n" +
             "From users u\n" +
             "Join donations d on u.id=d.users_id\n" +
             "Join vouchers v on d.id_donation=v.id_donativo\n" +
