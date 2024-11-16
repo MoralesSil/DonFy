@@ -29,6 +29,11 @@ public class UsersServiceImplement implements IUsersService {
     }
 
     @Override
+    public Users listUsername(String username) {
+        return uR.findUsersByUsername(username);
+    }
+
+    @Override
     public void update(Users users) {
         uR.save(users);
     }
