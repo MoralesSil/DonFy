@@ -44,6 +44,14 @@ public class UsersControllers {
         Users urs=m.map(dto, Users.class);
         uS.update(urs);
     }
+    @GetMapping("/{username}")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR') or hasAuthority('DONADOR') or hasAuthority('ONG')")
+    public UsersDTO listarUserUsername(@PathVariable("username") String username) {
+        ModelMapper m=new ModelMapper();
+        UsersDTO dto=m.map(uS.listUsername(username), UsersDTO.class);
+        return dto;
+    }
+
     @DeleteMapping("/{id}")
     @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public void eliminar(@PathVariable("id") Long id){

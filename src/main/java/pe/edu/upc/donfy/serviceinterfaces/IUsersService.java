@@ -9,6 +9,7 @@ public interface IUsersService {
 
     public void insert(Users users);
     public Users listId(Long idUsuario);
+    public Users listUsername(String username);
     public void update(Users users);
     public void delete(Long idUsuario);
 
