@@ -15,6 +15,9 @@ import java.util.List;
 public interface IUsersRepository extends JpaRepository<Users, Long> {
     public Users findOneByUsername(String username);
 
+    @Query("SELECT u.id FROM Users u WHERE u.username = :username")
+    Long findOneUserIdByUsername(@Param("username") String username); //Nueva
+
     //INSERTAR ROLES
     @Transactional
     @Modifying

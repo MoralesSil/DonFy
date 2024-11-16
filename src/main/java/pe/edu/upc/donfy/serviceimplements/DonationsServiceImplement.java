@@ -50,8 +50,9 @@ public class DonationsServiceImplement implements IDonationsService {
     }
 
     @Override
-    public List<Donations> listDonationsByONG(int ONG) {
-        return dR.findDonationsByONG(ONG);
+    public List<Donations> listDonationsByONG(String ongUsername) {
+
+        return dR.findDonationsByONG(ongUsername);
     }
 
     @Override
@@ -92,6 +93,16 @@ public class DonationsServiceImplement implements IDonationsService {
     @Override
     public List<String[]> getDonationOngYear(int year) {
         return dR.obtenerTotalDonadoPorONG(year);
+    }
+
+    @Override
+    public List<Donations> listDonationForUser(String username) {
+        return dR.findDonationsByUserIdAndRole(username);
+    }
+
+    @Override
+    public List<Donations> listDonationActivate() {
+        return dR.findAllActiveDonations();
     }
 
 }

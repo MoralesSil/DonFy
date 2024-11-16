@@ -19,10 +19,11 @@ public class DonationsControllers {
     @Autowired
     private IDonationsService dC;
 
+    //Modificada solo para listar los que son false en eliminado
     @GetMapping
     @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public List<DonationsDTO> listar(){
-        return dC.list().stream().map(x-> {
+        return dC.listDonationActivate().stream().map(x-> {
             ModelMapper m = new ModelMapper();
             return m.map(x, DonationsDTO.class);
         }).collect(Collectors.toList());
@@ -36,7 +37,7 @@ public class DonationsControllers {
     }
     @GetMapping("/{idDonation}")
     @PreAuthorize("hasAuthority('DONADOR')")
-    public DonationsDTO listarId(@PathVariable("idUsuario") Integer idDonation) {
+    public DonationsDTO listarId(@PathVariable("idDonation") Integer idDonation) {
         ModelMapper m=new ModelMapper();
         DonationsDTO dto=m.map(dC.listId(idDonation), DonationsDTO.class);
         return dto;
@@ -80,9 +81,9 @@ public class DonationsControllers {
 
     @PreAuthorize("hasAuthority('ONG')")
     @GetMapping("/FiltrarDonativosPorONG")
-    public List<DonationsDTO> FiltrarPorONG(@RequestParam int ong)
+    public List<DonationsDTO> FiltrarPorONG(@RequestParam String ongUsername)
     {
-        return dC.listDonationsByONG(ong).stream().map(x -> {
+        return dC.listDonationsByONG(ongUsername).stream().map(x -> {
             ModelMapper m = new ModelMapper();
             return m.map(x, DonationsDTO.class);
         }).collect(Collectors.toList());
@@ -190,5 +191,26 @@ public class DonationsControllers {
             listaDTO.add(dto);
         }
         return listaDTO;
+    }
+
+    //Nuevos
+    @PreAuthorize("hasAuthority('DONADOR')")
+    @GetMapping("/DonativosPorDonador")
+    public List<DonationsDTO> ListarDonationsForDonador(@RequestParam String username)
+    {
+        return dC.listDonationForUser(username).stream().map(x -> {
+            ModelMapper m = new ModelMapper();
+            return m.map(x, DonationsDTO.class);
+        }).collect(Collectors.toList());
+    }
+
+    @PutMapping("/CambiarEstadoAInactivo")
+    @PreAuthorize("hasAuthority('DONADOR')")
+    public void donativosInactivos(@RequestParam Integer idDonation) {
+        Donations donation = dC.listId(idDonation);
+        if (donation != null) {
+            donation.setEliminado(true);
+            dC.update(donation);
+        }
     }
 }

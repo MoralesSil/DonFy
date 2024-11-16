@@ -19,4 +19,6 @@ public interface IUsersService {
 
     public List<String[]> donantesXfecha(String startDate,String endDate);
 
+    public Long findOneByUsername(String username);
+
 }

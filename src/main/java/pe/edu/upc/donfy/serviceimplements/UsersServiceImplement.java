@@ -60,4 +60,9 @@ public class UsersServiceImplement implements IUsersService {
         return uR.donantesXfechas(startDate, endDate);
     }
 
+    @Override
+    public Long findOneByUsername(String username) {
+        return uR.findOneUserIdByUsername(username);
+    }
+
 }

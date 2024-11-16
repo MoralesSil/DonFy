@@ -12,6 +12,17 @@ import java.util.List;
 @Repository
 public interface IDonationsRepository extends JpaRepository <Donations,Integer>{
 
+    //Listar donativos sin los eliminados -- No tiene HU
+    @Query("SELECT d FROM Donations d WHERE d.eliminado = false")
+    List<Donations> findAllActiveDonations();
+
+    //Listar donativos de donador - No tiene HU
+    @Query("SELECT d FROM Donations d " +
+            "JOIN Role r ON d.users.id = r.user.id " +
+            "JOIN Users u ON r.user.id = u.id " +
+            "WHERE u.username = :username AND r.rol = 'DONADOR'")
+    List<Donations> findDonationsByUserIdAndRole(String username);
+
     //HU53- FUNCIONA
     @Query("SELECT d FROM Donations d " +
             "JOIN d.donationType dt WHERE d.estado = :estado")
@@ -30,10 +41,11 @@ public interface IDonationsRepository extends JpaRepository <Donations,Integer>{
             "GROUP BY u.nombre, d.usersReceptor.nombreONG")
     List<String[]> resumenDonacionesMonetariasPorDonador(@Param("anio") int anio, @Param("donadorId") Long donadorId);
 
-    //HU37
+    //HU37 --->buscaba por id, ahora busca por username
     @Query("SELECT d FROM Donations d " +
-            "JOIN d.donationType dt WHERE d.usersReceptor.id = :ong")
-    List<Donations> findDonationsByONG(@Param("ong") int ong);
+            "JOIN d.donationType dt " +
+            "JOIN d.usersReceptor ur WHERE ur.username = :ongUsername")
+    List<Donations> findDonationsByONG(@Param("ongUsername") String ongUsername);
 
     //HU39
     @Query("SELECT d.idDonation AS id_donativo, d.nombre AS nombre_donativo, " +

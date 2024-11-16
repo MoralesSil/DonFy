@@ -16,9 +16,9 @@ public class DonationsDTO {
     private float montoDonado;
     private String direccionRecojo;
     private boolean eliminado;
-    private Users user;
+    private Users users;
     private DonationType donationType;
-    private Users userReceptor;
+    private Users usersReceptor;
 
     public int getIdDonation() {
         return idDonation;
@@ -84,12 +84,12 @@ public class DonationsDTO {
         this.eliminado = eliminado;
     }
 
-    public Users getUser() {
-        return user;
+    public Users getUsers() {
+        return users;
     }
 
-    public void setUser(Users user) {
-        this.user = user;
+    public void setUsers(Users users) {
+        this.users = users;
     }
 
     public DonationType getDonationType() {
@@ -100,12 +100,12 @@ public class DonationsDTO {
         this.donationType = donationType;
     }
 
-    public Users getUserReceptor() {
-        return userReceptor;
+    public Users getUsersReceptor() {
+        return usersReceptor;
     }
 
-    public void setUserReceptor(Users userReceptor) {
-        this.userReceptor = userReceptor;
+    public void setUsersReceptor(Users usersReceptor) {
+        this.usersReceptor = usersReceptor;
     }
 }
 

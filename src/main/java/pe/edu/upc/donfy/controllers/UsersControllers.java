@@ -71,4 +71,8 @@ public class UsersControllers {
         }
         return listadto;
     }
+    @GetMapping("/usuario/id/{username}")
+    public Long getUserIdByUsername(@PathVariable String username) {
+        return uS.findByUsername(username);
+    }
 }
