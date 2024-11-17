@@ -39,4 +39,12 @@ public class RoleServiceImplement implements IRoleService {
         rR.deleteById(idRol);
     }
 
+    @Override
+    public void eliminarRolesNulos() {
+        List<Role> rolesNulos = rR.findByUserIsNull();
+        for (Role role : rolesNulos) {
+            rR.delete(role); // Elimina cada rol nulo
+        }
+    }
+
 }

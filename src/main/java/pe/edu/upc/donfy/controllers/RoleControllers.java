@@ -43,4 +43,9 @@ public class RoleControllers {
     public void eliminar(@PathVariable("id") Long id) {
         rS.delete(id);
     }
+
+    @DeleteMapping("/eliminarNulos")
+    public void eliminarRolesNulos() {
+        rS.eliminarRolesNulos();
+    }
 }
