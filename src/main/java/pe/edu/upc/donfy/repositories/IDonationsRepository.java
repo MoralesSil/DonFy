@@ -12,6 +12,14 @@ import java.util.List;
 @Repository
 public interface IDonationsRepository extends JpaRepository <Donations,Integer>{
 
+    @Query("SELECT COUNT(d.idDonation) " +
+            "FROM Donations d " +
+            "WHERE d.eliminado = false " +
+            "AND MONTH(d.fechaRecojo) = :mes " +
+            "AND d.donationType.idTipoDonation = 1")
+    List<String[]> obtenerCantidadDonativosFisicosPorMes(@Param("mes") int mes);
+
+
     //Listar donativos sin los eliminados -- No tiene HU
     @Query("SELECT d FROM Donations d WHERE d.eliminado = false")
     List<Donations> findAllActiveDonations();
@@ -37,9 +45,9 @@ public interface IDonationsRepository extends JpaRepository <Donations,Integer>{
             "JOIN DonationType dt ON d.donationType.idTipoDonation = dt.idTipoDonation " +
             "WHERE dt.nombreTipoDonation = 'MONETARIO' " +
             "AND EXTRACT(YEAR FROM d.fechaRecojo) = :anio " +
-            "AND u.id = :donadorId " +
+            "AND u.username = :username " +
             "GROUP BY u.nombre, d.usersReceptor.nombreONG")
-    List<String[]> resumenDonacionesMonetariasPorDonador(@Param("anio") int anio, @Param("donadorId") Long donadorId);
+    List<String[]> resumenDonacionesMonetariasPorDonador(@Param("anio") int anio, @Param("username") String username);
 
     //HU37 --->buscaba por id, ahora busca por username
     @Query("SELECT d FROM Donations d " +

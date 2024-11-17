@@ -45,8 +45,8 @@ public class DonationsServiceImplement implements IDonationsService {
     }
 
     @Override
-    public List<String[]> listOfMonetaryDonationsByDonante(int year, Long iduser) {
-        return dR.resumenDonacionesMonetariasPorDonador(year, iduser);
+    public List<String[]> listOfMonetaryDonationsByDonante(int year, String username) {
+        return dR.resumenDonacionesMonetariasPorDonador(year, username);
     }
 
     @Override
@@ -103,6 +103,11 @@ public class DonationsServiceImplement implements IDonationsService {
     @Override
     public List<Donations> listDonationActivate() {
         return dR.findAllActiveDonations();
+    }
+
+    @Override
+    public List<String[]> obtenerCantidadDonativosPorTipoYM(int mes) {
+        return dR.obtenerCantidadDonativosFisicosPorMes(mes);
     }
 
 }

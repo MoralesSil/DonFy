@@ -1,5 +1,6 @@
 package pe.edu.upc.donfy.serviceinterfaces;
 
+import org.springframework.data.repository.query.Param;
 import pe.edu.upc.donfy.entities.Donations;
 
 import java.util.List;
@@ -18,7 +19,7 @@ public interface IDonationsService {
 
     public List<Donations> listDonationsForYourStatus(String estado);
 
-    public List<String[]> listOfMonetaryDonationsByDonante(int year, Long iduser);
+    public List<String[]> listOfMonetaryDonationsByDonante(int year, String username);
 
     public List<Donations> listDonationsByONG(String ongUsername);
 
@@ -41,5 +42,7 @@ public interface IDonationsService {
     public List<Donations> listDonationForUser(String username);
 
     public List<Donations> listDonationActivate();
+
+    public List<String[]> obtenerCantidadDonativosPorTipoYM(int mes);
 
 }

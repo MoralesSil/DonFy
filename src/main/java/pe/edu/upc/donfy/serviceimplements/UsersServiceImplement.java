@@ -66,8 +66,7 @@ public class UsersServiceImplement implements IUsersService {
     }
 
     @Override
-    public Long findOneByUsername(String username) {
-        return uR.findOneUserIdByUsername(username);
+    public Users listByUsername(String username) {
+        return uR.findOneByUsername(username);
     }
-
 }

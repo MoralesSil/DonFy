@@ -12,7 +12,7 @@ public class Donations {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idDonation;
 
-    @Column(name = "nombre", nullable = false, length = 150)
+    @Column(name = "nombre", length = 150)
     private String nombre;
 
     @Column(name = "descripcion", nullable = false)
