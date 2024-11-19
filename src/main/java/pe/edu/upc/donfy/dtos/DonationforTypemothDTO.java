@@ -1,8 +1,25 @@
 package pe.edu.upc.donfy.dtos;
 
 public class DonationforTypemothDTO {
+    private String tipoDonation;
+    private Long cantidadDonaciones;
     private int mes;
-    private long cantidad;
+
+    public String getTipoDonation() {
+        return tipoDonation;
+    }
+
+    public void setTipoDonation(String tipoDonation) {
+        this.tipoDonation = tipoDonation;
+    }
+
+    public Long getCantidadDonaciones() {
+        return cantidadDonaciones;
+    }
+
+    public void setCantidadDonaciones(Long cantidadDonaciones) {
+        this.cantidadDonaciones = cantidadDonaciones;
+    }
 
     public int getMes() {
         return mes;
@@ -11,13 +28,4 @@ public class DonationforTypemothDTO {
     public void setMes(int mes) {
         this.mes = mes;
     }
-
-    public long getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(long cantidad) {
-        this.cantidad = cantidad;
-    }
-
 }

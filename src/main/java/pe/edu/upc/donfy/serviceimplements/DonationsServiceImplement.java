@@ -45,8 +45,8 @@ public class DonationsServiceImplement implements IDonationsService {
     }
 
     @Override
-    public List<String[]> listOfMonetaryDonationsByDonante(int year, String username) {
-        return dR.resumenDonacionesMonetariasPorDonador(year, username);
+    public List<String[]> listOfMonetaryDonationsByDonante(int year) {
+        return dR.resumenDonacionesMonetariasPorDonador(year);
     }
 
     @Override

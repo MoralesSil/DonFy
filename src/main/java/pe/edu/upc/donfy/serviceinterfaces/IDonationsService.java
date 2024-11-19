@@ -20,7 +20,7 @@ public interface IDonationsService {
 
     public List<Donations> listDonationsForYourStatus(String estado);
 
-    public List<String[]> listOfMonetaryDonationsByDonante(int year, String username);
+    public List<String[]> listOfMonetaryDonationsByDonante(int year);
 
     public List<Donations> listDonationsByONG(String ongUsername);
 
@@ -44,5 +44,5 @@ public interface IDonationsService {
 
     public List<Donations> listDonationActivate();
 
-    public List<String[]> obtenerCantidadDonativosPorTipoYM(int mes);
+    List<String[]> obtenerCantidadDonativosPorTipoYM(int mes);
 }
