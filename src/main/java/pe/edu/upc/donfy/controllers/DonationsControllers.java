@@ -68,10 +68,10 @@ public class DonationsControllers {
         }).collect(Collectors.toList());
     }
 
-    @PreAuthorize("hasAuthority('DONADOR')")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     @GetMapping("/ResumenMonetarioDeDonacionesPorDonante")
-    public List<DonationSummaryDTO> TotalDonadoPorONG(@RequestParam int anio, String username) {
-        return dC.listOfMonetaryDonationsByDonante(anio, username).stream().map(x -> {
+    public List<DonationSummaryDTO> TotalDonadoPorONG(@RequestParam int anio) {
+        return dC.listOfMonetaryDonationsByDonante(anio).stream().map(x -> {
             DonationSummaryDTO dto = new DonationSummaryDTO();
             dto.setNombreDonante(x[0]);
             dto.setUsuarioReceptor(x[1]);
@@ -219,9 +219,12 @@ public class DonationsControllers {
         List<String[]> resultados = dC.obtenerCantidadDonativosPorTipoYM(mes);
         return resultados.stream().map(item -> {
             DonationforTypemothDTO dto = new DonationforTypemothDTO();
-            dto.setMes(Integer.parseInt(item[0]));
-            dto.setCantidad(Long.parseLong(item[1]));
+            dto.setTipoDonation((String) item[0]);
+            dto.setCantidadDonaciones(Long.parseLong(item[1]));
+            dto.setMes(Integer.parseInt(item[2]));
             return dto;
         }).collect(Collectors.toList());
     }
+
+
 }

@@ -12,11 +12,14 @@ import java.util.List;
 @Repository
 public interface IDonationsRepository extends JpaRepository <Donations,Integer>{
 
-    @Query("SELECT COUNT(d.idDonation) " +
+    @Query("SELECT dt.nombreTipoDonation AS tipoDonation, " +
+            "COUNT(d.idDonation) AS cantidadDonaciones, " +
+            "MONTH(d.fechaRecojo) AS mes " +
             "FROM Donations d " +
+            "JOIN DonationType dt ON d.donationType.idTipoDonation = dt.idTipoDonation " +
             "WHERE d.eliminado = false " +
             "AND MONTH(d.fechaRecojo) = :mes " +
-            "AND d.donationType.idTipoDonation = 1")
+            "GROUP BY dt.nombreTipoDonation, MONTH(d.fechaRecojo)")
     List<String[]> obtenerCantidadDonativosFisicosPorMes(@Param("mes") int mes);
 
 
@@ -45,9 +48,9 @@ public interface IDonationsRepository extends JpaRepository <Donations,Integer>{
             "JOIN DonationType dt ON d.donationType.idTipoDonation = dt.idTipoDonation " +
             "WHERE dt.nombreTipoDonation = 'MONETARIO' " +
             "AND EXTRACT(YEAR FROM d.fechaRecojo) = :anio " +
-            "AND u.username = :username " +
             "GROUP BY u.nombre, d.usersReceptor.nombreONG")
-    List<String[]> resumenDonacionesMonetariasPorDonador(@Param("anio") int anio, @Param("username") String username);
+    List<String[]> resumenDonacionesMonetariasPorDonador(@Param("anio") int anio);
+
 
     //HU37 --->buscaba por id, ahora busca por username
     @Query("SELECT d FROM Donations d " +
