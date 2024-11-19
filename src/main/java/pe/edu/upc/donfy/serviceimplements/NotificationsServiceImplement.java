@@ -42,4 +42,9 @@ public class NotificationsServiceImplement implements INotificationsService {
     public List<Notifications> NotificationsByUserId(Long userId) {
         return nR.findNotificationsByUserId(userId);
     }
+
+    @Override
+    public List<Notifications> findByUsername(String Username) {
+        return nR.findByUsername(Username);
+    }
 }

@@ -18,6 +18,7 @@ pe\edu\upc\donfy\serviceimplements\VouchersServiceImplement.class
 pe\edu\upc\donfy\controllers\JwtAuthenticationController.class
 pe\edu\upc\donfy\serviceimplements\NotificationsServiceImplement.class
 pe\edu\upc\donfy\controllers\VouchersControllers.class
+pe\edu\upc\donfy\dtos\DonationforTypemothDTO.class
 pe\edu\upc\donfy\entities\Vouchers.class
 pe\edu\upc\donfy\repositories\INotificationTypeRepository.class
 pe\edu\upc\donfy\controllers\NotificationsControllers.class

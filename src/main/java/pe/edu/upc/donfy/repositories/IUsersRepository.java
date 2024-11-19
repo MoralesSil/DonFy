@@ -41,4 +41,16 @@ public interface IUsersRepository extends JpaRepository<Users, Long> {
     @Query(value="SELECT u.saldo FROM users u WHERE u.username = :username", nativeQuery = true)
     public List<Float[]> saldoXusuario(@Param("username") String username);
 
+    @Query("SELECT " +
+            "u.id, " +
+            "CONCAT(u.nombre, ' ', u.apellidos), " +
+            "u.correo, " +
+            "SUM(d.montoDonado), " +
+            "YEAR(d.fechaRecojo) " +
+            "FROM Users u " +
+            "JOIN Donations d ON u.id = d.idDonation " +
+            "WHERE YEAR(d.fechaRecojo) = :year " +
+            "GROUP BY u.id, u.nombre, u.apellidos, u.correo, YEAR(d.fechaRecojo) " +
+            "ORDER BY SUM(d.montoDonado) DESC")
+    List<String[]> getSumaDonantesPorAnio(@Param("year") int year);
 }

@@ -1,5 +1,6 @@
 package pe.edu.upc.donfy.controllers;
 
+import org.apache.catalina.User;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -80,4 +81,10 @@ public class UsersControllers {
         }
         return listadto;
     }
+
+    @GetMapping("/buscar/{username}")
+    public Long getUserIdByUsername(@PathVariable String username) {
+        return uS.findByUsername(username);
+    }
+
 }

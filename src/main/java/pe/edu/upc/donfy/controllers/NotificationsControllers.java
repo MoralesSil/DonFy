@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.donfy.dtos.DonationONGDTO;
 import pe.edu.upc.donfy.dtos.NotificationTypeDTO;
 import pe.edu.upc.donfy.dtos.NotificationsDTO;
 import pe.edu.upc.donfy.entities.NotificationType;
@@ -66,5 +67,14 @@ public class NotificationsControllers {
         return notifications.stream()
                 .map(notification -> modelMapper.map(notification, NotificationsDTO.class))
                 .collect(Collectors.toList());
+    }
+
+    @PreAuthorize("hasAuthority('DONADOR') or hasAuthority('ONG')")
+    @GetMapping("/BuscarNotificacionesporUsername")
+    public List<NotificationsDTO> FindUsername(@RequestParam String username) {
+        return nS.findByUsername(username).stream().map(x -> {
+            ModelMapper m = new ModelMapper();
+            return m.map(x, NotificationsDTO.class);
+        }).collect(Collectors.toList());
     }
 }

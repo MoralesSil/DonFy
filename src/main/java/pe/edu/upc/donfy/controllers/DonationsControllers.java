@@ -19,14 +19,16 @@ public class DonationsControllers {
     @Autowired
     private IDonationsService dC;
 
+    //Modificada solo para listar los que son false en eliminado
     @GetMapping
     @PreAuthorize("hasAuthority('ADMINISTRADOR')")
-    public List<DonationsDTO> listar(){
-        return dC.list().stream().map(x-> {
+    public List<DonationsDTO> listar() {
+        return dC.listDonationActivate().stream().map(x -> {
             ModelMapper m = new ModelMapper();
             return m.map(x, DonationsDTO.class);
         }).collect(Collectors.toList());
     }
+
     @PostMapping
     @PreAuthorize("hasAuthority('DONADOR')")
     public void registar(@RequestBody DonationsDTO dto) {
@@ -34,42 +36,42 @@ public class DonationsControllers {
         Donations donations = m.map(dto, Donations.class);
         dC.insert(donations);
     }
+
     @GetMapping("/{idDonation}")
-    @PreAuthorize("hasAuthority('DONADOR')")
-    public DonationsDTO listarId(@PathVariable("idUsuario") Integer idDonation) {
-        ModelMapper m=new ModelMapper();
-        DonationsDTO dto=m.map(dC.listId(idDonation), DonationsDTO.class);
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    public DonationsDTO listarId(@PathVariable("idDonation") Integer idDonation) {
+        ModelMapper m = new ModelMapper();
+        DonationsDTO dto = m.map(dC.listId(idDonation), DonationsDTO.class);
         return dto;
     }
+    //Modificación de HU
     @PutMapping
-    @PreAuthorize("hasAuthority('DONADOR')")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public void modificar(@RequestBody DonationsDTO dto) {
-        ModelMapper m=new ModelMapper();
+        ModelMapper m = new ModelMapper();
         Donations donations = m.map(dto, Donations.class);
         dC.update(donations);
     }
-
+    //Modificación de HU
     @DeleteMapping("/{idDonation}")
-    @PreAuthorize("hasAuthority('DONADOR')")
-    public void eliminar(@PathVariable("idDonation") Integer idDonation){
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
+    public void eliminar(@PathVariable("idDonation") Integer idDonation) {
         dC.delete(idDonation);
     }
 
     @PreAuthorize("hasAuthority('ONG')")
     @GetMapping("/FiltrarDonativosPorEstado")
-    public List<DonationsDTO> FiltrarPorEstado(@RequestParam String estado)
-    {
+    public List<DonationsDTO> FiltrarPorEstado(@RequestParam String estado) {
         return dC.listDonationsForYourStatus(estado).stream().map(x -> {
             ModelMapper m = new ModelMapper();
             return m.map(x, DonationsDTO.class);
         }).collect(Collectors.toList());
     }
 
-    @PreAuthorize("hasAuthority('DONADOR')")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     @GetMapping("/ResumenMonetarioDeDonacionesPorDonante")
-    public List<DonationSummaryDTO> TotalDonadoPorONG(@RequestParam int anio, Long iduser)
-    {
-        return dC.listOfMonetaryDonationsByDonante(anio, iduser).stream().map(x -> {
+    public List<DonationSummaryDTO> TotalDonadoPorONG(@RequestParam int anio) {
+        return dC.listOfMonetaryDonationsByDonante(anio).stream().map(x -> {
             DonationSummaryDTO dto = new DonationSummaryDTO();
             dto.setNombreDonante(x[0]);
             dto.setUsuarioReceptor(x[1]);
@@ -80,9 +82,8 @@ public class DonationsControllers {
 
     @PreAuthorize("hasAuthority('ONG')")
     @GetMapping("/FiltrarDonativosPorONG")
-    public List<DonationsDTO> FiltrarPorONG(@RequestParam int ong)
-    {
-        return dC.listDonationsByONG(ong).stream().map(x -> {
+    public List<DonationsDTO> FiltrarPorONG(@RequestParam String ongUsername) {
+        return dC.listDonationsByONG(ongUsername).stream().map(x -> {
             ModelMapper m = new ModelMapper();
             return m.map(x, DonationsDTO.class);
         }).collect(Collectors.toList());
@@ -90,18 +91,16 @@ public class DonationsControllers {
 
     @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     @GetMapping("/AsignarDonativoONG")
-    public List<DonationONGDTO> AsignarDonativoAOng(@RequestParam int idDonativo, Long idong)
-    {
-        return dC.listDonationAndONGByIds(idDonativo,idong).stream().map(x -> {
+    public List<DonationONGDTO> AsignarDonativoAOng(@RequestParam int idDonativo, Long idong) {
+        return dC.listDonationAndONGByIds(idDonativo, idong).stream().map(x -> {
             ModelMapper m = new ModelMapper();
             return m.map(x, DonationONGDTO.class);
         }).collect(Collectors.toList());
     }
 
-    @PreAuthorize("hasAuthority('ONG')")
+    @PreAuthorize("hasAuthority('DONADOR')")
     @GetMapping("/FiltrarReportePorTipoDonativo")
-    public List<DonationsDTO> FiltrarReportePorTipoDonativo(@RequestParam String typeDonationName)
-    {
+    public List<DonationsDTO> FiltrarReportePorTipoDonativo(@RequestParam String typeDonationName) {
         return dC.listDonationsByDonationsType(typeDonationName).stream().map(x -> {
             ModelMapper m = new ModelMapper();
             return m.map(x, DonationsDTO.class);
@@ -119,6 +118,7 @@ public class DonationsControllers {
         });
         return listaDTO;
     }
+
     @GetMapping("/donation-statistics")
     @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public List<DonationStatisticsDTO> obtenerEstadisticas() {
@@ -135,6 +135,7 @@ public class DonationsControllers {
 
         return listaDTO;
     }
+
     @GetMapping("/Users/{userId}/DonativosporUsuario")
     @PreAuthorize("hasAuthority('DONADOR')")
     public List<DonationsDTO> getDonationsByUserId(@PathVariable Long userId) {
@@ -148,10 +149,10 @@ public class DonationsControllers {
     @GetMapping("/tendenciasDonacionesMes")
     @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public List<TrendsDonationsDTO> obtenerTendencias() {
-        List<String[]>lista=dC.tendenciasDonacionesMeses();
-        List<TrendsDonationsDTO>listaDTO=new ArrayList<>();
-        for(String[]columna:lista) {
-            TrendsDonationsDTO dto=new TrendsDonationsDTO();
+        List<String[]> lista = dC.tendenciasDonacionesMeses();
+        List<TrendsDonationsDTO> listaDTO = new ArrayList<>();
+        for (String[] columna : lista) {
+            TrendsDonationsDTO dto = new TrendsDonationsDTO();
             dto.setDonationType(columna[0]);
             dto.setDate(LocalDate.parse(columna[1]));
             dto.setTotalDonations(Integer.parseInt(columna[2]));
@@ -180,10 +181,10 @@ public class DonationsControllers {
     @GetMapping("/personasConMasDonaciones")
     @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public List<PersonasconMasDonacionesDTO> obtenerPersonas() {
-        List<String[]>lista=dC.personasConMaxDonaciones();
-        List<PersonasconMasDonacionesDTO>listaDTO=new ArrayList<>();
-        for(String[]columna:lista) {
-            PersonasconMasDonacionesDTO dto=new PersonasconMasDonacionesDTO();
+        List<String[]> lista = dC.personasConMaxDonaciones();
+        List<PersonasconMasDonacionesDTO> listaDTO = new ArrayList<>();
+        for (String[] columna : lista) {
+            PersonasconMasDonacionesDTO dto = new PersonasconMasDonacionesDTO();
             dto.setNombre(columna[0]);
             dto.setNombreTipoDonation(columna[1]);
             dto.setTotalDonaciones(Integer.parseInt(columna[2]));
@@ -191,4 +192,39 @@ public class DonationsControllers {
         }
         return listaDTO;
     }
+
+    //Nuevos
+    @PreAuthorize("hasAuthority('DONADOR')")
+    @GetMapping("/DonativosPorDonador")
+    public List<DonationsDTO> ListarDonationsForDonador(@RequestParam String username) {
+        return dC.listDonationForUser(username).stream().map(x -> {
+            ModelMapper m = new ModelMapper();
+            return m.map(x, DonationsDTO.class);
+        }).collect(Collectors.toList());
+    }
+
+    @PutMapping("/CambiarEstadoAInactivo")
+    @PreAuthorize("hasAuthority('DONADOR')")
+    public void donativosInactivos(@RequestParam Integer idDonation) {
+        Donations donation = dC.listId(idDonation);
+        if (donation != null) {
+            donation.setEliminado(true);
+            dC.update(donation);
+        }
+    }
+
+    @GetMapping("/cantidadDonativosfisicosPorMonth")
+    @PreAuthorize("hasAuthority('DONADOR') or hasAuthority('ADMINISTRADOR')")
+    public List<DonationforTypemothDTO> obtenerCantidadDonativosFisicosPorMes(@RequestParam int mes) {
+        List<String[]> resultados = dC.obtenerCantidadDonativosPorTipoYM(mes);
+        return resultados.stream().map(item -> {
+            DonationforTypemothDTO dto = new DonationforTypemothDTO();
+            dto.setTipoDonation((String) item[0]);
+            dto.setCantidadDonaciones(Long.parseLong(item[1]));
+            dto.setMes(Integer.parseInt(item[2]));
+            return dto;
+        }).collect(Collectors.toList());
+    }
+
+
 }
