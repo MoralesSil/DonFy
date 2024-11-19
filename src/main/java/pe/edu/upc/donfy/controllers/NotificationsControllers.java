@@ -69,21 +69,12 @@ public class NotificationsControllers {
                 .collect(Collectors.toList());
     }
 
-    @PreAuthorize("hasAuthority('ADMINISTRADOR') OR hasAuthority('DONADOR')")
-    @GetMapping("/BuscarNotificacionesporUsernameDonador")
-    public List<NotificationsDTO> FindUsernameDonador(@RequestParam String username) {
-        return nS.NotificationsByUsername(username).stream().map(x -> {
+    @PreAuthorize("hasAuthority('DONADOR') or hasAuthority('ONG')")
+    @GetMapping("/BuscarNotificacionesporUsername")
+    public List<NotificationsDTO> FindUsername(@RequestParam String username) {
+        return nS.findByUsername(username).stream().map(x -> {
             ModelMapper m = new ModelMapper();
             return m.map(x, NotificationsDTO.class);
         }).collect(Collectors.toList());
     }
-    @PreAuthorize("hasAuthority('ADMINISTRADOR') OR hasAuthority('ONG')")
-    @GetMapping("/BuscarNotificacionesporUsernameONG")
-    public List<NotificationsDTO> FindUsernameONG(@RequestParam String username) {
-        return nS.NotificationsByUsername(username).stream().map(x -> {
-            ModelMapper m = new ModelMapper();
-            return m.map(x, NotificationsDTO.class);
-        }).collect(Collectors.toList());
-    }
-
 }

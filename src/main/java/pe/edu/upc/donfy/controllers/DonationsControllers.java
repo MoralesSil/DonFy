@@ -38,23 +38,23 @@ public class DonationsControllers {
     }
 
     @GetMapping("/{idDonation}")
-    @PreAuthorize("hasAuthority('DONADOR')")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public DonationsDTO listarId(@PathVariable("idDonation") Integer idDonation) {
         ModelMapper m = new ModelMapper();
         DonationsDTO dto = m.map(dC.listId(idDonation), DonationsDTO.class);
         return dto;
     }
-
+    //Modificación de HU
     @PutMapping
-    @PreAuthorize("hasAuthority('DONADOR')")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public void modificar(@RequestBody DonationsDTO dto) {
         ModelMapper m = new ModelMapper();
         Donations donations = m.map(dto, Donations.class);
         dC.update(donations);
     }
-
+    //Modificación de HU
     @DeleteMapping("/{idDonation}")
-    @PreAuthorize("hasAuthority('DONADOR')")
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public void eliminar(@PathVariable("idDonation") Integer idDonation) {
         dC.delete(idDonation);
     }
@@ -98,7 +98,7 @@ public class DonationsControllers {
         }).collect(Collectors.toList());
     }
 
-    @PreAuthorize("hasAuthority('ONG')")
+    @PreAuthorize("hasAuthority('DONADOR')")
     @GetMapping("/FiltrarReportePorTipoDonativo")
     public List<DonationsDTO> FiltrarReportePorTipoDonativo(@RequestParam String typeDonationName) {
         return dC.listDonationsByDonationsType(typeDonationName).stream().map(x -> {

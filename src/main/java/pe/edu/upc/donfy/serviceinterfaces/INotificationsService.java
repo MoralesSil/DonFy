@@ -12,6 +12,6 @@ public interface INotificationsService {
     public void delete(int idNotificacion);
     public void update(Notifications notification);
     public List<Notifications>NotificationsByUserId(Long userId) ;
-    public List<Notifications>NotificationsByUsername(String username);
-    public List<Notifications>NotificationsByUsernameONGl(String username);
+    public List<Notifications> findByUsername(String Username);
+
 }

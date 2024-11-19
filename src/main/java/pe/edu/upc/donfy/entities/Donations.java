@@ -15,22 +15,22 @@ public class Donations {
     @Column(name = "nombre", length = 150)
     private String nombre;
 
-    @Column(name = "descripcion", nullable = false)
+    @Column(name = "descripcion")
     private String descripcion;
 
-    @Column(name = "estado", nullable = false, length = 20)
+    @Column(name = "estado", length = 20)
     private String estado;
 
-    @Column(name = "fechaRecojo", nullable = false)
+    @Column(name = "fechaRecojo")
     private LocalDate fechaRecojo;
 
-    @Column(name = "montoDonado", nullable = false)
+    @Column(name = "montoDonado")
     private float montoDonado;
 
     @Column(name = "eliminado")
     private boolean eliminado;
 
-    @Column(name = "direccionRecojo", nullable = false, length = 200)
+    @Column(name = "direccionRecojo", length = 200)
     private String direccionRecojo;
 
     @ManyToOne

@@ -18,7 +18,7 @@ public class DonationTypeControllers {
     private IDonationTypeService dtS;
 
     @GetMapping
-    @PreAuthorize("hasAuthority('ADMINISTRADOR') or hasAuthority('DONADOR')") //Modificado para añadir acciones al donador
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public List<DonationTypeDTO> listar() {
 
         return dtS.list().stream().map(x -> {
@@ -27,21 +27,21 @@ public class DonationTypeControllers {
         }).collect(Collectors.toList());
     }
     @PostMapping
-    @PreAuthorize("hasAuthority('ADMINISTRADOR') or hasAuthority('DONADOR')") //Modificado para añadir acciones al donador
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public void registrar(@RequestBody DonationTypeDTO dto) {
         ModelMapper m = new ModelMapper();
         DonationType nt = m.map(dto, DonationType.class);
         dtS.insert(nt);
     }
     @GetMapping("/{idTipoDonacion}")
-    @PreAuthorize("hasAuthority('ADMINISTRADOR') or hasAuthority('DONADOR')") //Modificado para añadir acciones al donador
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public DonationTypeDTO listarId(@PathVariable("idTipoDonacion") Integer idTipoDonacion  ) {
         ModelMapper m=new ModelMapper();
         DonationTypeDTO dto=m.map(dtS.listId(idTipoDonacion), DonationTypeDTO.class);
         return dto;
     }
     @PutMapping
-    @PreAuthorize("hasAuthority('ADMINISTRADOR') or hasAuthority('DONADOR')") //Modificado para añadir acciones al donador
+    @PreAuthorize("hasAuthority('ADMINISTRADOR')")
     public void modificar(@RequestBody DonationTypeDTO dto) {
         ModelMapper m=new ModelMapper();
         DonationType nt=m.map(dto, DonationType.class);

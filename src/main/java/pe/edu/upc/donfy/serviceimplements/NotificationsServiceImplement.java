@@ -44,12 +44,7 @@ public class NotificationsServiceImplement implements INotificationsService {
     }
 
     @Override
-    public List<Notifications> NotificationsByUsername(String username) {
-        return nR.findNotificationsByUsername(username);
-    }
-
-    @Override
-    public List<Notifications> NotificationsByUsernameONGl(String username) {
-        return nR.findNotificationsByUsernameONG(username);
+    public List<Notifications> findByUsername(String Username) {
+        return nR.findByUsername(Username);
     }
 }
