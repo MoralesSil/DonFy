@@ -11,4 +11,6 @@ public interface IRoleService {
     public Role listId(Long idRol);
     public void update(Role rol);
     public void delete(Long idRol);
+
+    public void eliminarRolesNulos();
 }

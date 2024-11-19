@@ -77,14 +77,14 @@ public class VouchersControllers {
     }
 
 
-    @GetMapping("/ListarComprobantesPorUsuario")
-    public List<VouchersDTO> ComprobantesPorUsuario(@RequestParam Long iduser)
-    {
+    @GetMapping("/ListarComprobantesPorUsuario/{iduser}")
+    public List<VouchersDTO> ComprobantesPorUsuario(@PathVariable Long iduser) {
         return vS.listAllVoucherForUser(iduser).stream().map(x -> {
             ModelMapper m = new ModelMapper();
-            return m.map(x,VouchersDTO.class);
+            return m.map(x, VouchersDTO.class);
         }).collect(Collectors.toList());
     }
+
 
 }
 

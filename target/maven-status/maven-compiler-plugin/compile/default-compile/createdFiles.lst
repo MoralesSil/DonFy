@@ -1,6 +1,7 @@
 pe\edu\upc\donfy\controllers\NotificationTypeControllers.class
 pe\edu\upc\donfy\serviceimplements\NotificationTypeServiceImplement.class
 pe\edu\upc\donfy\dtos\NotificationsDTO.class
+pe\edu\upc\donfy\dtos\DonationONGDTO.class
 pe\edu\upc\donfy\repositories\IRoleRepository.class
 pe\edu\upc\donfy\serviceimplements\DonationsServiceImplement.class
 pe\edu\upc\donfy\dtos\PhysicalDonationsByUserIdAndStatusDTO.class
@@ -24,6 +25,7 @@ pe\edu\upc\donfy\repositories\IDonationsRepository.class
 pe\edu\upc\donfy\dtos\DonanteXFechaDTO.class
 pe\edu\upc\donfy\serviceimplements\UsersServiceImplement.class
 pe\edu\upc\donfy\dtos\DonationStatisticsDTO.class
+pe\edu\upc\donfy\util\CORS.class
 pe\edu\upc\donfy\dtos\DonationsDTO.class
 pe\edu\upc\donfy\serviceinterfaces\IDonationTypeService.class
 pe\edu\upc\donfy\dtos\PersonasconMasDonacionesDTO.class
@@ -37,7 +39,6 @@ pe\edu\upc\donfy\repositories\IDonationTypeRepository.class
 pe\edu\upc\donfy\serviceinterfaces\IDonationsService.class
 pe\edu\upc\donfy\dtos\VouchersDTO.class
 pe\edu\upc\donfy\serviceinterfaces\INotificationsService.class
-pe\edu\upc\donfy\dtos\DonativosPhysicalDTO.class
 pe\edu\upc\donfy\securities\JwtResponse.class
 pe\edu\upc\donfy\controllers\DonationTypeControllers.class
 pe\edu\upc\donfy\dtos\TrendsDonationsDTO.class
@@ -51,6 +52,7 @@ pe\edu\upc\donfy\entities\Role.class
 pe\edu\upc\donfy\controllers\RoleControllers.class
 pe\edu\upc\donfy\repositories\IUsersRepository.class
 pe\edu\upc\donfy\entities\Donations.class
+pe\edu\upc\donfy\dtos\SaldoXusuarioDTO.class
 pe\edu\upc\donfy\entities\NotificationType.class
 pe\edu\upc\donfy\serviceinterfaces\IUsersService.class
 pe\edu\upc\donfy\serviceimplements\DonationTypeServiceImplement.class

@@ -8,17 +8,18 @@ C:\Users\angie\IdeaProjects\Trabajo\DonFy\src\main\java\pe\edu\upc\donfy\control
 C:\Users\angie\IdeaProjects\Trabajo\DonFy\src\main\java\pe\edu\upc\donfy\controllers\VouchersControllers.java
 C:\Users\angie\IdeaProjects\Trabajo\DonFy\src\main\java\pe\edu\upc\donfy\DonfyApplication.java
 C:\Users\angie\IdeaProjects\Trabajo\DonFy\src\main\java\pe\edu\upc\donfy\dtos\DonanteXFechaDTO.java
+C:\Users\angie\IdeaProjects\Trabajo\DonFy\src\main\java\pe\edu\upc\donfy\dtos\DonationONGDTO.java
 C:\Users\angie\IdeaProjects\Trabajo\DonFy\src\main\java\pe\edu\upc\donfy\dtos\DonationsDTO.java
 C:\Users\angie\IdeaProjects\Trabajo\DonFy\src\main\java\pe\edu\upc\donfy\dtos\DonationsSummaryYearONGDTO.java
 C:\Users\angie\IdeaProjects\Trabajo\DonFy\src\main\java\pe\edu\upc\donfy\dtos\DonationStatisticsDTO.java
 C:\Users\angie\IdeaProjects\Trabajo\DonFy\src\main\java\pe\edu\upc\donfy\dtos\DonationSummaryDTO.java
 C:\Users\angie\IdeaProjects\Trabajo\DonFy\src\main\java\pe\edu\upc\donfy\dtos\DonationTypeDTO.java
-C:\Users\angie\IdeaProjects\Trabajo\DonFy\src\main\java\pe\edu\upc\donfy\dtos\DonativosPhysicalDTO.java
 C:\Users\angie\IdeaProjects\Trabajo\DonFy\src\main\java\pe\edu\upc\donfy\dtos\NotificationsDTO.java
 C:\Users\angie\IdeaProjects\Trabajo\DonFy\src\main\java\pe\edu\upc\donfy\dtos\NotificationTypeDTO.java
 C:\Users\angie\IdeaProjects\Trabajo\DonFy\src\main\java\pe\edu\upc\donfy\dtos\PersonasconMasDonacionesDTO.java
 C:\Users\angie\IdeaProjects\Trabajo\DonFy\src\main\java\pe\edu\upc\donfy\dtos\PhysicalDonationsByUserIdAndStatusDTO.java
 C:\Users\angie\IdeaProjects\Trabajo\DonFy\src\main\java\pe\edu\upc\donfy\dtos\RoleDTO.java
+C:\Users\angie\IdeaProjects\Trabajo\DonFy\src\main\java\pe\edu\upc\donfy\dtos\SaldoXusuarioDTO.java
 C:\Users\angie\IdeaProjects\Trabajo\DonFy\src\main\java\pe\edu\upc\donfy\dtos\TrendsDonationsDTO.java
 C:\Users\angie\IdeaProjects\Trabajo\DonFy\src\main\java\pe\edu\upc\donfy\dtos\UsersDTO.java
 C:\Users\angie\IdeaProjects\Trabajo\DonFy\src\main\java\pe\edu\upc\donfy\dtos\VouchersDTO.java
@@ -57,3 +58,4 @@ C:\Users\angie\IdeaProjects\Trabajo\DonFy\src\main\java\pe\edu\upc\donfy\service
 C:\Users\angie\IdeaProjects\Trabajo\DonFy\src\main\java\pe\edu\upc\donfy\serviceinterfaces\IRoleService.java
 C:\Users\angie\IdeaProjects\Trabajo\DonFy\src\main\java\pe\edu\upc\donfy\serviceinterfaces\IUsersService.java
 C:\Users\angie\IdeaProjects\Trabajo\DonFy\src\main\java\pe\edu\upc\donfy\serviceinterfaces\IVouchersService.java
+C:\Users\angie\IdeaProjects\Trabajo\DonFy\src\main\java\pe\edu\upc\donfy\util\CORS.java
